@@ -14,7 +14,6 @@ import com.google.android.material.tabs.TabLayout
 class MainActivity : AppCompatActivity() {
 
 
-
     private lateinit var appBarConfiguration: AppBarConfiguration
 
     lateinit var toolbar: Toolbar
@@ -25,8 +24,6 @@ class MainActivity : AppCompatActivity() {
     lateinit var tabs: TabLayout
 
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -34,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         // Creamos instancias de los elementos del contentmain y el adaptador
         toolbar = findViewById(R.id.toolbar);
         viewPager = findViewById(R.id.view_pager);
-        adaptadorPager = AdaptadorPager (supportFragmentManager)
+        adaptadorPager = AdaptadorPager(supportFragmentManager)
         tabs = findViewById(R.id.tab);
 
         //Configuramops toolbar
@@ -47,28 +44,7 @@ class MainActivity : AppCompatActivity() {
         viewPager.setAdapter(adaptadorPager)
 
 
-
-
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /*    override fun onCreateOptionsMenu(menu: Menu): Boolean {
