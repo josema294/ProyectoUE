@@ -13,6 +13,8 @@ import com.example.dameuncoctel.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
+    //Y esto funciona tambien ??
+
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
     //Funciona?
