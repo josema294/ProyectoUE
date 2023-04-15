@@ -1,43 +1,68 @@
 package com.example.dameuncoctel
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
+import androidx.appcompat.widget.Toolbar
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import android.view.Menu
-import android.view.MenuItem
-import com.example.dameuncoctel.databinding.ActivityMainBinding
+import androidx.viewpager.widget.ViewPager
+import com.google.android.material.navigation.NavigationView
+
+import com.google.android.material.tabs.TabLayout
+
 
 class MainActivity : AppCompatActivity() {
 
-    //Y esto funciona tambien ??
+
 
     private lateinit var appBarConfiguration: AppBarConfiguration
-    private lateinit var binding: ActivityMainBinding
-    //Funciona?
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        // Creamos instancias de los elementos del contentmain y el adaptador
+        toolbar = findViewById(R.id.toolbar);
+        viewPager = findViewById(R.id.view_pager);
+        adaptadorPager = AdaptadorPager (supportFragmentManager)
+        tabs = findViewById(R.id.tab);
 
-        setSupportActionBar(binding.toolbar)
+        //Configuramops toolbar
 
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
-        appBarConfiguration = AppBarConfiguration(navController.graph)
-        setupActionBarWithNavController(navController, appBarConfiguration)
+        setSupportActionBar(toolbar)
+        tabs.setupWithViewPager(viewPager)
 
-        binding.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
+        //Configurar pager
+
+        viewPager.setAdapter(adaptadorPager)
+
+
+
+
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
@@ -57,5 +82,5 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
-    }
+    }*/
 }
