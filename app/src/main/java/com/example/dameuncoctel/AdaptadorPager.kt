@@ -25,17 +25,17 @@ class AdaptadorPager(fm: FragmentManager?) : FragmentPagerAdapter(fm!!) {
 
             var temp : Fragment =  i
 
-            print("Efectuadas acciones dentro del fragment " + i.id)
+
 
         }
 
 
     }
 
-    /*fun eliminarFragment(posicion: Int) {
-        listaFragments.remove(posicion)
+    fun eliminarFragment(posicion: Int) {
+        listaFragments.removeAt(posicion)
         notifyDataSetChanged()
-    }*/
+    }
 
     fun addFragment(fragment: Fragment) {
         listaFragments.add(fragment)
