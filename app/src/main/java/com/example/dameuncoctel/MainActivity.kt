@@ -17,15 +17,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
 
-    lateinit var toolbar: Toolbar
-    lateinit var navigation: NavigationView
-    lateinit var drawer: DrawerLayout
-    lateinit var viewPager: ViewPager
-    lateinit var adaptadorPager: AdaptadorPager
-    lateinit var tabs: TabLayout
-
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
