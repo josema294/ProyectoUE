@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.ui.AppBarConfiguration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.navigation.NavigationView
 
@@ -21,17 +23,25 @@ class MainActivity : AppCompatActivity() {
     lateinit var drawer: DrawerLayout
     lateinit var viewPager: ViewPager
     lateinit var adaptadorPager: AdaptadorPager
+
+
     lateinit var tabs: TabLayout
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+
+
+
         // Creamos instancias de los elementos del contentmain y el adaptador
         toolbar = findViewById(R.id.toolbar);
         viewPager = findViewById(R.id.view_pager);
         adaptadorPager = AdaptadorPager(supportFragmentManager)
+
         tabs = findViewById(R.id.tab);
 
         //Configuramops toolbar
