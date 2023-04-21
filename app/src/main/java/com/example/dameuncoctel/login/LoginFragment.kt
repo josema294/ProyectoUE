@@ -1,11 +1,16 @@
 package com.example.dameuncoctel.login
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import com.example.dameuncoctel.MainActivity
 import com.example.dameuncoctel.R
+import com.google.android.material.snackbar.Snackbar
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,6 +26,10 @@ class LoginFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    lateinit var boton: Button
+    lateinit var usuario: EditText
+    lateinit var pass: EditText
+    lateinit var intentprimero: Intent
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +44,34 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_login, container, false)
+        val viewFragmentLogin = inflater.inflate(R.layout.fragment_login, container, false)
+
+        boton = viewFragmentLogin.findViewById(R.id.buttonEntra)
+        usuario = viewFragmentLogin.findViewById(R.id.editTextTextEmailAddress)
+        pass = viewFragmentLogin.findViewById(R.id.editTextTextPassword)
+
+        boton.setOnClickListener {
+
+            if (usuario.text.toString()=="test" && pass.text.toString() == "test") {
+
+                intentprimero = Intent (context, MainActivity::class.java)
+                startActivity(intentprimero)
+
+
+            }
+
+            else {
+
+                Snackbar.make(viewFragmentLogin,"Login incorrecto", Snackbar.LENGTH_LONG).show()
+
+            }
+
+
+
+        }
+
+
+        return viewFragmentLogin
     }
 
     companion object {
