@@ -3,23 +3,66 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
+    <item
+        android:id="@+id/menu_dropdown"
+        android:title="Menú"
+        app:showAsAction="always">
 
 
-        <item
-            android:id="@+id/action_search"
-            android:icon="@drawable/ic_search"
-            android:title="Buscar"
-            app:showAsAction="ifRoom|collapseActionView"
-            app:actionViewClass="android.widget.SearchView"/>
-
-        <item
-            android:id="@+id/action_settings"
-
-            android:title="Settings"
-            app:showAsAction="never"/>
+        <menu>
 
 
+            <item
+                android:id="@+id/action_search"
+                android:icon="@drawable/ic_search"
+                android:title="Buscar"
+                app:actionViewClass="android.widget.SearchView"
+                app:showAsAction="ifRoom|collapseActionView" />
+
+            <item
+                android:id="@+id/action_categorias"
+
+                android:title="Categorias"
+                app:showAsAction="collapseActionView" />
+
+            <item
+                android:id="@+id/action_ingredientes"
+
+                android:title="Ingredientes"
+                app:showAsAction="always" />
+
+            <item
+                android:id="@+id/action_crea"
+
+                android:title="Crea tu Coctel"
+                app:showAsAction="always" />
+
+            <item
+                android:id="@+id/action_settings"
+
+                android:title="Settings"
+                app:showAsAction="always" />
+
+            <item
+                android:id="@+id/action_politica"
+
+                android:title="Politica de Privacidad"
+                app:showAsAction="always" />
+
+            <item
+                android:id="@+id/action_guia"
+
+                android:title="Guia de Usuario"
+                app:showAsAction="always" />
+
+            <item
+                android:id="@+id/action_logout"
+
+                android:title="Log Out"
+                app:showAsAction="always" />
+
+        </menu>
 
 
-
+    </item>
 </menu>
