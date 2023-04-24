@@ -10,24 +10,24 @@ class AdaptadorPagerMenu(fm: FragmentManager?) : FragmentPagerAdapter(fm!!) {
 
     init {
         listaFragments = ArrayList()
+        listaFragments.add(IngredientesFragment())
         listaFragments.add(CategoriasFragment())
-        listaFragments.add(FiltrosFragment())
-        listaFragments.add(CreaFragment())
+
         listaNombres = ArrayList()
-        listaNombres.add("Populares")
-        listaNombres.add("Favoritos")
-        listaNombres.add("Tus Cocktails")
+        listaNombres.add("Ingredientes")
+        listaNombres.add("Categorias")
+
     }
 
     fun cambiarTexto() {
 
-        for (i in listaFragments) {
+        /*for (i in listaFragments) {
 
             var temp : Fragment =  i
 
 
 
-        }
+        }*/
 
 
     }

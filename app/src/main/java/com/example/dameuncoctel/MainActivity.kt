@@ -1,5 +1,6 @@
 package com.example.dameuncoctel
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -7,9 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
+import com.example.dameuncoctel.menu.MenuActivity
 import com.google.android.material.navigation.NavigationView
 
 import com.google.android.material.tabs.TabLayout
@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
 
 
         // Creamos instancias de los elementos del contentmain y el adaptador
-        toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar_2);
         viewPager = findViewById(R.id.view_pager);
         adaptadorPager = AdaptadorPager(supportFragmentManager)
 
@@ -70,7 +70,13 @@ class MainActivity : AppCompatActivity() {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
-            R.id.action_settings -> true
+            R.id.action_settings -> {
+
+                val intent = Intent(this, MenuActivity::class.java)
+                startActivity(intent)
+                true
+
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
