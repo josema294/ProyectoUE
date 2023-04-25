@@ -7,9 +7,10 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="178dp"
-        android:layout_height="112dp"
+        android:layout_width="246dp"
+        android:layout_height="198dp"
         android:text="placeholder: Aqui va el layout de seleccionar categoria"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -11,9 +11,8 @@
         android:id="@+id/toolbar_2"
 
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="wrap_content"
         android:background="@color/teal_700"
-
         app:titleTextColor="@color/white" />
 
     <com.google.android.material.tabs.TabLayout
@@ -21,7 +20,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
+        android:scrollbarAlwaysDrawHorizontalTrack="true"
 
+        app:tabMode="scrollable"
         app:tabIndicatorColor="@color/white" />
 
 

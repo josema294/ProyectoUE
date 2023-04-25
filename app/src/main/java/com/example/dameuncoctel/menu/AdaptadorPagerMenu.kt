@@ -10,12 +10,28 @@ class AdaptadorPagerMenu(fm: FragmentManager?) : FragmentPagerAdapter(fm!!) {
 
     init {
         listaFragments = ArrayList()
-        listaFragments.add(IngredientesFragment())
         listaFragments.add(CategoriasFragment())
+        listaFragments.add(IngredientesFragment())
+        listaFragments.add(CreaFragment())
+        listaFragments.add(AjustesFragment())
+        listaFragments.add(PoliticaFragment())
+        listaFragments.add(GuiaFragment())
+        listaFragments.add(LogoutFragment())
+
+
+
 
         listaNombres = ArrayList()
-        listaNombres.add("Ingredientes")
         listaNombres.add("Categorias")
+        listaNombres.add("Filtros")
+        listaNombres.add("Crea tu Coctel")
+        listaNombres.add("Ajustes")
+        listaNombres.add("Politica de privacidad")
+        listaNombres.add("Guia de usuario")
+        listaNombres.add(("Log Out"))
+
+
+
 
     }
 
