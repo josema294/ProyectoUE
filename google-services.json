@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "756093451253",
+    "firebase_url": "https://cocktel-app-dam-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "cocktel-app-dam",
+    "storage_bucket": "cocktel-app-dam.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:756093451253:android:5e4b6965070e2292733ebc",
+        "android_client_info": {
+          "package_name": "com.example.dameuncoctel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "756093451253-5dqum8iarikisik9bprgnsktk6tab7m3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEtAEHfzNgMJSljs5nk-pBDuR1bt-NafY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "756093451253-5dqum8iarikisik9bprgnsktk6tab7m3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
