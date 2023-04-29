@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import com.example.dameuncoctel.databinding.FragmentCategoriasBinding
 
 
@@ -14,6 +15,10 @@ import com.example.dameuncoctel.databinding.FragmentCategoriasBinding
 class CategoriasFragment : Fragment() {
 
     private var _binding: FragmentCategoriasBinding? = null
+    private lateinit var buttonRon: ImageButton
+    private lateinit var buttonGin: ImageButton
+    private lateinit var buttonVodka: ImageButton
+    private lateinit var buttonSin: ImageButton
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -25,12 +30,24 @@ class CategoriasFragment : Fragment() {
     ): View? {
 
         _binding = FragmentCategoriasBinding.inflate(inflater, container, false)
-        return binding.root
 
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        buttonRon = binding.cateogoriaRon
+        buttonGin=binding.cateogoriaGin
+        buttonVodka= binding.cateogoriaVodka
+        buttonSin= binding.cateogoriaSin
+
+
+
+
+
+
+
 
 
         }

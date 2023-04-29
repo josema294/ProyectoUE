@@ -12,6 +12,104 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_menu">MenuActivity</string>
+    <string name="comportamiento_ingredientes_selector">Incluir simultaneamente todos los ingredientes marcados</string>
+    <string name="info_ingredientes">Ingredientes para cocteles</string>
+
+
+    <string-array name="ingredientes">
+        <item>Absenta</item>
+        <item>Agua tónica</item>
+        <item>Agua con gas</item>
+        <item>Amaretto</item>
+        <item>Angostura</item>
+        <item>Anís</item>
+        <item>Azúcar</item>
+        <item>Benedictine</item>
+        <item>Bitter de naranja</item>
+        <item>Bitter de pomelo</item>
+        <item>Bourbon</item>
+        <item>Brandy</item>
+        <item>Cachaça</item>
+        <item>Campari</item>
+        <item>Chambord</item>
+        <item>Champán</item>
+        <item>Cilantro</item>
+        <item>Cointreau</item>
+        <item>Coñac</item>
+        <item>Crema de cacao</item>
+        <item>Creme de Cassis</item>
+        <item>Curaçao azul</item>
+        <item>Drambuie</item>
+        <item>Frangelico</item>
+        <item>Ginebra</item>
+        <item>Granadina</item>
+        <item>Grand Marnier</item>
+        <item>Guindas al marrasquino</item>
+        <item>Hierbabuena</item>
+        <item>Huevo</item>
+        <item>Jerez</item>
+        <item>Kahlúa</item>
+        <item>Licor de café</item>
+        <item>Licor de menta</item>
+        <item>Licor de melón</item>
+        <item>Licor de plátano</item>
+        <item>Lima</item>
+        <item>Limón</item>
+        <item>Malibu</item>
+        <item>Menta</item>
+        <item>Mezcal</item>
+        <item>Miel</item>
+        <item>Naranja</item>
+        <item>Pernod</item>
+        <item>Peychaud\'s Bitters</item>
+        <item>Pimienta</item>
+        <item>Piña</item>
+        <item>Pisco</item>
+        <item>Ron</item>
+        <item>Ron oscuro</item>
+        <item>Ron blanco</item>
+        <item>Ron dorado</item>
+        <item>Ron de coco</item>
+        <item>Sambuca</item>
+        <item>Scotch</item>
+        <item>Sirope de arce</item>
+        <item>Sirope de granadina</item>
+        <item>Sirope de goma</item>
+        <item>Soda</item>
+        <item>Southern Comfort</item>
+        <item>Tequila</item>
+        <item>Tequila blanco</item>
+        <item>Tequila reposado</item>
+        <item>Tequila añejo</item>
+        <item>Triple sec</item>
+        <item>Vermut</item>
+        <item>Vermut blanco</item>
+        <item>Vermut rojo</item>
+        <item>Vino blanco</item>
+        <item>Vino rosado</item>
+        <item>Vino tinto</item>
+        <item>Vodka</item>
+        <item>Vodka de cítricos</item>
+        <item>Vodka de vainilla</item>
+        <item>Whisky</item>
+        <item>Whisky de centeno</item>
+        <item>Whisky escocés</item>
+        <item>Whisky irlandés</item>
+        <item>Yoghurt</item>
+        <item>Zumo de arándanos</item>
+        <item>Zumo de lima</item>
+        <item>Zumo de limón</item>
+        <item>Zumo de naranja</item>
+        <item>Zumo de piña</item>
+        <item>Zumo de pomelo</item>
+        <item>Zumo de tomate</item>
+
+
+
+        <!-- Agrega más elementos aquí -->
+
+
+    </string-array>
 
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
