@@ -1,16 +1,271 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".menu.CreaFragment">
+    android:layout_height="match_parent">
 
-    <!-- TODO: Update blank fragment layout -->
+
+    <EditText
+        android:id="@+id/nombre_coctail"
+        android:layout_width="296sp"
+        android:layout_height="50sp"
+        android:layout_marginStart="12sp"
+        android:layout_marginTop="16sp"
+        android:hint="Nombre de tu cóctail"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="48sp"
+        android:layout_height="42dp"
+        android:layout_marginLeft="10sp"
+        android:src="@drawable/logococtail"
+        app:layout_constraintBottom_toBottomOf="@+id/nombre_coctail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/nombre_coctail"
+        app:layout_constraintTop_toTopOf="@+id/nombre_coctail" />
+
+    <EditText
+        android:id="@+id/descripcion_coctail"
+        android:layout_width="347sp"
+        android:layout_height="119sp"
+        android:background="@drawable/bordes_cuadrados"
+        android:hint="Descripción..."
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nombre_coctail" />
+
     <TextView
-        android:id="@+id/placeholder_crea"
-        android:textSize="24sp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Placeholder: Aqui va la seccion crea tu coctel" />
+        android:id="@+id/label_ingredientes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10sp"
+        android:text="INGREDIENTES:"
+        android:padding="20sp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/descripcion_coctail"
+        app:layout_constraintStart_toStartOf="@+id/descripcion_coctail"
+        app:layout_constraintTop_toBottomOf="@+id/descripcion_coctail" />
 
-</FrameLayout>
+    <ScrollView
+        android:layout_width="395sp"
+        android:layout_height="487sp"
+        android:layout_marginTop="80sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/label_ingredientes">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/label_ingrediente1"
+                android:layout_width="200sp"
+                android:layout_height="50sp"
+                android:layout_marginLeft="15sp"
+                android:text="Ingrediente 1:"
+                android:textStyle="bold"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/nombre_ingrediente1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nombre del Ingrediente"
+                android:textAlignment="center"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/medida_ingrediente1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Medida"
+                android:textAlignment="center"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/label_ingrediente2"
+                android:layout_width="200sp"
+                android:layout_height="50sp"
+                android:layout_marginLeft="15sp"
+                android:text="Ingrediente 2:"
+                android:textStyle="bold"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/nombre_ingrediente2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nombre del Ingrediente"
+                android:textAlignment="center"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/medida_ingrediente2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Medida"
+                android:textAlignment="center"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/label_ingrediente3"
+                android:layout_width="200sp"
+                android:layout_height="50sp"
+                android:layout_marginLeft="15sp"
+                android:text="Ingrediente 3:"
+                android:textStyle="bold"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/nombre_ingrediente3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nombre del Ingrediente"
+                android:textAlignment="center"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/medida_ingrediente3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Medida"
+                android:textAlignment="center"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/label_ingrediente4"
+                android:layout_width="200sp"
+                android:layout_height="50sp"
+                android:layout_marginLeft="15sp"
+                android:text="Ingrediente 4:"
+                android:textStyle="bold"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/nombre_ingrediente4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nombre del Ingrediente"
+                android:textAlignment="center"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/medida_ingrediente4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Medida"
+                android:textAlignment="center"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/label_ingrediente5"
+                android:layout_width="200sp"
+                android:layout_height="50sp"
+                android:layout_marginLeft="15sp"
+                android:text="Ingrediente 5:"
+                android:textStyle="bold"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/nombre_ingrediente5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nombre del Ingrediente"
+                android:textAlignment="center"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/medida_ingrediente5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Medida"
+                android:textAlignment="center"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/label_ingrediente6"
+                android:layout_width="200sp"
+                android:layout_height="50sp"
+                android:layout_marginLeft="15sp"
+                android:text="Ingrediente 6:"
+                android:textStyle="bold"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/nombre_ingrediente6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nombre del Ingrediente"
+                android:textAlignment="center"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/medida_ingrediente6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Medida"
+                android:textAlignment="center"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/label_ingrediente7"
+                android:layout_width="200sp"
+                android:layout_height="50sp"
+                android:layout_marginLeft="15sp"
+                android:text="Ingrediente 7:"
+                android:textStyle="bold"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/nombre_ingrediente7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nombre del Ingrediente"
+                android:textAlignment="center"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/medida_ingrediente7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Medida"
+                android:textAlignment="center"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/add_tu_foto"
+                android:layout_width="300sp"
+                android:layout_height="wrap_content"
+                android:text="Añade tu foto"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10sp"
+                />
+            <Button
+                android:id="@+id/guarda_tu_coctail"
+                android:layout_width="300sp"
+                android:layout_height="wrap_content"
+                android:text="Guarda tu Cóctail"
+                android:layout_gravity="center"
+                android:layout_marginBottom="100sp"
+                />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

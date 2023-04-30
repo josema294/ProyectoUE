@@ -43,6 +43,14 @@ class MenuActivity : AppCompatActivity() {
 
         viewPager.setAdapter(adaptadorPager)
 
+        //Recupera la llamada del menu del MainActivity y muestra el fragment correspondiente a la llamada
+        val viewPager = findViewById<ViewPager>(R.id.view_pager_menu)
+        viewPager.adapter = adaptadorPager
+
+        val bundle = intent.extras
+        val posicionViewPager = bundle?.getInt("posicionViewPager")
+        viewPager.currentItem = posicionViewPager ?: 0
+
     }
 
 

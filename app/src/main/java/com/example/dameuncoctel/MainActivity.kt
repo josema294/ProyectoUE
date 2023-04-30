@@ -69,17 +69,68 @@ class MainActivity : AppCompatActivity() {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        return when (item.itemId) {
-            R.id.action_settings -> {
-
-                val intent = Intent(this, MenuActivity::class.java)
-                startActivity(intent)
-                true
-
-            }
-            else -> super.onOptionsItemSelected(item)
+        // configuramos que al hacer click en un item, este realiza un intent al viewpager del MenuActivity por posicion
+        when (item.itemId) {
+        R.id.action_categorias -> {
+            val intent = Intent(this, MenuActivity::class.java)
+            val bundle = Bundle()
+            bundle.putInt("posicionViewPager", 0)
+            intent.putExtras(bundle)
+            startActivity(intent)
+            return true
         }
+        R.id.action_ingredientes -> {
+            val intent = Intent(this, MenuActivity::class.java)
+            val bundle = Bundle()
+            bundle.putInt("posicionViewPager", 1)
+            intent.putExtras(bundle)
+            startActivity(intent)
+            return true
+        }
+            R.id.action_crea -> {
+                val intent = Intent(this, MenuActivity::class.java)
+                val bundle = Bundle()
+                bundle.putInt("posicionViewPager", 2)
+                intent.putExtras(bundle)
+                startActivity(intent)
+                return true
+            }
+            R.id.action_settings -> {
+                val intent = Intent(this, MenuActivity::class.java)
+                val bundle = Bundle()
+                bundle.putInt("posicionViewPager", 3)
+                intent.putExtras(bundle)
+                startActivity(intent)
+                return true
+            }
+            R.id.action_politica -> {
+                val intent = Intent(this, MenuActivity::class.java)
+                val bundle = Bundle()
+                bundle.putInt("posicionViewPager", 4)
+                intent.putExtras(bundle)
+                startActivity(intent)
+                return true
+            }
+            R.id.action_guia -> {
+                val intent = Intent(this, MenuActivity::class.java)
+                val bundle = Bundle()
+                bundle.putInt("posicionViewPager", 5)
+                intent.putExtras(bundle)
+                startActivity(intent)
+                return true
+            }
+            R.id.action_logout -> {
+                val intent = Intent(this, MenuActivity::class.java)
+                val bundle = Bundle()
+                bundle.putInt("posicionViewPager", 6)
+                intent.putExtras(bundle)
+                startActivity(intent)
+                return true
+            }
+            // ...
+        else -> return super.onOptionsItemSelected(item)
     }
+}
 
 /*    override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
