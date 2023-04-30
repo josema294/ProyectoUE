@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Adapter
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import com.example.dameuncoctel.R
 
 // TODO: Rename parameter arguments, choose names that match
@@ -21,6 +24,8 @@ class AjustesFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private lateinit var spinner: Spinner
+    private lateinit var adapter: Adapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +40,24 @@ class AjustesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+
+
         return inflater.inflate(R.layout.fragment_ajustes, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        spinner = view.findViewById(R.id.spinner_idiomas)
+
+        adapter = ArrayAdapter.createFromResource(
+            requireContext(),
+            R.array.idiomas,
+            android.R.layout.simple_spinner_item)
+
+        (adapter as ArrayAdapter<CharSequence>).setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner.adapter = adapter as ArrayAdapter<CharSequence>
+
     }
 
     companion object {

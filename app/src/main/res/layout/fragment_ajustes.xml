@@ -1,16 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".menu.AjustesFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/placeholder_crea"
-        android:textSize="24sp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint_ajustes"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Placeholder: Aqui va la seccion ajustes" />
+        android:layout_height="match_parent">
+
+        <CheckBox
+            android:id="@+id/checkBox_modo_oscuro"
+            android:layout_width="183dp"
+            android:layout_height="48dp"
+            android:text="Modo oscuro"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.118"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.095" />
+
+        <TextView
+            android:id="@+id/textView_modo_oscuro"
+            android:layout_width="170dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="12dp"
+            android:text="@string/modo_oscuro"
+            app:layout_constraintBottom_toBottomOf="@+id/checkBox_modo_oscuro"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/checkBox_modo_oscuro"
+            app:layout_constraintTop_toTopOf="@+id/checkBox_modo_oscuro"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <Spinner
+            android:id="@+id/spinner_idiomas"
+            android:layout_width="184sp"
+            android:layout_height="48sp"
+            android:layout_marginTop="56dp"
+            app:layout_constraintEnd_toEndOf="@+id/checkBox_modo_oscuro"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/checkBox_modo_oscuro"
+            app:layout_constraintTop_toBottomOf="@+id/checkBox_modo_oscuro" />
+
+        <TextView
+            android:id="@+id/textView_idiomas"
+            android:layout_width="164sp"
+            android:layout_height="55sp"
+            android:text="@string/selector_idiomas"
+            app:layout_constraintBottom_toBottomOf="@+id/spinner_idiomas"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.677"
+            app:layout_constraintStart_toEndOf="@+id/spinner_idiomas"
+            app:layout_constraintTop_toTopOf="@+id/spinner_idiomas"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/textView_version"
+            android:layout_width="368dp"
+            android:layout_height="80dp"
+            android:text="@string/app_version"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/textView_idiomas"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/spinner_idiomas"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_idiomas"
+            app:layout_constraintVertical_bias="0.194"
+            tools:text="Mi Aplicación - Versión 1.0" />
+
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animationViewSettings"
+            android:layout_width="414dp"
+            android:layout_height="320dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_version"
+            app:layout_constraintVertical_bias="0.0"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/animation_settigs"
+            tools:ignore="MissingConstraints" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
 
 </FrameLayout>

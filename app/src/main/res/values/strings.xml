@@ -1,11 +1,14 @@
 <resources>
     <string name="app_name">DAMeuncoctel</string>
+    <string name="app_version">Versión 0.3</string>
+    <string name="app_name_and_version" formatted="true">%1$s - %2$s</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
+
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
@@ -14,6 +17,8 @@
     <string name="title_activity_menu">MenuActivity</string>
     <string name="comportamiento_ingredientes_selector">Incluir simultaneamente todos los ingredientes marcados</string>
     <string name="info_ingredientes">Ingredientes para cocteles</string>
+    <string name="modo_oscuro"> Activa o desactiva el modo oscuro </string>
+    <string name="selector_idiomas">Selecciona el idioma por defecto</string>
 
 
     <string-array name="ingredientes">
@@ -103,13 +108,16 @@
         <item>Zumo de piña</item>
         <item>Zumo de pomelo</item>
         <item>Zumo de tomate</item>
-
-
-
         <!-- Agrega más elementos aquí -->
-
-
     </string-array>
+
+
+    <string-array name="idiomas">
+        <item>English</item>
+        <item>Español</item>
+        <item>Français</item>
+    </string-array>
+
 
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
