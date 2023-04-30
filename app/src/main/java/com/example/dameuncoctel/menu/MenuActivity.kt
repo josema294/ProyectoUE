@@ -2,16 +2,11 @@ package com.example.dameuncoctel.menu
 
 import android.os.Bundle
 import android.view.Menu
-import android.view.View
-import android.widget.TableLayout
 import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
-import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
 import androidx.viewpager.widget.ViewPager
-import com.example.dameuncoctel.AdaptadorPager
 
 import com.example.dameuncoctel.R
 import com.google.android.material.tabs.TabLayout

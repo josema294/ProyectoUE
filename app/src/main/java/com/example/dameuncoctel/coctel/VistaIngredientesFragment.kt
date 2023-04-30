@@ -1,4 +1,4 @@
-package com.example.dameuncoctel
+package com.example.dameuncoctel.coctel
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,15 +6,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.example.dameuncoctel.databinding.FragmentSecondBinding
-import com.example.dameuncoctel.databinding.FragmentThirdBinding
+import com.example.dameuncoctel.databinding.FragmentVistaDescripcionBinding
+import com.example.dameuncoctel.databinding.FragmentVistaIngredientesBinding
+
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
  */
-class ThirdFragment : Fragment() {
+class VistaIngredientesFragment : Fragment() {
 
-    lateinit var _binding: FragmentThirdBinding
+    private var _binding: FragmentVistaIngredientesBinding? = null
+
+    // This property is only valid between onCreateView and
+    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -22,17 +26,19 @@ class ThirdFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        _binding = FragmentThirdBinding.inflate(inflater, container, false)
+        _binding = FragmentVistaIngredientesBinding.inflate(inflater, container, false)
         return binding.root
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-
+        _binding = null
     }
 }
