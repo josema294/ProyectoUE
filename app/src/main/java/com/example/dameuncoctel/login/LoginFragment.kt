@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import com.example.dameuncoctel.MainActivity
+import com.example.dameuncoctel.home.MainActivity
 import com.example.dameuncoctel.R
 import com.google.android.material.snackbar.Snackbar
 

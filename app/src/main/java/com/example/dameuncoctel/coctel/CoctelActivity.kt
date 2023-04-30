@@ -1,44 +1,49 @@
 package com.example.dameuncoctel.coctel
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.core.view.WindowCompat
-import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.viewpager.widget.ViewPager
 import com.example.dameuncoctel.R
 import com.example.dameuncoctel.databinding.ActivityCoctelBinding
+import com.google.android.material.tabs.TabLayout
 
 class CoctelActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityCoctelBinding
+    private lateinit var toolbar: Toolbar
+    private lateinit var adaptador: AdaptadorPagerCoctel
+    private lateinit var viewPager: ViewPager
+    lateinit var tabs: TabLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         super.onCreate(savedInstanceState)
 
+        //Se crea binding por defecto al crear activity en blanco, pero yo uso acceso a recursos R
+        //Ya que el layout inflado no tiene los elementos a manejar directamente, tiene un content.
         binding = ActivityCoctelBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setSupportActionBar(binding.toolbar)
+        //instanciamos elementos
 
-        val navController = findNavController(R.id.nav_host_fragment_content_coctel)
-        appBarConfiguration = AppBarConfiguration(navController.graph)
-        setupActionBarWithNavController(navController, appBarConfiguration)
+        toolbar = findViewById(R.id.toolbar_2)
+        adaptador = AdaptadorPagerCoctel(supportFragmentManager)
+        viewPager = findViewById(R.id.view_pager_coctel)
+        tabs = findViewById(R.id.tab_coctel)
 
-        binding.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAnchorView(R.id.fab)
-                .setAction("Action", null).show()
-        }
+        //Hacemos las configuraciones de los elementos
+        setSupportActionBar(toolbar)
+        tabs.setupWithViewPager(viewPager)
+        viewPager.setAdapter(adaptador)
+
+
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment_content_coctel)
-        return navController.navigateUp(appBarConfiguration)
-                || super.onSupportNavigateUp()
-    }
+
 }
+
+
