@@ -21,13 +21,7 @@ class AdaptadorPager(fm: FragmentManager?) : FragmentPagerAdapter(fm!!) {
 
     fun cambiarTexto() {
 
-        for (i in listaFragments) {
 
-            var temp : Fragment =  i
-
-
-
-        }
 
 
     }

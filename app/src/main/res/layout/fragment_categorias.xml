@@ -1,18 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+
+        <!--To DO cambiar descripcion por Strings.xml -->
+    <ImageButton
+        android:id="@+id/cateogoria_ron"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:src="@drawable/ron"
+        android:scaleType="center"
+        android:layout_weight="1"
+        android:layout_marginVertical="10sp"/>
 
     <TextView
-        android:id="@+id/textView3"
-        android:layout_width="246dp"
-        android:layout_height="198dp"
-        android:text="placeholder: Aqui va el layout de seleccionar categoria"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:id="@+id/textRon"
+        android:text="Ron"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.2"
+        android:clickable="true"
+        android:gravity="center"
+        android:textColorHighlight="@color/black"
+        android:textSize="18sp" />
+
+    <ImageButton
+        android:id="@+id/cateogoria_gin"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:src="@drawable/gin"
+        android:scaleType="center"
+        android:layout_weight="1"
+        android:layout_marginVertical="10sp"/>
+    <TextView
+        android:id="@+id/textGin"
+        android:text="Ginebra"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.2"
+        android:clickable="true"
+        android:gravity="center"
+        android:textColorHighlight="@color/black"
+        android:textSize="18sp" />
+
+    <ImageButton
+        android:id="@+id/cateogoria_vodka"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:src="@drawable/vodka"
+        android:scaleType="center"
+        android:layout_weight="1"
+        android:layout_marginVertical="10sp"/>
+
+    <TextView
+        android:id="@+id/textVodka"
+        android:text="Vodka"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.2"
+        android:clickable="true"
+        android:gravity="center"
+        android:textColorHighlight="@color/black"
+        android:textSize="18sp" />`
+
+
+    <ImageButton
+        android:id="@+id/cateogoria_sin"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:src="@drawable/no_alcohol"
+        android:scaleType="center"
+        android:layout_weight="1"
+        android:layout_marginVertical="10sp"/>
+
+    <TextView
+        android:id="@+id/categoria_sin"
+        android:text="Sin Alcohol"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.2"
+        android:clickable="true"
+        android:gravity="center"
+        android:textColorHighlight="@color/black"
+        android:textSize="18sp" />
+
+
+</LinearLayout>
