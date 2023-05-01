@@ -1,6 +1,8 @@
 package com.example.dameuncoctel.coctel
 
 import android.os.Bundle
+import android.util.Log
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.WindowCompat
@@ -8,6 +10,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.viewpager.widget.ViewPager
 import com.example.dameuncoctel.R
 import com.example.dameuncoctel.databinding.ActivityCoctelBinding
+import com.example.dameuncoctel.model.CoctelDC
 import com.google.android.material.tabs.TabLayout
 
 class CoctelActivity : AppCompatActivity() {
@@ -18,6 +21,7 @@ class CoctelActivity : AppCompatActivity() {
     private lateinit var adaptador: AdaptadorPagerCoctel
     private lateinit var viewPager: ViewPager
     lateinit var tabs: TabLayout
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         WindowCompat.setDecorFitsSystemWindows(window, false)
@@ -39,6 +43,18 @@ class CoctelActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         tabs.setupWithViewPager(viewPager)
         viewPager.setAdapter(adaptador)
+
+        //Cambiamos el titulo del coctel al que pasamos del recycler y
+        // recuperamos datos de el recycler con el coctel seleccionado
+        val bundle: Bundle? = intent.getBundleExtra("bundle")
+        val coctel: CoctelDC? = bundle?.get("coctel") as CoctelDC?
+
+        Log.d("bundle traido a CoctelActivity", bundle.toString())
+        Log.d("coctel traido a CoctelActivity", coctel.toString())
+
+        binding.includeCoctel.textViewTitulococtel.text = coctel?.nombre
+        binding.includeCoctel.imageView3.setImageResource(coctel?.foto ?: R.drawable.caipirinha)
+
 
 
     }

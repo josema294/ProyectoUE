@@ -8,11 +8,9 @@
     tools:context=".coctel.CoctelActivity">
 
 
-
-
-
-
-    <include layout="@layout/content_coctel" />
+    <include
+        android:id="@+id/include_coctel"
+        layout="@layout/content_coctel" />
 
 
 

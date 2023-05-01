@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dameuncoctel.R
 import com.example.dameuncoctel.databinding.FragmentFirstBinding
+import com.example.dameuncoctel.model.CoctelDC
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
