@@ -2,6 +2,7 @@ package com.example.dameuncoctel.menu
 
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.TableLayout
 import androidx.appcompat.widget.Toolbar
@@ -14,6 +15,7 @@ import androidx.viewpager.widget.ViewPager
 import com.example.dameuncoctel.AdaptadorPager
 
 import com.example.dameuncoctel.R
+import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
 
 
@@ -26,6 +28,7 @@ class MenuActivity : AppCompatActivity() {
     private lateinit var adaptadorPager: AdaptadorPagerMenu
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         super.onCreate(savedInstanceState)
@@ -35,6 +38,7 @@ class MenuActivity : AppCompatActivity() {
         viewPager = findViewById(R.id.view_pager_menu);
         adaptadorPager = AdaptadorPagerMenu(supportFragmentManager)
         tab = findViewById(R.id.tab_menu)
+
 
         setSupportActionBar(toolbar)
         tab.setupWithViewPager(viewPager)
@@ -60,6 +64,20 @@ class MenuActivity : AppCompatActivity() {
         return true
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        //Codigo para, desde el viewpager del menu, al hacer click en el item desplegable del menu,
+        // movernos a su correspondiente fragment.
+        when (item.itemId) {
+            R.id.action_categorias -> viewPager.currentItem = 0
+            R.id.action_ingredientes -> viewPager.currentItem = 1
+            R.id.action_crea -> viewPager.currentItem = 2
+            R.id.action_settings -> viewPager.currentItem = 3
+            R.id.action_politica -> viewPager.currentItem = 4
+            R.id.action_guia -> viewPager.currentItem = 5
+            R.id.action_logout -> viewPager.currentItem = 6
+        }
+        return true
+    }
 
 /*    override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_menu)
