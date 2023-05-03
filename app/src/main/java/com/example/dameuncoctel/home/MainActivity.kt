@@ -1,4 +1,4 @@
-package com.example.dameuncoctel
+package com.example.dameuncoctel.home
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,6 +9,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.viewpager.widget.ViewPager
+import com.example.dameuncoctel.R
 import com.example.dameuncoctel.menu.MenuActivity
 import com.google.android.material.navigation.NavigationView
 

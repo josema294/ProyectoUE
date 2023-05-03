@@ -1,22 +1,22 @@
-package com.example.dameuncoctel
+package com.example.dameuncoctel.coctel
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 
-class AdaptadorPager(fm: FragmentManager?) : FragmentPagerAdapter(fm!!) {
+class AdaptadorPagerCoctel(fm: FragmentManager?) : FragmentPagerAdapter(fm!!) {
     var listaFragments: ArrayList<Fragment>
     var listaNombres: ArrayList<String>
 
     init {
         listaFragments = ArrayList()
-        listaFragments.add(FirstFragment())
-        listaFragments.add(SecondFragment())
-        listaFragments.add(ThirdFragment())
+        listaFragments.add(VistaIngredientesFragment())
+        listaFragments.add(VistaDescripcionFragment())
+
         listaNombres = ArrayList()
-        listaNombres.add("Populares")
-        listaNombres.add("Favoritos")
-        listaNombres.add("Tus Cocktails")
+        listaNombres.add("Descripcion")
+        listaNombres.add("Ingredientes")
+
     }
 
     fun cambiarTexto() {
