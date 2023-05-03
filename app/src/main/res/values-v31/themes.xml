@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme.SplashScreen" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+
+        <item name="android:windowSplashScreenAnimatedIcon">@mipmap/ic_logotransparent</item>
+        <item name="android:windowSplashScreenIconBackgroundColor">@color/white</item>
+
+
+        <item name="android:windowSplashScreenAnimationDuration">1000</item>
+        <item name="postSplashScreenTheme">@style/Theme.DAMeuncoctel.NoActionBar</item>
+
+
+
+
+
+    </style>
+</resources>t
