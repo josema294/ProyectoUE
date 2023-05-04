@@ -1,5 +1,7 @@
 package com.example.dameuncoctel.model
 
+import com.example.dameuncoctel.R
+
 class FakeDB {
 
     private var arraydeCocteles: ArrayList<FakeCoctelDC>
@@ -9,12 +11,18 @@ class FakeDB {
         agregarCoctelesPopulares()
     }
 
+    public fun getCocteles (): ArrayList<FakeCoctelDC> {
+
+
+        return arraydeCocteles
+    }
+
     private fun agregarCoctelesPopulares() {
         arraydeCocteles.add(
             FakeCoctelDC(
                 id = 1,
                 nombre = "Mojito",
-                foto = android.R.drawable.ic_menu_gallery, // Reemplazar con el ID de imagen correspondiente
+                foto = R.drawable.mojito, // Reemplazar con el ID de imagen correspondiente
                 ingredientes = listOf("Ron", "Menta", "Azúcar", "Lima", "Agua con gas"),
                 instrucciones = "Machacar la menta con el azúcar y el zumo de lima. Añadir hielo y verter el ron. Completar con agua con gas y remover."
             )
@@ -24,7 +32,7 @@ class FakeDB {
             FakeCoctelDC(
                 id = 2,
                 nombre = "Margarita",
-                foto = android.R.drawable.ic_menu_gallery, // Reemplazar con el ID de imagen correspondiente
+                foto = R.drawable.margarita, // Reemplazar con el ID de imagen correspondiente
                 ingredientes = listOf("Tequila", "Triple sec", "Zumo de lima", "Sal"),
                 instrucciones = "Agitar el tequila, triple sec y zumo de lima con hielo. Verter en una copa con el borde escarchado con sal."
             )
@@ -45,7 +53,7 @@ class FakeDB {
             FakeCoctelDC(
                 id = 4,
                 nombre = "Piña Colada",
-                foto = android.R.drawable.ic_menu_gallery,
+                foto = R.drawable.pinacolada,
                 ingredientes = listOf("Ron", "Crema de coco", "Zumo de piña", "Hielo"),
                 instrucciones = "Mezclar todos los ingredientes con hielo en una batidora y verter en un vaso grande."
             )
@@ -55,7 +63,7 @@ class FakeDB {
             FakeCoctelDC(
                 id = 5,
                 nombre = "Daiquiri",
-                foto = android.R.drawable.ic_menu_gallery,
+                foto = R.drawable.daiquiri,
                 ingredientes = listOf("Ron", "Zumo de lima", "Azúcar", "Hielo"),
                 instrucciones = "Mezclar todos los ingredientes en una coctelera con hielo y agitar. Colar en una copa fría."
             )
@@ -75,7 +83,7 @@ class FakeDB {
             FakeCoctelDC(
                 id = 7,
                 nombre = "Caipirinha",
-                foto = android.R.drawable.ic_menu_gallery,
+                foto = R.drawable.caipirinha,
                 ingredientes = listOf("Cachaça", "Azúcar", "Lima", "Hielo"),
                 instrucciones = "Machacar la lima con el azúcar en un vaso. Añadir hielo picado y verter la cachaça. Remover."
             )
@@ -120,7 +128,7 @@ class FakeDB {
             FakeCoctelDC(
                 id = 11,
                 nombre = "Manhattan",
-                foto = android.R.drawable.ic_menu_gallery,
+                foto = R.drawable.manhattan,
                 ingredientes = listOf(
                     "Whisky",
                     "Vermut dulce",
@@ -391,6 +399,16 @@ class FakeDB {
                 foto = android.R.drawable.ic_menu_gallery,
                 ingredientes = listOf("Puré de melocotón", "Prosecco"),
                 instrucciones = "Verter el puré de melocotón en una copa de champán y llenar con Prosecco. Remover suavemente."
+            )
+        )
+
+        arraydeCocteles.add(
+            FakeCoctelDC(
+                id = 31,
+                nombre = "Martini",
+                foto = R.drawable.martini,
+                ingredientes = listOf("Ginebra", "Vermut seco", "Aceituna", "Hielo"),
+                instrucciones = "Mezclar la ginebra y el vermut seco en una coctelera con hielo y agitar. Colar en una copa de cóctel fría. Decorar con una aceituna."
             )
         )
 

@@ -13,6 +13,9 @@
         android:theme="@style/Theme.DAMeuncoctel"
         tools:targetApi="33">
         <activity
+            android:name=".resultado.ResultadoActivity"
+            android:exported="false" />
+        <activity
             android:name=".splash.SplashScreenActivity"
             android:exported="true"
             android:label="@string/title_activity_splash_screen"
@@ -27,9 +30,7 @@
             android:name=".coctel.CoctelActivity"
             android:exported="true"
             android:label="@string/title_activity_coctel"
-            android:theme="@style/Theme.DAMeuncoctel.NoActionBar">
-
-        </activity>
+            android:theme="@style/Theme.DAMeuncoctel.NoActionBar"></activity>
         <activity
             android:name=".menu.MenuActivity"
             android:exported="true"
@@ -38,9 +39,7 @@
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".login.ActivityLogin"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".home.MainActivity"
             android:exported="true"

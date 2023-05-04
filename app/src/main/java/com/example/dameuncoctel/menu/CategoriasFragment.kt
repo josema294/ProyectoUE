@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import com.example.dameuncoctel.databinding.FragmentCategoriasBinding
+import com.example.dameuncoctel.model.FakeDB
 
 
 /**
@@ -19,6 +20,7 @@ class CategoriasFragment : Fragment() {
     private lateinit var buttonGin: ImageButton
     private lateinit var buttonVodka: ImageButton
     private lateinit var buttonSin: ImageButton
+    private lateinit var FakeDB
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -41,6 +43,12 @@ class CategoriasFragment : Fragment() {
         buttonGin=binding.cateogoriaGin
         buttonVodka= binding.cateogoriaVodka
         buttonSin= binding.cateogoriaSin
+
+        buttonRon.setOnClickListener {
+
+
+
+        }
 
 
 
