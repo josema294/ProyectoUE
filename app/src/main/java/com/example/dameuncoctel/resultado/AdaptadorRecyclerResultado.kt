@@ -51,15 +51,13 @@ class AdaptadorRecyclerResultado(var contexto: Context, var listaDatos: List<*>)
         holder.imagen.setOnClickListener {
 
 
-/*         TODO Hay que cambiarlo para que funcione bien
-
             val intent = Intent(contexto, CoctelActivity::class.java)
             val bundle = Bundle()
             bundle.putSerializable("coctel", coctel)
             intent.putExtra("bundle", bundle)
-            Log.d("valor del coctel", coctel.toString())
-            Log.d("El valor del bundle",bundle.toString())
-            contexto.startActivity(intent)*/
+
+            contexto.startActivity(intent)
+
 
 
         }

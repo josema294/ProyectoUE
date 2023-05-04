@@ -12,11 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DAMeuncoctel"
         tools:targetApi="33">
-        <activity
-            android:name=".resultado.ResultadoActivity"
-            android:exported="false"
-            android:theme="@style/Theme.DAMeuncoctel.NoActionBar"
-            />
+
         <activity
             android:name=".splash.SplashScreenActivity"
             android:exported="true"
@@ -28,6 +24,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".resultado.ResultadoActivity"
+            android:exported="false"
+            android:theme="@style/Theme.DAMeuncoctel.NoActionBar"
+            />
         <activity
             android:name=".coctel.CoctelActivity"
             android:exported="true"

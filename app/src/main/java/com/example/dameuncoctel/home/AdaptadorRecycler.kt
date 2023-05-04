@@ -13,8 +13,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.dameuncoctel.R
 import com.example.dameuncoctel.coctel.CoctelActivity
 import com.example.dameuncoctel.model.CoctelDC
+import com.example.dameuncoctel.model.FakeCoctelDC
 
-class AdaptadorRecycler(var contexto: Context, var listaDatos: List<*>) :
+class AdaptadorRecycler(var contexto: Context, var listaDatos: List<FakeCoctelDC>) :
     RecyclerView.Adapter<AdaptadorRecycler.MyHolder>() {
 
     lateinit var coctelListener: OnRecyclerCoctelListener
@@ -50,7 +51,7 @@ class AdaptadorRecycler(var contexto: Context, var listaDatos: List<*>) :
 
     override fun onBindViewHolder(holder: MyHolder, position: Int) {
 
-        var coctel: CoctelDC = listaDatos.get(position) as CoctelDC
+        var coctel: FakeCoctelDC = listaDatos.get(position)
         holder.imagen.setImageResource(coctel.foto)
         holder.nombre.setText(coctel.nombre)
 
