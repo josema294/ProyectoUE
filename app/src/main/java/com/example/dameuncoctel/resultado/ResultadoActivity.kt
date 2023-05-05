@@ -20,7 +20,7 @@ class ResultadoActivity : AppCompatActivity() {
 
     private lateinit var arrayCocteles: ArrayList<FakeCoctelDC>
     private lateinit var intent: Intent
-    private lateinit var bundle: Bundle
+
     private lateinit var toolbar: androidx.appcompat.widget.Toolbar
 
 
@@ -31,9 +31,13 @@ class ResultadoActivity : AppCompatActivity() {
         toolbar = findViewById(R.id.toolbar_2);
         setSupportActionBar(toolbar)
 
+        //Se vacia el array de cocteles para que cada vez que se entre se escriban sobre solo los datos correspondientes
+        arrayCocteles = ArrayList()
+        arrayCocteles.clear()
+
 
         intent = getIntent()
-        bundle = intent.getBundleExtra("bundleCocteles")!!
+        val bundle: Bundle? = intent.getBundleExtra("bundleCocteles")
 
         //Recuperamos el array con el resultado de cocteles
         //TODO arreglar el deprecated

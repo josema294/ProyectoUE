@@ -29,6 +29,7 @@ class CategoriasFragment : Fragment() {
     private lateinit var intent: Intent
 
 
+
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
@@ -38,6 +39,8 @@ class CategoriasFragment : Fragment() {
     ): View? {
 
         _binding = FragmentCategoriasBinding.inflate(inflater, container, false)
+
+
 
         return binding.root
     }
@@ -72,6 +75,7 @@ class CategoriasFragment : Fragment() {
 
             bundle.putSerializable("cocteles", arrayResultado)
             intent.putExtra("bundleCocteles", bundle)
+
             view.context.startActivity(intent)
 
 
