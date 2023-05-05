@@ -93,25 +93,41 @@ class IngredientesFragment : Fragment() {
             //Ahora que hemos comprobado los ingredientes marcados, creamos array de cocteles que los contengan
             var arrayResultado: ArrayList<FakeCoctelDC> = ArrayList()
 
-
-            for (ingrediente in arrayIngredientes)
+            //TODO ME gustaria pulir estra compleja bucles y condicionales
 
             for (coctel in arrayCocteles) {
 
                 var contieneTodosLosIngredientesSeleccionados = true
+                var contieneAlgunoDeLosIngredientes = false
                 for (ingredienteSeleccionado in arrayIngredientes) {
 
+                    if (coctel.ingredientes.contains(ingredienteSeleccionado)) {
+                        contieneAlgunoDeLosIngredientes = true
+                    }
                     if (!coctel.ingredientes.contains(ingredienteSeleccionado)) {
                         contieneTodosLosIngredientesSeleccionados = false
-                        break
+
                     }
 
+
+                }
+
+                if (simultaneidadSwitch.isChecked) {
+
                     if (contieneTodosLosIngredientesSeleccionados) {
-                        // El cóctel contiene todos los ingredientes seleccionados
+                        arrayResultado.add(coctel)
+                        Log.d("CoctelResultado", coctel.nombre.toString())
+                    }
+
+
+                } else {
+                    if (contieneAlgunoDeLosIngredientes) {
                         arrayResultado.add(coctel)
                         Log.d("CoctelResultado", coctel.nombre.toString())
                     }
                 }
+
+
             }
 
             //Una vez tenemos el listado de cocteles a enviar lanzamos el intent:
