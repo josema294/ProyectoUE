@@ -11,7 +11,7 @@ class FakeDB {
         agregarCoctelesPopulares()
     }
 
-    public fun getCocteles (): ArrayList<FakeCoctelDC> {
+    fun getCocteles(): ArrayList<FakeCoctelDC> {
 
 
         return arraydeCocteles
@@ -412,12 +412,14 @@ class FakeDB {
             )
         )
 
-        val virginPinaColada = FakeCoctelDC(
-            id = 32,
-            nombre = "Virgin Piña Colada",
-            foto = android.R.drawable.ic_menu_gallery, // Asegúrate de tener una imagen adecuada en tus recursos
-            ingredientes = listOf("Jugo de Piña", "Crema de Coco", "Hielo"),
-            instrucciones = "En una batidora, añade hielo, jugo de piña y crema de coco. Mezcla hasta que esté suave. Sirve en un vaso grande, decora con una rodaja de piña y disfruta."
+        arraydeCocteles.add(
+            FakeCoctelDC(
+                id = 32,
+                nombre = "Virgin Piña Colada",
+                foto = android.R.drawable.ic_menu_gallery, // Asegúrate de tener una imagen adecuada en tus recursos
+                ingredientes = listOf("Jugo de Piña", "Crema de Coco", "Hielo", "Sin"),
+                instrucciones = "En una batidora, añade hielo, jugo de piña y crema de coco. Mezcla hasta que esté suave. Sirve en un vaso grande, decora con una rodaja de piña y disfruta."
+            )
         )
 
 

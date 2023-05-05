@@ -29,7 +29,6 @@ class CategoriasFragment : Fragment() {
     private lateinit var intent: Intent
 
 
-
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
@@ -123,11 +122,9 @@ class CategoriasFragment : Fragment() {
 
             for (i in arrayCocteles) {
 
-                if (!i.ingredientes.contains("Ginebra") && !i.ingredientes.contains("Ron") && !i.ingredientes.contains(
-                        "Vodka"
-                    ) && !i.ingredientes.contains("Alcohol") && !i.ingredientes.contains("Whishkey")
-                ) {
+                if (i.ingredientes.contains("Sin")) {
 
+                    arrayResultado.add(i)
 
                 }
 
