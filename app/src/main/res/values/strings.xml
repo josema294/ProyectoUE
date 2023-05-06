@@ -19,6 +19,8 @@
     <string name="info_ingredientes">Ingredientes para cocteles</string>
     <string name="modo_oscuro"> Activa o desactiva el modo oscuro </string>
     <string name="selector_idiomas">Selecciona el idioma por defecto</string>
+    <string name="ingredientes_introducidos"> Necesitas al menos introducir un nombre, descripcion y dos ingredientes</string>
+
 
 
     <string-array name="ingredientes">

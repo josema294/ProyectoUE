@@ -8,7 +8,7 @@ class FakeDB {
 
     init {
         arraydeCocteles = ArrayList()
-        agregarCoctelesPopulares()
+        agregarCoctelesFDB()
     }
 
     fun getCocteles(): ArrayList<FakeCoctelDC> {
@@ -17,7 +17,7 @@ class FakeDB {
         return arraydeCocteles
     }
 
-    private fun agregarCoctelesPopulares() {
+    private fun agregarCoctelesFDB() {
         arraydeCocteles.add(
             FakeCoctelDC(
                 id = 1,
