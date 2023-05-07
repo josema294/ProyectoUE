@@ -8,6 +8,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.WindowCompat
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.viewpager.widget.ViewPager
+import com.bumptech.glide.Glide
 import com.example.dameuncoctel.R
 import com.example.dameuncoctel.databinding.ActivityCoctelBinding
 import com.example.dameuncoctel.model.CoctelDC
@@ -52,8 +53,14 @@ class CoctelActivity : AppCompatActivity() {
         Log.d("bundle traido a CoctelActivity", bundle.toString())
         Log.d("coctel traido a CoctelActivity", coctel.toString())
 
-        binding.includeCoctel.textViewTitulococtel.text = coctel?.nombre
-        binding.includeCoctel.imageView3.setImageResource(coctel?.foto ?: R.drawable.caipirinha)
+        binding.includeCoctel.textViewTitulococtel.text = coctel?.strDrink
+        if (coctel != null) {
+            Glide.with(applicationContext).load(coctel.strDrinkThumb).into(binding.includeCoctel.imageView3)
+        }
+
+
+
+        //binding.includeCoctel.imageView3.setImageResource(coctel?.foto ?: R.drawable.caipirinha)
 
 
 

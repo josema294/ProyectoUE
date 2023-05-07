@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.dameuncoctel.R
 import com.example.dameuncoctel.coctel.CoctelActivity
 import com.example.dameuncoctel.model.CoctelDC
@@ -51,8 +52,10 @@ class AdaptadorRecycler(var contexto: Context, var listaDatos: List<*>) :
     override fun onBindViewHolder(holder: MyHolder, position: Int) {
 
         var coctel: CoctelDC = listaDatos.get(position) as CoctelDC
-        holder.imagen.setImageResource(coctel.foto)
-        holder.nombre.setText(coctel.nombre)
+        //Cargamos la imagen seleccionada de su URL
+        Glide.with(contexto).load(coctel.strDrinkThumb).into(holder.imagen)
+       // holder.imagen.setImageResource(coctel.strDrinkThumb)
+        holder.nombre.setText(coctel.strDrink)
 
         //Comportamiento para ir a la vista del coctel
         //TODO interfaz de callback comentada
@@ -67,8 +70,6 @@ class AdaptadorRecycler(var contexto: Context, var listaDatos: List<*>) :
                 Log.d("valor del coctel", coctel.toString())
                 Log.d("El valor del bundle",bundle.toString())
                 contexto.startActivity(intent)
-
-
             }
 
     }

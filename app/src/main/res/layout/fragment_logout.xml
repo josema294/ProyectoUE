@@ -7,10 +7,11 @@
     android:background="#F6F6F6"
     >
 
-    <ImageView
+    <Button
         android:id="@+id/logout_icon"
         android:layout_width="193dp"
         android:layout_height="273dp"
+        android:text="cerrar sesion"
         android:src="@drawable/logout_icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

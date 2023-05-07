@@ -1,5 +1,7 @@
 package com.example.dameuncoctel.login
 
+import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,6 +13,9 @@ import android.widget.EditText
 import com.example.dameuncoctel.home.MainActivity
 import com.example.dameuncoctel.R
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,10 +31,15 @@ class LoginFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    lateinit var boton: Button
-    lateinit var usuario: EditText
-    lateinit var pass: EditText
-    lateinit var intentprimero: Intent
+    private lateinit var botonSignIn: Button
+
+    private lateinit var usuario: EditText
+    private lateinit var pass: EditText
+    private lateinit var intentprimero: Intent
+   // lateinit var auth: FirebaseAuth;
+// ...
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +47,17 @@ class LoginFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+        /*// Initialize Firebase Auth
+        auth = Firebase.auth*/
+
     }
+    /*override fun onStart() {
+        super.onStart()
+        // Check if user is signed in (non-null) and update UI accordingly.
+        val currentUser = auth.currentUser
+        updateUI(currentUser)
+    }*/
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,13 +66,30 @@ class LoginFragment : Fragment() {
         // Inflate the layout for this fragment
         val viewFragmentLogin = inflater.inflate(R.layout.fragment_login, container, false)
 
-        boton = viewFragmentLogin.findViewById(R.id.buttonEntra)
+        botonSignIn = viewFragmentLogin.findViewById(R.id.button_Log_In)
+
         usuario = viewFragmentLogin.findViewById(R.id.editTextTextEmailAddress)
         pass = viewFragmentLogin.findViewById(R.id.editTextTextPassword)
 
-        boton.setOnClickListener {
+        botonSignIn.setOnClickListener {
 
-            if (usuario.text.toString()=="test" && pass.text.toString() == "test") {
+            if (usuario.text.isNotEmpty() && pass.text.isNotEmpty()) {
+                FirebaseAuth.getInstance().signInWithEmailAndPassword(
+                    usuario.text.toString(),
+                    pass.text.toString()
+                ).addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        showHome(it.result.user?.email ?: "", ActivityLogin.ProviderType.BASIC)
+                    } else {
+                        shoeAlert()
+                    }
+                }
+            }else{
+                shoeAlertErrorEmpty()
+            }
+        }
+
+        /*if (usuario.text.toString()=="test" && pass.text.toString() == "test") {
 
                 intentprimero = Intent (context, MainActivity::class.java)
                 startActivity(intentprimero)
@@ -64,11 +101,11 @@ class LoginFragment : Fragment() {
 
                 Snackbar.make(viewFragmentLogin,"Login incorrecto", Snackbar.LENGTH_LONG).show()
 
-            }
+            }*/
 
 
 
-        }
+
 
 
         return viewFragmentLogin
@@ -92,5 +129,29 @@ class LoginFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+    //Creamos una alerta por si el usuario no consigue loguearse
+    private fun  shoeAlert(){
+        val builder = AlertDialog.Builder(context)
+        builder.setTitle("Error")
+        builder.setMessage("You have an error with your authentication")
+        builder.setPositiveButton("Accept",null)
+        val dialog:AlertDialog=builder.create()
+        dialog.show()
+    }
+    private fun  shoeAlertErrorEmpty(){
+        val builder = AlertDialog.Builder(context)
+        builder.setTitle("ErrorEmpty")
+        builder.setMessage("You must fill all fields")
+        builder.setPositiveButton("Accept",null)
+        val dialog: AlertDialog =builder.create()
+        dialog.show()
+    }
+    //Mostramos la nueva pantalla
+    private fun showHome(email:String, provider: ActivityLogin.ProviderType){
+        intentprimero = Intent (context, MainActivity::class.java)
+        startActivity(intentprimero)
+
+
     }
 }

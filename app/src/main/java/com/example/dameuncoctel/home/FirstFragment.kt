@@ -10,6 +10,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.dameuncoctel.R
 import com.example.dameuncoctel.databinding.FragmentFirstBinding
 import com.example.dameuncoctel.model.CoctelDC
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.Query
+import com.google.firebase.database.ValueEventListener
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -20,6 +26,9 @@ class FirstFragment : Fragment() {
     lateinit var listaCocteles: ArrayList<CoctelDC>
     lateinit var recycler: RecyclerView
     lateinit var adaptadorRecycler: AdaptadorRecycler
+    lateinit var mRootReferenceCoctail  : DatabaseReference
+    private val nodeList =ArrayList<String>()
+    private lateinit var query : Query
 
 
     // This property is only valid between onCreateView and
@@ -37,7 +46,49 @@ class FirstFragment : Fragment() {
         //Creo lista de cocteles de prueba para testeo
         //TODO cambiar lista de cocteles de prueba por cocteles de la base de datos
         listaCocteles = ArrayList()
-        listaCocteles.add(
+
+        fun AñadirItemslist(listaCocteles : ArrayList<CoctelDC>): ArrayList<CoctelDC> {
+
+            mRootReferenceCoctail = FirebaseDatabase.getInstance().getReference("coctail")
+            query = mRootReferenceCoctail.orderByKey()
+            query = mRootReferenceCoctail.orderByChild("coctail")
+            query.addValueEventListener(object : ValueEventListener {
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    //TODO("Not yet implemented")
+                    if(snapshot.exists()){
+                        var ky:String=""
+                        var itnm: String=""
+                        var limit: Int = 0
+                        for (itmsnapshot in snapshot.children){
+                            val item = itmsnapshot.getValue(CoctelDC::class.java)
+
+                            listaCocteles.add(item!!)
+                            ky= itmsnapshot.key.toString()
+                            itnm=item.strDrink.toString()
+                            println(ky+" nombre "+itnm)
+
+                            limit=limit+1
+                            if (limit >=20){
+                                break
+                            }
+                        }
+
+                    }
+
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    //TODO("Not yet implemented")
+                }
+
+
+            })
+            return listaCocteles
+        }
+        //Realizamos una query a la base de datos y lo añadimos a la lista de cocteles
+        AñadirItemslist(listaCocteles)
+        /*listaCocteles.add(
             CoctelDC(1, "Mojito", R.drawable.mojito,"Cocktail","Highball glass",
             listOf("Light rum","Lime","Sugar","Mint","Soda water"),
             "Muddle mint leaves with sugar and lime juice. Add a splash of soda water and fill the glass with cracked ice. Pour the rum and top with soda water. Garnish and serve with straw.",
@@ -86,7 +137,7 @@ class FirstFragment : Fragment() {
             listOf("1 2/3 oz","1/3 oz ","1"),
             listOf("IBA","Classic","Alcoholic","Christmas")
         )
-        )
+        )*/
 
         recycler = binding.recyclerCocktails
         recycler.layoutManager =
