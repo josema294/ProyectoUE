@@ -40,6 +40,8 @@ class VistaDescripcionFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
+
+
     }
 
     override fun onDestroyView() {
