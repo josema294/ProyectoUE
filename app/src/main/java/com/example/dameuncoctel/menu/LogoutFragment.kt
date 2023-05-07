@@ -48,9 +48,9 @@ class LogoutFragment : Fragment() {
         logOut.setOnClickListener{
             FirebaseAuth.getInstance().signOut()
             //Volvemos al inicio
-            activity?.onBackPressed()
-            /*intentGoStart= Intent(context, LoginFragment::class.java)
-            startActivity(intentGoStart)*/
+            //activity?.onBackPressed()
+            intentGoStart= Intent(context, LoginFragment::class.java)
+            startActivity(intentGoStart)
         }
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_logout, container, false)

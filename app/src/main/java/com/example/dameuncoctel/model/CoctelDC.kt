@@ -6,7 +6,6 @@ data class CoctelDC(
     var idDrink: String?,
     val strDrink: String?,
     val strDrinkThumb: String?,
-    val categoria: String?,
     val tipoVaso: String?,
     val ingredientes: List<String>,
     val strInstructions: String?,
@@ -15,7 +14,7 @@ data class CoctelDC(
 
     )  : Serializable{
     // Constructor secundario sin argumentos requerido por Firebase
-    constructor() : this(null, null, null, null, null, emptyList(), null, emptyList(), emptyList())
+    constructor() : this(null, null, null, null, emptyList(), null, emptyList(), emptyList())
 }
 
 

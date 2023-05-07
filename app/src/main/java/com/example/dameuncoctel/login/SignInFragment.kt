@@ -70,7 +70,7 @@ class SignInFragment : Fragment() {
 
         }
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sign_in, container, false)
+        return viewFragmentLogin
     }
 
     companion object {

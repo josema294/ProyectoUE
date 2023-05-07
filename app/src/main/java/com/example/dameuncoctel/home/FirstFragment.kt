@@ -1,6 +1,7 @@
 package com.example.dameuncoctel.home
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -45,7 +46,7 @@ class FirstFragment : Fragment() {
 
         //Creo lista de cocteles de prueba para testeo
         //TODO cambiar lista de cocteles de prueba por cocteles de la base de datos
-        listaCocteles = ArrayList()
+        listaCocteles = ArrayList<CoctelDC>()
 
         fun AñadirItemslist(listaCocteles : ArrayList<CoctelDC>): ArrayList<CoctelDC> {
 
@@ -55,24 +56,30 @@ class FirstFragment : Fragment() {
             query.addValueEventListener(object : ValueEventListener {
 
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    //TODO("Not yet implemented")
-                    if(snapshot.exists()){
-                        var ky:String=""
-                        var itnm: String=""
+
+                    if (snapshot.exists()) {
+                        var ky: String = ""
+                        var itnm: String = ""
                         var limit: Int = 0
-                        for (itmsnapshot in snapshot.children){
+                        for (itmsnapshot in snapshot.children) {
                             val item = itmsnapshot.getValue(CoctelDC::class.java)
 
                             listaCocteles.add(item!!)
-                            ky= itmsnapshot.key.toString()
-                            itnm=item.strDrink.toString()
-                            println(ky+" nombre "+itnm)
+                            ky = itmsnapshot.key.toString()
+                            itnm = item.strDrink.toString()
+                            println(ky + " nombre " + itnm)
 
-                            limit=limit+1
-                            if (limit >=20){
+                            /*limit = limit + 1
+                            if (limit >= 20) {
                                 break
-                            }
+                            }*/
                         }
+                        recycler = binding.recyclerCocktails
+                        recycler.layoutManager =
+                            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+
+                        adaptadorRecycler = AdaptadorRecycler(requireContext(), listaCocteles)
+                        recycler.adapter = adaptadorRecycler //  asignar el adaptador al RecyclerView
 
                     }
 
@@ -138,13 +145,7 @@ class FirstFragment : Fragment() {
             listOf("IBA","Classic","Alcoholic","Christmas")
         )
         )*/
-
-        recycler = binding.recyclerCocktails
-        recycler.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-
-        adaptadorRecycler = AdaptadorRecycler(requireContext(), listaCocteles)
-        recycler.adapter = adaptadorRecycler //  asignar el adaptador al RecyclerView
+        Log.d("Pueba tamaño",listaCocteles.size.toString())
 
         return binding.root
 
