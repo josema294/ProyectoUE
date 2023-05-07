@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.dameuncoctel.R
 import com.example.dameuncoctel.databinding.FragmentFirstBinding
 import com.example.dameuncoctel.model.CoctelDC
+
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -18,13 +19,17 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.Query
 import com.google.firebase.database.ValueEventListener
 
+//import com.example.dameuncoctel.model.FakeCoctelDC
+//import com.example.dameuncoctel.model.FakeDB
+
+
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
 class FirstFragment : Fragment() {
 
     private var _binding: FragmentFirstBinding? = null
-    lateinit var listaCocteles: ArrayList<CoctelDC>
+    lateinit var listaCocteles: ArrayList<FakeCoctelDC>
     lateinit var recycler: RecyclerView
     lateinit var adaptadorRecycler: AdaptadorRecycler
     lateinit var mRootReferenceCoctail  : DatabaseReference
@@ -42,6 +47,8 @@ class FirstFragment : Fragment() {
     ): View? {
 
         _binding = FragmentFirstBinding.inflate(inflater, container, false)
+        listaCocteles = FakeDB().getCocteles()
+
 
 
         //Creo lista de cocteles de prueba para testeo
@@ -146,6 +153,14 @@ class FirstFragment : Fragment() {
         )
         )*/
         Log.d("Pueba tamaño",listaCocteles.size.toString())
+
+        /*recycler = binding.recyclerCocktails
+        recycler.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+
+        adaptadorRecycler = AdaptadorRecycler(requireContext(), listaCocteles)
+        recycler.adapter = adaptadorRecycler //  asignar el adaptador al RecyclerView
+ develop*/
 
         return binding.root
 

@@ -47,6 +47,8 @@ class VistaDescripcionFragment : Fragment() {
 
         binding.descripciNCoctel.text =  coctel.strInstructions*/
 
+
+
     }
 
     override fun onDestroyView() {
