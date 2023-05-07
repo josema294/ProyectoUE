@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.dameuncoctel.R
 import com.example.dameuncoctel.coctel.CoctelActivity
 import com.example.dameuncoctel.home.AdaptadorRecycler
-import com.example.dameuncoctel.model.CoctelDC
+import com.example.dameuncoctel.model.Ingrediente
 import com.example.dameuncoctel.model.FakeCoctelDC
 
 class AdaptadorRecyclerResultado(var contexto: Context, var listaDatos: List<*>) :

@@ -2,7 +2,6 @@ package com.example.dameuncoctel.coctel
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.WindowCompat
@@ -12,7 +11,7 @@ import com.bumptech.glide.Glide
 import com.example.dameuncoctel.R
 import com.example.dameuncoctel.databinding.ActivityCoctelBinding
 import com.example.dameuncoctel.model.CoctelDC
-import com.example.dameuncoctel.model.FakeCoctelDC
+import com.example.dameuncoctel.model.Ingrediente
 import com.google.android.material.tabs.TabLayout
 
 class CoctelActivity : AppCompatActivity() {
@@ -49,7 +48,7 @@ class CoctelActivity : AppCompatActivity() {
         //Cambiamos el titulo del coctel al que pasamos del recycler y
         // recuperamos datos de el recycler con el coctel seleccionado
         val bundle: Bundle? = intent.getBundleExtra("bundle")
-        val coctel: FakeCoctelDC? = bundle?.get("coctel") as FakeCoctelDC?
+        val coctel: CoctelDC? = bundle?.get("coctel") as CoctelDC?
 
         Log.d("bundle traido a CoctelActivity", bundle.toString())
         Log.d("coctel traido a CoctelActivity", coctel.toString())

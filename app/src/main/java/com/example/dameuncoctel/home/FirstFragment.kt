@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.dameuncoctel.R
 import com.example.dameuncoctel.databinding.FragmentFirstBinding
 import com.example.dameuncoctel.model.CoctelDC
 
@@ -29,7 +28,7 @@ import com.google.firebase.database.ValueEventListener
 class FirstFragment : Fragment() {
 
     private var _binding: FragmentFirstBinding? = null
-    lateinit var listaCocteles: ArrayList<FakeCoctelDC>
+    lateinit var listaCocteles: ArrayList<CoctelDC>
     lateinit var recycler: RecyclerView
     lateinit var adaptadorRecycler: AdaptadorRecycler
     lateinit var mRootReferenceCoctail  : DatabaseReference
@@ -47,7 +46,7 @@ class FirstFragment : Fragment() {
     ): View? {
 
         _binding = FragmentFirstBinding.inflate(inflater, container, false)
-        listaCocteles = FakeDB().getCocteles()
+        //listaCocteles = FakeDB().getCocteles()
 
 
 

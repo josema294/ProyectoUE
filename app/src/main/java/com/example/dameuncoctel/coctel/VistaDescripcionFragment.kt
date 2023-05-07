@@ -5,13 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.fragment.findNavController
 import com.example.dameuncoctel.databinding.FragmentVistaDescripcionBinding
 import com.example.dameuncoctel.R
 import com.example.dameuncoctel.databinding.ActivityCoctelBinding
-import com.example.dameuncoctel.model.CoctelDC
+import com.example.dameuncoctel.model.Ingrediente
 
 
 /**

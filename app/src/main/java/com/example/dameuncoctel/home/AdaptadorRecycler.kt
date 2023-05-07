@@ -14,9 +14,9 @@ import com.bumptech.glide.Glide
 import com.example.dameuncoctel.R
 import com.example.dameuncoctel.coctel.CoctelActivity
 import com.example.dameuncoctel.model.CoctelDC
-import com.example.dameuncoctel.model.FakeCoctelDC
+import com.example.dameuncoctel.model.Ingrediente
 
-class AdaptadorRecycler(var contexto: Context, var listaDatos: List<FakeCoctelDC>) :
+class AdaptadorRecycler(var contexto: Context, var listaCoctelDC: ArrayList<CoctelDC>) :
     RecyclerView.Adapter<AdaptadorRecycler.MyHolder>() {
 
     lateinit var coctelListener: OnRecyclerCoctelListener
@@ -53,7 +53,7 @@ class AdaptadorRecycler(var contexto: Context, var listaDatos: List<FakeCoctelDC
     override fun onBindViewHolder(holder: MyHolder, position: Int) {
 
 
-        var coctel: CoctelDC = listaDatos.get(position) as CoctelDC
+        var coctel: CoctelDC = listaCoctelDC.get(position) as CoctelDC
         //Cargamos la imagen seleccionada de su URL
         Glide.with(contexto).load(coctel.strDrinkThumb).into(holder.imagen)
        // holder.imagen.setImageResource(coctel.strDrinkThumb)
@@ -82,12 +82,12 @@ class AdaptadorRecycler(var contexto: Context, var listaDatos: List<FakeCoctelDC
     }
 
     override fun getItemCount(): Int {
-        return listaDatos.size
+        return listaCoctelDC.size
     }
 
     interface OnRecyclerCoctelListener {
 
-        fun onCoctelSelected(coctel: CoctelDC)
+        fun onCoctelSelected(coctel: Ingrediente)
 
     }
 }
