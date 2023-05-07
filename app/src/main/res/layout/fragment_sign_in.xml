@@ -1,15 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".login.SignInFragment">
 
+    <EditText
+        android:id="@+id/PageSignUpeditTextTextUserName"
+        android:layout_width="215sp"
+        android:layout_height="48sp"
+        android:ems="10"
+        android:hint="Your name"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="40sp"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/PageSignUptext"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <EditText
+        android:id="@+id/PageSignUpeditTextTextEmailAddress"
+        android:layout_width="214sp"
+        android:layout_height="48sp"
+        android:layout_marginTop="32sp"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="@+id/PageSignUpeditTextTextUserName"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="@+id/PageSignUpeditTextTextUserName"
+        app:layout_constraintTop_toBottomOf="@+id/PageSignUpeditTextTextUserName"
+        tools:ignore="SpeakableTextPresentCheck"
+        android:hint="Your email"/>
+
+    <EditText
+        android:id="@+id/PageSignUpeditTextTextPassword"
+        android:layout_width="214sp"
+        android:layout_height="48sp"
+        android:layout_marginTop="32sp"
+        android:ems="10"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="@+id/PageSignUpeditTextTextEmailAddress"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="@+id/PageSignUpeditTextTextEmailAddress"
+        app:layout_constraintTop_toBottomOf="@+id/PageSignUpeditTextTextEmailAddress"
+        tools:ignore="SpeakableTextPresentCheck"
+        android:hint="Your password"/>
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/PageSignUpimageView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/logodameuncoctel"
@@ -18,16 +59,33 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.007" />
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/PageSignUptext"
+        android:layout_width="236sp"
+        android:layout_height="60sp"
+
+        android:rotationX="11"
+        android:autoSizeTextType="uniform"
+        android:text="Sign up to join"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/PageSignUpimageView2" />
+
 
     <Button
-        android:id="@+id/registro"
-        android:layout_width="156dp"
-        android:layout_height="96dp"
-        android:text="registrate"
+        android:id="@+id/PageSignUpButtonsing_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8sp"
+        android:text="Sign up"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/PageSignUpeditTextTextPassword"
+        app:layout_constraintVertical_bias="0.132" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

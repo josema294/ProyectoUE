@@ -3,17 +3,19 @@ package com.example.dameuncoctel.model
 import java.io.Serializable
 
 data class CoctelDC(
-    var id: Int,
-    val nombre: String?,
-    val foto: Int,
-    val categoria: String?,
+    var idDrink: String?,
+    val strDrink: String?,
+    val strDrinkThumb: String?,
     val tipoVaso: String?,
     val ingredientes: List<String>,
-    val instrucciones: String?,
+    val strInstructions: String?,
     val medidas: List<String>,
     val tags: List<String>,
 
-    )  : Serializable
+    )  : Serializable{
+    // Constructor secundario sin argumentos requerido por Firebase
+    constructor() : this(null, null, null, null, emptyList(), null, emptyList(), emptyList())
+}
 
 
 //antigua inicializacion de cocteles

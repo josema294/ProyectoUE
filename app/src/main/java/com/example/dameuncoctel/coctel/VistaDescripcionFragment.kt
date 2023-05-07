@@ -5,9 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.navigation.fragment.findNavController
-import com.example.dameuncoctel.R
 import com.example.dameuncoctel.databinding.FragmentVistaDescripcionBinding
+import com.example.dameuncoctel.R
+import com.example.dameuncoctel.databinding.ActivityCoctelBinding
+import com.example.dameuncoctel.model.CoctelDC
 
 
 /**
@@ -17,10 +21,13 @@ class VistaDescripcionFragment : Fragment() {
 
     private var _binding: FragmentVistaDescripcionBinding? = null
 
+    //private lateinit var coctel: CoctelDC
+
 
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,15 +37,15 @@ class VistaDescripcionFragment : Fragment() {
         _binding = FragmentVistaDescripcionBinding.inflate(inflater, container, false)
 
         return binding.root
-
-
-
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+       /* val bundle: Bundle? = intent.getBundleExtra("bundle")
+        val coctel: CoctelDC? = bundle?.get("coctel") as CoctelDC?
+
+        binding.descripciNCoctel.text =  coctel.strInstructions*/
 
 
 

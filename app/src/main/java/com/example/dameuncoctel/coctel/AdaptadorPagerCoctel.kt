@@ -24,6 +24,8 @@ class AdaptadorPagerCoctel(fm: FragmentManager?) : FragmentPagerAdapter(fm!!) {
 
 
 
+
+
     }
 
     fun eliminarFragment(posicion: Int) {

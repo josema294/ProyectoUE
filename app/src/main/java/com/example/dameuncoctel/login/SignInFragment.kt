@@ -1,11 +1,17 @@
 package com.example.dameuncoctel.login
 
+import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
 import com.example.dameuncoctel.R
+import com.example.dameuncoctel.home.MainActivity
+import com.google.firebase.auth.FirebaseAuth
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,6 +27,11 @@ class SignInFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private lateinit var botonSignUp: Button
+    private lateinit var nombre: EditText
+    private lateinit var email: EditText
+    private lateinit var pass: EditText
+    private lateinit var intentprimero: Intent
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,8 +45,32 @@ class SignInFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val viewFragmentLogin = inflater.inflate(R.layout.fragment_sign_in, container, false)
+
+        botonSignUp= viewFragmentLogin.findViewById(R.id.PageSignUpButtonsing_up)
+        nombre = viewFragmentLogin.findViewById(R.id.PageSignUpeditTextTextUserName)
+        email = viewFragmentLogin.findViewById(R.id.PageSignUpeditTextTextEmailAddress)
+        pass = viewFragmentLogin.findViewById(R.id.PageSignUpeditTextTextPassword)
+
+        botonSignUp.setOnClickListener{
+            if( email.text.isNotEmpty() && pass.text.isNotEmpty()) {
+                FirebaseAuth.getInstance().createUserWithEmailAndPassword(
+                    email.text.toString(),
+                    pass.text.toString()
+                ).addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        showHome(it.result.user?.email ?: "", ActivityLogin.ProviderType.BASIC)
+                    } else {
+                        shoeAlertErrorEmailFormat()
+                    }
+                }
+            }else{
+                shoeAlertErrorEmpty()
+            }
+
+        }
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sign_in, container, false)
+        return viewFragmentLogin
     }
 
     companion object {
@@ -56,5 +91,28 @@ class SignInFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+    private fun  shoeAlertErrorEmailFormat(){
+        val builder = AlertDialog.Builder(context)
+        builder.setTitle("Error")
+        builder.setMessage("Your email format is wrong")
+        builder.setPositiveButton("Accept",null)
+        val dialog: AlertDialog =builder.create()
+        dialog.show()
+    }
+    private fun  shoeAlertErrorEmpty(){
+        val builder = AlertDialog.Builder(context)
+        builder.setTitle("ErrorEmpty")
+        builder.setMessage("You must fill all fields")
+        builder.setPositiveButton("Accept",null)
+        val dialog: AlertDialog =builder.create()
+        dialog.show()
+    }
+    //Mostramos la nueva pantalla
+    private fun showHome(email:String, provider: ActivityLogin.ProviderType){
+        intentprimero = Intent (context, MainActivity::class.java)
+        startActivity(intentprimero)
+
+
     }
 }
