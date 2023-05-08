@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import com.example.dameuncoctel.databinding.FragmentCategoriasBinding
+import com.example.dameuncoctel.model.CoctelDC
 import com.example.dameuncoctel.model.FakeCoctelDC
 import com.example.dameuncoctel.model.FakeDB
 import com.example.dameuncoctel.resultado.ResultadoActivity
@@ -60,7 +61,35 @@ class CategoriasFragment : Fragment() {
         intent = Intent(view.context, ResultadoActivity::class.java)
 
         buttonRon.setOnClickListener {
-            var arrayResultado: ArrayList<FakeCoctelDC> = ArrayList()
+            var tipoCategoria: String = "rum"
+            bundle.putSerializable("categoria", tipoCategoria)
+            intent.putExtra("bundleCocteles", bundle)
+            view.context.startActivity(intent)
+
+            }
+
+        buttonVodka.setOnClickListener {
+            var tipoCategoria: String = "vodka"
+            bundle.putSerializable("categoria", tipoCategoria)
+            intent.putExtra("bundleCocteles", bundle)
+            view.context.startActivity(intent)
+        }
+        buttonGin.setOnClickListener {
+            var tipoCategoria: String = "gin"
+            bundle.putSerializable("categoria", tipoCategoria)
+            intent.putExtra("bundleCocteles", bundle)
+            view.context.startActivity(intent)
+
+        }
+        buttonSin.setOnClickListener {
+            var tipoCategoria: String = "Non alcoholic"
+            bundle.putSerializable("categoria", tipoCategoria)
+            intent.putExtra("bundleCocteles", bundle)
+            view.context.startActivity(intent)
+        }
+
+       /* buttonRon.setOnClickListener {
+            var arrayResultado: ArrayList<CoctelDC> = ArrayList()
 
 
             for (i in arrayCocteles) {
@@ -134,7 +163,7 @@ class CategoriasFragment : Fragment() {
             intent.putExtra("bundleCocteles", bundle)
             view.context.startActivity(intent)
 
-        }
+        }*/
 
 
     }
