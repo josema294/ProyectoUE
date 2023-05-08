@@ -16,7 +16,8 @@
             android:name=".coctel.CoctelActivity"
             android:exported="true"
             android:label="@string/title_activity_coctel"
-            android:theme="@style/Theme.DAMeuncoctel.NoActionBar">
+            android:theme="@style/Theme.DAMeuncoctel.NoActionBar"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
