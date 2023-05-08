@@ -9,26 +9,30 @@
     <EditText
         android:id="@+id/editTextTextEmailAddress"
         android:layout_width="215dp"
-        android:layout_height="46dp"
+        android:layout_height="48dp"
         android:layout_marginTop="140dp"
         android:ems="10"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        tools:ignore="SpeakableTextPresentCheck"
+        android:hint="Your email"/>
 
     <EditText
         android:id="@+id/editTextTextPassword"
         android:layout_width="214dp"
-        android:layout_height="45dp"
+        android:layout_height="48dp"
         android:layout_marginTop="32dp"
         android:ems="10"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="@+id/editTextTextEmailAddress"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="@+id/editTextTextEmailAddress"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress"
+        tools:ignore="SpeakableTextPresentCheck"
+        android:hint="Your password"/>
 
     <ImageView
         android:id="@+id/imageView2"
@@ -48,22 +52,34 @@
         android:layout_height="60dp"
         android:layout_marginTop="21dp"
         android:rotationX="11"
-        android:text="Inicia sesion si tienes cuenta"
+        android:autoSizeTextType="uniform"
+        android:text="Log in"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <Button
-        android:id="@+id/buttonEntra"
+        android:id="@+id/button_Log_In"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Entra"
+        android:text="Log in"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword"
         app:layout_constraintVertical_bias="0.132" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Swipe to the right to sign up"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_Log_In">
+
+    </TextView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
