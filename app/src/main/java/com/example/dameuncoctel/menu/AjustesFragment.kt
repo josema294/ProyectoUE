@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Adapter
 import android.widget.ArrayAdapter
+import android.widget.CheckBox
 import android.widget.Spinner
+import androidx.appcompat.app.AppCompatDelegate
 import com.example.dameuncoctel.R
 
 // TODO: Rename parameter arguments, choose names that match
@@ -26,6 +28,7 @@ class AjustesFragment : Fragment() {
     private var param2: String? = null
     private lateinit var spinner: Spinner
     private lateinit var adapter: Adapter
+    private lateinit var modoOscuro: CheckBox
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,6 +60,16 @@ class AjustesFragment : Fragment() {
 
         (adapter as ArrayAdapter<CharSequence>).setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = adapter as ArrayAdapter<CharSequence>
+
+
+        modoOscuro = view.findViewById(R.id.checkBox_modo_oscuro)
+            modoOscuro.setOnCheckedChangeListener { _, isChecked ->
+                if(isChecked){
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                }
+            }
 
     }
 
