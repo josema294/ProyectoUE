@@ -19,9 +19,8 @@
         android:id="@+id/tab_menu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
         android:scrollbarAlwaysDrawHorizontalTrack="true"
-
+        android:theme="@style/MyStyle"
         app:tabMode="scrollable"
         app:tabIndicatorColor="@color/white" />
 
