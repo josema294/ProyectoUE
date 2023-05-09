@@ -1,4 +1,4 @@
-package com.example.dameuncoctel.coctel
+package layout
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,11 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.navigation.fragment.findNavController
 import com.example.dameuncoctel.databinding.FragmentVistaDescripcionBinding
-import com.example.dameuncoctel.R
-import com.example.dameuncoctel.databinding.ActivityCoctelBinding
-import com.example.dameuncoctel.model.Ingrediente
+import com.example.dameuncoctel.databinding.FragmentVistaIngredientesBinding
+import com.example.dameuncoctel.model.CoctelDC
 
 
 /**
@@ -26,6 +24,12 @@ class VistaDescripcionFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+    private lateinit var descripcion: TextView
+
+    private lateinit var coctel: CoctelDC
+    private var _ingredientesBinding: FragmentVistaIngredientesBinding? = null
+    private val ingredientesBinding get() = _ingredientesBinding!!
+
 
 
     override fun onCreateView(
@@ -35,16 +39,35 @@ class VistaDescripcionFragment : Fragment() {
 
         _binding = FragmentVistaDescripcionBinding.inflate(inflater, container, false)
 
+
+
+
+
+
+        descripcion = binding.descripciNCoctel
+
+
+
+
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-       /* val bundle: Bundle? = intent.getBundleExtra("bundle")
-        val coctel: CoctelDC? = bundle?.get("coctel") as CoctelDC?
 
-        binding.descripciNCoctel.text =  coctel.strInstructions*/
+        val myBundle = arguments
+        if (myBundle != null) {
+            // Accede a los datos del Bundle
+            coctel = myBundle.getSerializable("coctel") as CoctelDC
+        }
+
+        descripcion.text = coctel.strInstructions.toString()
+        //ingredientes.text = "esto es una prueba"
+
+
+
 
 
 

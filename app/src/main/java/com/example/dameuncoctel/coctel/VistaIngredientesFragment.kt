@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.dameuncoctel.databinding.FragmentVistaDescripcionBinding
 import com.example.dameuncoctel.databinding.FragmentVistaIngredientesBinding
+import com.example.dameuncoctel.model.CoctelDC
 
 
 /**
@@ -16,6 +17,7 @@ import com.example.dameuncoctel.databinding.FragmentVistaIngredientesBinding
 class VistaIngredientesFragment : Fragment() {
 
     private var _binding: FragmentVistaIngredientesBinding? = null
+    private lateinit var coctel:CoctelDC
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -26,6 +28,9 @@ class VistaIngredientesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+
+
+
         _binding = FragmentVistaIngredientesBinding.inflate(inflater, container, false)
         return binding.root
 
@@ -33,6 +38,14 @@ class VistaIngredientesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val myBundle = arguments
+        if (myBundle != null) {
+            // Accede a los datos del Bundle
+            coctel = myBundle.getSerializable("coctel") as CoctelDC
+        }
+
+        binding.textviewIngredientes.text = "${coctel.ingredientes} ${coctel.medidas}"
 
 
     }
