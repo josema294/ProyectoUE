@@ -31,13 +31,15 @@ class ThirdFragment : Fragment() {
         _binding = FragmentThirdBinding.inflate(inflater, container, false)
         //listaCocteles = FakeMisCocteles().getMisCocteles()!!
 
-        recycler = binding.recyclerCocktails
+        //Dejo comentado la llamada a FAKE COctel para que no de error, esto se cambiara por
+        //Favoritos Reales de Real DB
+     /*   recycler = binding.recyclerCocktails
         recycler.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 
         adaptadorRecycler = AdaptadorRecycler(requireContext(), listaCocteles)
         recycler.adapter = adaptadorRecycler //  asignar el adaptador al RecyclerView
-
+*/
         return binding.root
     }
 

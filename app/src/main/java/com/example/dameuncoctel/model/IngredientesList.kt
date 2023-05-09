@@ -6,6 +6,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.Query
 import com.google.firebase.database.ValueEventListener
+import org.checkerframework.checker.formatter.qual.ReturnsFormat
 
 class IngredientesList {
 
@@ -13,10 +14,13 @@ class IngredientesList {
     private val nodeList =ArrayList<String>()
     private lateinit var query : Query
     private lateinit var listaIngredientes: ArrayList<Ingrediente>
+    private lateinit var listaIngredientesString: ArrayList<String>
 
 
     init{
 
+        listaIngredientes = ArrayList()
+        listaIngredientesString = ArrayList()
         AñadirItemslist(listaIngredientes)
 
     }
@@ -24,6 +28,18 @@ class IngredientesList {
     fun daneIngredientes(): ArrayList<Ingrediente>{
 
         return  listaIngredientes
+    }
+
+    fun dameIngredientesStrings(): ArrayList<String> {
+
+        for (ingrediente in listaIngredientes) {
+
+            listaIngredientesString.add(ingrediente.strIngredient.toString())
+
+
+        }
+
+        return listaIngredientesString
     }
 
 

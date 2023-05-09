@@ -54,6 +54,8 @@ class SignInFragment : Fragment() {
 
         botonSignUp.setOnClickListener{
             if( email.text.isNotEmpty() && pass.text.isNotEmpty()) {
+                //Consejo de borja lina de abajo
+                FirebaseAuth.getInstance().signOut()
                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(
                     email.text.toString(),
                     pass.text.toString()
