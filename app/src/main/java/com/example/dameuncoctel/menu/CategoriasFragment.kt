@@ -69,7 +69,9 @@ class CategoriasFragment : Fragment() {
             }
 
         buttonVodka.setOnClickListener {
-            var tipoCategoria: String = "Vodka"
+
+            var tipoCategoria: String = "vodka"
+
             bundle.putSerializable("categoria", tipoCategoria)
             intent.putExtra("bundleCocteles", bundle)
             view.context.startActivity(intent)
