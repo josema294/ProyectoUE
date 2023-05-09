@@ -11,13 +11,15 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.bumptech.glide.Glide
 import com.example.dameuncoctel.R
 import com.example.dameuncoctel.coctel.CoctelActivity
 import com.example.dameuncoctel.home.AdaptadorRecycler
+import com.example.dameuncoctel.model.CoctelDC
 import com.example.dameuncoctel.model.Ingrediente
 import com.example.dameuncoctel.model.FakeCoctelDC
 
-class AdaptadorRecyclerResultado(var contexto: Context, var listaDatos: List<*>) :
+class AdaptadorRecyclerResultado(var contexto: Context, var listaDatos: ArrayList<CoctelDC>) :
     RecyclerView.Adapter<AdaptadorRecycler.MyHolder>() {
 
 
@@ -41,9 +43,11 @@ class AdaptadorRecyclerResultado(var contexto: Context, var listaDatos: List<*>)
     }
 
     override fun onBindViewHolder(holder: AdaptadorRecycler.MyHolder, position: Int) {
-        var coctel: FakeCoctelDC = listaDatos.get(position) as FakeCoctelDC
-        holder.imagen.setImageResource(coctel.foto)
-        holder.nombre.setText(coctel.nombre)
+        var coctel: CoctelDC = listaDatos.get(position) as CoctelDC
+        //holder.imagen.setImageResource(coctel.foto)
+        //Cargamos la imagen seleccionada de su URL
+        Glide.with(contexto).load(coctel.strDrinkThumb).into(holder.imagen)
+        holder.nombre.setText(coctel.strDrink)
 
         //Comportamiento para ir a la vista del coctel
 
