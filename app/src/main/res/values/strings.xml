@@ -22,95 +22,107 @@
     <string name="ingredientes_introducidos"> Necesitas al menos introducir un nombre, descripcion y dos ingredientes</string>
 
 
-
     <string-array name="ingredientes">
-        <item>Absenta</item>
-        <item>Agua tónica</item>
-        <item>Agua con gas</item>
+        <item>7-Up</item>
+        <item>Absolut Citron</item>
+        <item>Ale</item>
         <item>Amaretto</item>
-        <item>Angostura</item>
-        <item>Anís</item>
-        <item>Azúcar</item>
-        <item>Benedictine</item>
-        <item>Bitter de naranja</item>
-        <item>Bitter de pomelo</item>
+        <item>Angelica root</item>
+        <item>Apple brandy</item>
+        <item>Apple cider</item>
+        <item>Apple juice</item>
+        <item>Applejack</item>
+        <item>Apricot brandy</item>
+        <item>AÃ±ejo rum</item>
+        <item>Berries</item>
+        <item>Bitters</item>
+        <item>Blackberry brandy</item>
+        <item>Blended whiskey</item>
         <item>Bourbon</item>
         <item>Brandy</item>
-        <item>Cachaça</item>
-        <item>Campari</item>
-        <item>Chambord</item>
-        <item>Champán</item>
-        <item>Cilantro</item>
-        <item>Cointreau</item>
-        <item>Coñac</item>
-        <item>Crema de cacao</item>
+        <item>Cantaloupe</item>
+        <item>Carbonated water</item>
+        <item>Champagne</item>
+        <item>Cherry brandy</item>
+        <item>Chocolate liqueur</item>
+        <item>Chocolate syrup</item>
+        <item>Chocolate</item>
+        <item>Cider</item>
+        <item>Cocoa powder</item>
+        <item>Coffee brandy</item>
+        <item>Coffee liqueur</item>
+        <item>Coffee</item>
+        <item>Cognac</item>
+        <item>Cranberries</item>
+        <item>Cranberry juice</item>
+        <item>Creme de Cacao</item>
         <item>Creme de Cassis</item>
-        <item>Curaçao azul</item>
-        <item>Drambuie</item>
-        <item>Frangelico</item>
-        <item>Ginebra</item>
-        <item>Granadina</item>
-        <item>Grand Marnier</item>
-        <item>Guindas al marrasquino</item>
-        <item>Hierbabuena</item>
-        <item>Huevo</item>
-        <item>Jerez</item>
-        <item>Kahlúa</item>
-        <item>Licor de café</item>
-        <item>Licor de menta</item>
-        <item>Licor de melón</item>
-        <item>Licor de plátano</item>
-        <item>Lima</item>
-        <item>Limón</item>
-        <item>Malibu</item>
-        <item>Menta</item>
-        <item>Mezcal</item>
-        <item>Miel</item>
-        <item>Naranja</item>
-        <item>Pernod</item>
-        <item>Peychaud\'s Bitters</item>
-        <item>Pimienta</item>
-        <item>Piña</item>
+        <item>Dark rum</item>
+        <item>Dry Vermouth</item>
+        <item>Dubonnet Rouge</item>
+        <item>Egg yolk</item>
+        <item>Egg</item>
+        <item>Espresso</item>
+        <item>Everclear</item>
+        <item>Firewater</item>
+        <item>Galliano</item>
+        <item>Gin</item>
+        <item>Ginger</item>
+        <item>Grape juice</item>
+        <item>Grapefruit juice</item>
+        <item>Grapes</item>
+        <item>Grenadine</item>
+        <item>Heavy cream</item>
+        <item>Irish cream</item>
+        <item>Irish whiskey</item>
+        <item>Johnnie Walker</item>
+        <item>Kahlua</item>
+        <item>Kiwi</item>
+        <item>Lager</item>
+        <item>Lemon juice</item>
+        <item>Lemon vodka</item>
+        <item>Lemon</item>
+        <item>Lemonade</item>
+        <item>Light rum</item>
+        <item>Lime juice</item>
+        <item>Lime</item>
+        <item>Mango</item>
+        <item>Midori melon liqueur</item>
+        <item>Milk</item>
+        <item>Orange bitters</item>
+        <item>Orange</item>
+        <item>Ouzo</item>
+        <item>Peach Vodka</item>
+        <item>Peach nectar</item>
+        <item>Peppermint schnapps</item>
+        <item>Pineapple juice</item>
         <item>Pisco</item>
-        <item>Ron</item>
-        <item>Ron oscuro</item>
-        <item>Ron blanco</item>
-        <item>Ron dorado</item>
-        <item>Ron de coco</item>
+        <item>Port</item>
+        <item>Red wine</item>
+        <item>Ricard</item>
+        <item>Rum</item>
         <item>Sambuca</item>
         <item>Scotch</item>
-        <item>Sirope de arce</item>
-        <item>Sirope de granadina</item>
-        <item>Sirope de goma</item>
-        <item>Soda</item>
+        <item>Sherry</item>
+        <item>Sloe gin</item>
         <item>Southern Comfort</item>
+        <item>Spiced rum</item>
+        <item>Sprite</item>
+        <item>Strawberries</item>
+        <item>Strawberry schnapps</item>
+        <item>Sugar syrup</item>
+        <item>Sugar</item>
+        <item>Sweet Vermouth</item>
+        <item>Tea</item>
         <item>Tequila</item>
-        <item>Tequila blanco</item>
-        <item>Tequila reposado</item>
-        <item>Tequila añejo</item>
+        <item>Tomato juice</item>
         <item>Triple sec</item>
-        <item>Vermut</item>
-        <item>Vermut blanco</item>
-        <item>Vermut rojo</item>
-        <item>Vino blanco</item>
-        <item>Vino rosado</item>
-        <item>Vino tinto</item>
         <item>Vodka</item>
-        <item>Vodka de cítricos</item>
-        <item>Vodka de vainilla</item>
-        <item>Whisky</item>
-        <item>Whisky de centeno</item>
-        <item>Whisky escocés</item>
-        <item>Whisky irlandés</item>
+        <item>Water</item>
+        <item>Watermelon</item>
+        <item>Whiskey</item>
         <item>Yoghurt</item>
-        <item>Zumo de arándanos</item>
-        <item>Zumo de lima</item>
-        <item>Zumo de limón</item>
-        <item>Zumo de naranja</item>
-        <item>Zumo de piña</item>
-        <item>Zumo de pomelo</item>
-        <item>Zumo de tomate</item>
-        <!-- Agrega más elementos aquí -->
+        <item>demerara Sugar</item>
     </string-array>
 
 
