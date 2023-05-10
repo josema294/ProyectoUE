@@ -11,13 +11,23 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Switch
 import androidx.core.os.bundleOf
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.dameuncoctel.R
 import com.example.dameuncoctel.databinding.FragmentIngredientesBinding
+import com.example.dameuncoctel.model.CoctelDC
 import com.example.dameuncoctel.model.FakeCoctelDC
 import com.example.dameuncoctel.model.FakeDB
+import com.example.dameuncoctel.resultado.AdaptadorRecyclerResultado
 import com.example.dameuncoctel.resultado.ResultadoActivity
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.Query
+import com.google.firebase.database.ValueEventListener
 
 
 /**
@@ -29,6 +39,10 @@ class IngredientesFragment : Fragment() {
     private lateinit var ingredientesChipGroup: ChipGroup
     private lateinit var botonBuscar: Button
     private lateinit var simultaneidadSwitch: Switch
+    private lateinit var mRootReferenceCoctail: DatabaseReference
+    private lateinit var query: Query
+    private var arrayResultado = ArrayList<CoctelDC>()
+
 
     //cocteles es la base de datos de cocteles
     private lateinit var cocteles: FakeDB
@@ -78,7 +92,7 @@ class IngredientesFragment : Fragment() {
             //arrayIngredientes son los ingredientes seleccionados por el usuario en la vista
             var arrayIngredientes: ArrayList<String> = ArrayList()
             //arraycocteles es el array de cocteles de la base de datos Fake
-            val arrayCocteles = cocteles.getCocteles()
+
 
             //bucle recorer todos los chips y comprobar si estan marcados
             for (i in 0 until ingredientesChipGroup.childCount) {
@@ -86,64 +100,74 @@ class IngredientesFragment : Fragment() {
                 if (chip.isChecked) {
 
                     arrayIngredientes.add(chip.text.toString())
-                    Log.d("Ingrediente", "Seleccionado el ingrediente ${chip.text}")
+                    Log.d("Ingrediente.chipmarcado", "Seleccionado el ingrediente ${chip.text}")
                 }
             }
 
-            //Ahora que hemos comprobado los ingredientes marcados, creamos array de cocteles que los contengan
-            var arrayResultado: ArrayList<FakeCoctelDC> = ArrayList()
-
-            //TODO ME gustaria pulir estra compleja bucles y condicionales
-
-            for (coctel in arrayCocteles) {
-
-                var contieneTodosLosIngredientesSeleccionados = true
-                var contieneAlgunoDeLosIngredientes = false
-                for (ingredienteSeleccionado in arrayIngredientes) {
-
-                    if (coctel.ingredientes.contains(ingredienteSeleccionado)) {
-                        contieneAlgunoDeLosIngredientes = true
-                    }
-                    if (!coctel.ingredientes.contains(ingredienteSeleccionado)) {
-                        contieneTodosLosIngredientesSeleccionados = false
-
-                    }
-
-
-                }
-
-                if (simultaneidadSwitch.isChecked) {
-
-                    if (contieneTodosLosIngredientesSeleccionados) {
-                        arrayResultado.add(coctel)
-                        Log.d("CoctelResultado", coctel.nombre.toString())
-                    }
-
-
-                } else {
-                    if (contieneAlgunoDeLosIngredientes) {
-                        arrayResultado.add(coctel)
-                        Log.d("CoctelResultado", coctel.nombre.toString())
-                    }
-                }
-
-
-            }
-
-            //Una vez tenemos el listado de cocteles a enviar lanzamos el intent:
-
-            val bundle = Bundle()
-            bundle.putSerializable("cocteles", arrayResultado)
-            val intent = Intent(requireContext(), ResultadoActivity::class.java)
-            intent.putExtra("bundleCocteles", bundle)
-
-            startActivity(intent)
+            AñadirItemslist(arrayIngredientes)
 
         }
+
+
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
+    //Ahora que hemos comprobado los ingredientes marcados, creamos array de cocteles que los contengan
+    fun AñadirItemslist(arrayIngredientes: ArrayList<String>) {
+
+        mRootReferenceCoctail = FirebaseDatabase.getInstance().getReference("coctail")
+        query = mRootReferenceCoctail.orderByKey()
+        var arrayResultado = ArrayList<CoctelDC>()
+
+        query = mRootReferenceCoctail.orderByChild("coctail")
+        query.addValueEventListener(object : ValueEventListener {
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                Log.d("Ingrediente.onDatachange","HA entrado en onDatachange")
+
+                for (ingrediente in arrayIngredientes) {
+
+                    Log.d("ingrediente.bucleingredientes",ingrediente)
+
+                    if (snapshot.exists()) {
+
+                        for (itmsnapshot in snapshot.children) {
+                            val item = itmsnapshot.getValue(CoctelDC::class.java)
+
+                            if (item?.strIngredient?.contains(ingrediente) ?: false) {
+
+                                arrayResultado.add(item!!)
+                                Log.d("Ingrediente.agregado",ingrediente)
+
+                            }
+
+                        }
+                    }
+
+                }
+
+                //
+
+                val intent = Intent(context, ResultadoActivity::class.java)
+                val bundle:Bundle = Bundle()
+                bundle.putSerializable("resultadoIngredientes",arrayResultado)
+                intent.putExtra("resultadoIngredientes",bundle)
+                Log.d("Ingrediente.arrayenviado",arrayResultado.size.toString())
+                startActivity(intent)
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+
+        })
+
+    }
+
 }
