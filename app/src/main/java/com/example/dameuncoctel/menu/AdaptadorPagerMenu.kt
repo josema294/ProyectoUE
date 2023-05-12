@@ -18,23 +18,20 @@ class AdaptadorPagerMenu(fm: FragmentManager?, context: Context) : FragmentPager
         listaFragments.add(AjustesFragment())
         listaFragments.add(PoliticaFragment())
         listaFragments.add(GuiaFragment())
-        listaFragments.add(LogoutFragment())
+
 
 
 
 
         listaNombres = ArrayList()
+
         listaNombres.add(context.getString(R.string.menu_categorias))
         listaNombres.add(context.getString(R.string.menu_ingredientes))
         listaNombres.add(context.getString(R.string.menu_crea))
         listaNombres.add(context.getString(R.string.menu_settings))
         listaNombres.add(context.getString(R.string.menu_privacy_policy))
         listaNombres.add(context.getString(R.string.menu_guide))
-        listaNombres.add(context.getString(R.string.menu_logout))
-
-
-
-
+        
     }
 
     fun cambiarTexto() {

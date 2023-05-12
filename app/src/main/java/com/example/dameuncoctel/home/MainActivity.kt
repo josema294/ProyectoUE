@@ -5,16 +5,19 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.viewpager.widget.ViewPager
 import com.example.dameuncoctel.R
+import com.example.dameuncoctel.login.ActivityLogin
 import com.example.dameuncoctel.menu.MenuActivity
 import com.google.android.material.navigation.NavigationView
 
 import com.google.android.material.tabs.TabLayout
+import com.google.firebase.auth.FirebaseAuth
 
 
 class MainActivity : AppCompatActivity() {
@@ -28,8 +31,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var viewPager: ViewPager
     lateinit var adaptadorPager: AdaptadorPager
     lateinit var context: Context
-
-
+    lateinit var intentGoStart: Intent
     lateinit var tabs: TabLayout
 
 
@@ -74,22 +76,22 @@ class MainActivity : AppCompatActivity() {
         // as you specify a parent activity in AndroidManifest.xml.
         // configuramos que al hacer click en un item, este realiza un intent al viewpager del MenuActivity por posicion
         when (item.itemId) {
-        R.id.action_categorias -> {
-            val intent = Intent(this, MenuActivity::class.java)
-            val bundle = Bundle()
-            bundle.putInt("posicionViewPager", 0)
-            intent.putExtras(bundle)
-            startActivity(intent)
-            return true
-        }
-        R.id.action_ingredientes -> {
-            val intent = Intent(this, MenuActivity::class.java)
-            val bundle = Bundle()
-            bundle.putInt("posicionViewPager", 1)
-            intent.putExtras(bundle)
-            startActivity(intent)
-            return true
-        }
+            R.id.action_categorias -> {
+                val intent = Intent(this, MenuActivity::class.java)
+                val bundle = Bundle()
+                bundle.putInt("posicionViewPager", 0)
+                intent.putExtras(bundle)
+                startActivity(intent)
+                return true
+            }
+            R.id.action_ingredientes -> {
+                val intent = Intent(this, MenuActivity::class.java)
+                val bundle = Bundle()
+                bundle.putInt("posicionViewPager", 1)
+                intent.putExtras(bundle)
+                startActivity(intent)
+                return true
+            }
             R.id.action_crea -> {
                 val intent = Intent(this, MenuActivity::class.java)
                 val bundle = Bundle()
@@ -123,21 +125,37 @@ class MainActivity : AppCompatActivity() {
                 return true
             }
             R.id.action_logout -> {
-                val intent = Intent(this, MenuActivity::class.java)
-                val bundle = Bundle()
-                bundle.putInt("posicionViewPager", 6)
-                intent.putExtras(bundle)
-                startActivity(intent)
+                //Configuracion Logout realizando Intent al ActivityLogin
+                AlertDialog.Builder(this)
+                    .setMessage("Are you sure you want to log out?")
+                    .setPositiveButton("Accept"){dialog, _ ->
+                        FirebaseAuth.getInstance().signOut()
+                        intentGoStart= Intent(this, ActivityLogin::class.java)
+                        intentGoStart.flags= Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        startActivity(intentGoStart)
+                        (this).finalizarActividad()
+
+                        dialog.dismiss()
+                    }
+                    .setNegativeButton("Cancel") { dialog, _ ->
+                        dialog.dismiss()
+                    }
+                    .show()
                 return true
             }
             // ...
-        else -> return super.onOptionsItemSelected(item)
+            else -> return super.onOptionsItemSelected(item)
+        }
     }
-}
+    fun finalizarActividad () {
 
-/*    override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
-        return navController.navigateUp(appBarConfiguration)
-                || super.onSupportNavigateUp()
-    }*/
+        finish()
+
+    }
+
+    /*    override fun onSupportNavigateUp(): Boolean {
+            val navController = findNavController(R.id.nav_host_fragment_content_main)
+            return navController.navigateUp(appBarConfiguration)
+                    || super.onSupportNavigateUp()
+        }*/
 }

@@ -38,7 +38,7 @@ class LogoutFragment : Fragment() {
 
     }
 
-    override fun onCreateView(
+    /*  override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
@@ -58,7 +58,7 @@ class LogoutFragment : Fragment() {
         }
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_logout, container, false)
-    }
+    }*/
 
 
     companion object {
