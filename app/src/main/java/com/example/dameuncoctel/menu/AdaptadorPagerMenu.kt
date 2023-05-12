@@ -16,7 +16,7 @@ class AdaptadorPagerMenu(fm: FragmentManager?) : FragmentPagerAdapter(fm!!) {
         listaFragments.add(AjustesFragment())
         listaFragments.add(PoliticaFragment())
         listaFragments.add(GuiaFragment())
-        listaFragments.add(LogoutFragment())
+
 
 
 
@@ -28,7 +28,7 @@ class AdaptadorPagerMenu(fm: FragmentManager?) : FragmentPagerAdapter(fm!!) {
         listaNombres.add("Ajustes")
         listaNombres.add("Politica de privacidad")
         listaNombres.add("Guia de usuario")
-        listaNombres.add(("Log Out"))
+
 
 
 
