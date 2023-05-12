@@ -1,5 +1,6 @@
 package com.example.dameuncoctel.home
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
@@ -29,8 +30,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var drawer: DrawerLayout
     lateinit var viewPager: ViewPager
     lateinit var adaptadorPager: AdaptadorPager
+    lateinit var context: Context
     lateinit var intentGoStart: Intent
-
     lateinit var tabs: TabLayout
 
 
@@ -46,7 +47,7 @@ class MainActivity : AppCompatActivity() {
         // Creamos instancias de los elementos del contentmain y el adaptador
         toolbar = findViewById(R.id.toolbar_2);
         viewPager = findViewById(R.id.view_pager);
-        adaptadorPager = AdaptadorPager(supportFragmentManager)
+        adaptadorPager = AdaptadorPager(supportFragmentManager,this)
 
         tabs = findViewById(R.id.tab);
 

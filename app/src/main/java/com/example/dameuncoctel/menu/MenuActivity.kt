@@ -40,7 +40,7 @@ class MenuActivity : AppCompatActivity() {
 
         toolbar = findViewById(R.id.toolbar_2)
         viewPager = findViewById(R.id.view_pager_menu);
-        adaptadorPager = AdaptadorPagerMenu(supportFragmentManager)
+        adaptadorPager = AdaptadorPagerMenu(supportFragmentManager, this)
         tab = findViewById(R.id.tab_menu)
 
 

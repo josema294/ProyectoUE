@@ -22,7 +22,7 @@
                 android:id="@+id/textView_Titulo_Politica_Privacidad"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Política de Privacidad"
+                android:text="@string/privacy_policy"
                 android:layout_marginTop="20sp"
                 android:textSize="30sp"
                 android:textAlignment="center"
@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:textAlignment="textStart"
                 android:layout_marginTop="10sp"
-                android:text="En DAMe un cóctel estamos comprometidos con la protección de la privacidad de nuestros usuarios. Esta política de privacidad describe cómo recopilamos, utilizamos y compartimos la información que recopilamos de nuestros usuarios a través de nuestra aplicación móvil."
+                android:text="@string/content_information_collection"
                 />
 
             <TextView
@@ -44,7 +44,7 @@
                 android:layout_marginTop="30sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Recopilación de informacón"
+                android:text="@string/information_collection"
                 android:textStyle="bold"
                 style="@style/MyStyle">
             </TextView>
@@ -54,14 +54,14 @@
                 android:layout_height="wrap_content"
                 android:textAlignment="textStart"
                 android:layout_marginTop="10sp"
-                android:text="Cuando descargas y utilizas nuestra aplicación móvil, podemos solicitar cierta información personal, como tu nombre, dirección de correo electrónico y número de teléfono, para poder proporcionarte una mejor experiencia de usuario. La provisión de esta información es completamente opcional y no afectará a tu capacidad para utilizar nuestra aplicación."
+                android:text="@string/content_information_usage"
                 />
             <TextView
                 android:id="@+id/textView_titulo_uso_de_la_informacion"
                 android:layout_marginTop="30sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Uso de la información"
+                android:text="@string/information_usage"
                 android:textStyle="bold"
                 style="@style/MyStyle">
             </TextView>
@@ -71,14 +71,13 @@
                 android:layout_height="wrap_content"
                 android:textAlignment="textStart"
                 android:layout_marginTop="10sp"
-                android:text="Utilizamos la información que recopilamos para mejorar la funcionalidad y la calidad de nuestra aplicación móvil. También podemos utilizar la información para fines estadísticos y de análisis, y para cumplir con nuestras obligaciones legales y reglamentarias."
-                />
+                android:text="@string/content_information_sharing" />
             <TextView
                 android:id="@+id/textView_titulo_compartir_informacion"
                 android:layout_marginTop="30sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Compartir información"
+                android:text="@string/information_sharing"
                 android:textStyle="bold"
                 style="@style/MyStyle">
             </TextView>
@@ -95,7 +94,7 @@
                 android:layout_marginTop="30sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Seguridad de la información"
+                android:text="@string/information_security"
                 android:textStyle="bold"
                 style="@style/MyStyle">
             </TextView>
@@ -105,14 +104,13 @@
                 android:layout_height="wrap_content"
                 android:textAlignment="textStart"
                 android:layout_marginTop="10sp"
-                android:text="Tomamos medidas razonables para proteger la información que recopilamos contra el acceso no autorizado, la divulgación, el uso indebido y la alteración. Sin embargo, no podemos garantizar la seguridad absoluta de la información transmitida a través de Internet o almacenada en nuestros sistemas."
-                />
+                android:text="@string/content_information_security"/>
             <TextView
                 android:id="@+id/textView_titulo_cambios_politica_privacidad"
                 android:layout_marginTop="30sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Cambios en la política de privacidad"
+                android:text="@string/privacy_policy_changes"
                 android:textStyle="bold"
                 style="@style/MyStyle">
             </TextView>
@@ -122,15 +120,14 @@
                 android:layout_height="wrap_content"
                 android:textAlignment="textStart"
                 android:layout_marginTop="10sp"
-                android:text="Nos reservamos el derecho de actualizar o modificar esta política de privacidad en cualquier momento y sin previo aviso. Si realizamos cambios significativos en la forma en que utilizamos la información personalmente identificable, te informaremos mediante una notificación en la aplicación móvil."
-                />
+                android:text="@string/content_privacy_policy_changes"/>
             <TextView
                 android:id="@+id/textView_ultima_actualizacion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30sp"
                 android:layout_marginBottom="60sp"
-                android:text="Última actualización: 30/04/2023"
+                android:text="@string/last_updated"
                 android:textStyle="italic"
                 />
 

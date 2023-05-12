@@ -30,13 +30,13 @@ class ResultadoActivity : AppCompatActivity() {
 
     private lateinit var arrayCocteles: ArrayList<CoctelDC>
     private lateinit var intent: Intent
-    private var contexto :Context=this
+    private var contexto: Context = this
 
     private lateinit var toolbar: androidx.appcompat.widget.Toolbar
-    lateinit var mRootReferenceCoctail  : DatabaseReference
-    private val nodeList =ArrayList<String>()
-    private lateinit var query : Query
-    private lateinit var seleccionCategoria:String
+    lateinit var mRootReferenceCoctail: DatabaseReference
+    private val nodeList = ArrayList<String>()
+    private lateinit var query: Query
+    private lateinit var seleccionCategoria: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_resultado)
@@ -51,80 +51,95 @@ class ResultadoActivity : AppCompatActivity() {
 
         intent = getIntent()
         val bundle: Bundle? = intent.getBundleExtra("bundleCocteles")
+        val bundle2: Bundle? = intent.getBundleExtra("resultadoIngredientes")
 
         //Recuperamos el array con el resultado de cocteles
         //TODO arreglar el deprecated
-        seleccionCategoria = bundle?.getSerializable("categoria") as String
+        if (bundle?.getSerializable("categoria") != null) {
+            seleccionCategoria = bundle?.getSerializable("categoria") as String
 
-        fun AñadirItemslist(listaCocteles : ArrayList<CoctelDC>): ArrayList<CoctelDC> {
+            fun AñadirItemslist(listaCocteles: ArrayList<CoctelDC>): ArrayList<CoctelDC> {
 
-            mRootReferenceCoctail = FirebaseDatabase.getInstance().getReference("coctail")
-            query = mRootReferenceCoctail.orderByKey()
-            Log.d("loooooooog",seleccionCategoria)
-            //query = mRootReferenceCoctail.child("strIngredient").equalTo("\uf8ff"+selecccionCategoria)//.orderByChild("strIngredient").equalTo("\uf8ff"+selecccionCategoria)
-            query = mRootReferenceCoctail.orderByChild("coctail")
-            query.addValueEventListener(object : ValueEventListener {
+                mRootReferenceCoctail = FirebaseDatabase.getInstance().getReference("coctail")
+                query = mRootReferenceCoctail.orderByKey()
+                Log.d("loooooooog", seleccionCategoria)
+                //query = mRootReferenceCoctail.child("strIngredient").equalTo("\uf8ff"+selecccionCategoria)//.orderByChild("strIngredient").equalTo("\uf8ff"+selecccionCategoria)
+                query = mRootReferenceCoctail.orderByChild("coctail")
+                query.addValueEventListener(object : ValueEventListener {
 
-                override fun onDataChange(snapshot: DataSnapshot) {
+                    override fun onDataChange(snapshot: DataSnapshot) {
 
-                    if (snapshot.exists()) {
-                        var ky: String = ""
-                        var itnm: String = ""
-                        var limit: Int = 0
-                        for (itmsnapshot in snapshot.children) {
-                            val item = itmsnapshot.getValue(CoctelDC::class.java)
+                        if (snapshot.exists()) {
+                            var ky: String = ""
+                            var itnm: String = ""
+                            var limit: Int = 0
+                            for (itmsnapshot in snapshot.children) {
+                                val item = itmsnapshot.getValue(CoctelDC::class.java)
 
-                            if (item!!.strIngredient?.contains(seleccionCategoria) == true
-                                || item!!.strIngredient2?.contains(seleccionCategoria) == true
-                                || item!!.strIngredient3?.contains(seleccionCategoria) == true
-                                || item!!.strIngredient4?.contains(seleccionCategoria) == true
-                                || item!!.strIngredient5?.contains(seleccionCategoria) == true
-                                || item!!.strIngredient6?.contains(seleccionCategoria) == true
-                                || item!!.strIngredient7?.contains(seleccionCategoria) == true
-                                || item!!.strIngredient8?.contains(seleccionCategoria) == true
-                                || item!!.strIngredient9?.contains(seleccionCategoria) == true
-                                || item!!.strIngredient10?.contains(seleccionCategoria) == true) {
-                                listaCocteles.add(item!!)
-                                ky = itmsnapshot.key.toString()
-                                itnm = item.strDrink.toString()
-                                println(ky + " nombre " + itnm)
-                                // Procesar los datos que se encuentran en singleSnapshot
-                            }else {
-                                // La consulta no ha devuelto resultados
+                                if (item!!.strIngredient?.contains(seleccionCategoria) == true
+                                    || item!!.strIngredient2?.contains(seleccionCategoria) == true
+                                    || item!!.strIngredient3?.contains(seleccionCategoria) == true
+                                    || item!!.strIngredient4?.contains(seleccionCategoria) == true
+                                    || item!!.strIngredient5?.contains(seleccionCategoria) == true
+                                    || item!!.strIngredient6?.contains(seleccionCategoria) == true
+                                    || item!!.strIngredient7?.contains(seleccionCategoria) == true
+                                    || item!!.strIngredient8?.contains(seleccionCategoria) == true
+                                    || item!!.strIngredient9?.contains(seleccionCategoria) == true
+                                    || item!!.strIngredient10?.contains(seleccionCategoria) == true
+                                ) {
+                                    listaCocteles.add(item!!)
+                                    ky = itmsnapshot.key.toString()
+                                    itnm = item.strDrink.toString()
+                                    println(ky + " nombre " + itnm)
+                                    // Procesar los datos que se encuentran en singleSnapshot
+                                } else {
+                                    // La consulta no ha devuelto resultados
+                                }
                             }
                         }
+
+
+                        /*limit = limit + 1
+                        if (limit >= 20) {
+                            break
+                        }*/
+                        val recycler = findViewById<RecyclerView>(R.id.recyclerViewResultado)
+                        recycler.layoutManager =
+                            LinearLayoutManager(contexto, LinearLayoutManager.VERTICAL, false)
+                        val adaptadorRecyclerResultado =
+                            AdaptadorRecyclerResultado(contexto, arrayCocteles)
+                        recycler.adapter = adaptadorRecyclerResultado
+
+
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        TODO("Not yet implemented")
                     }
 
 
-                            /*limit = limit + 1
-                            if (limit >= 20) {
-                                break
-                            }*/
-                    val recycler = findViewById<RecyclerView>(R.id.recyclerViewResultado)
-                    recycler.layoutManager = LinearLayoutManager(contexto, LinearLayoutManager.VERTICAL, false)
-                    val adaptadorRecyclerResultado = AdaptadorRecyclerResultado(contexto, arrayCocteles)
-                    recycler.adapter = adaptadorRecyclerResultado
-
-
-                    }
-
-                override fun onCancelled(error: DatabaseError) {
-                    TODO("Not yet implemented")
-                }
-
-
-
-
-        })
-            return listaCocteles
+                })
+                return listaCocteles
+            }
+            //Realizamos una query a la base de datos y lo añadimos a la lista de cocteles
+            AñadirItemslist(arrayCocteles)
         }
-        //Realizamos una query a la base de datos y lo añadimos a la lista de cocteles
-        AñadirItemslist(arrayCocteles)
+
+        if (bundle2 != null) {
+
+           val seleccionCoctelesIngredientesList = bundle2?.getSerializable("resultadoIngredientes") as ArrayList<CoctelDC>
+
+            val recycler = findViewById<RecyclerView>(R.id.recyclerViewResultado)
+            recycler.layoutManager =
+                LinearLayoutManager(contexto, LinearLayoutManager.VERTICAL, false)
+            val adaptadorRecyclerResultado =
+                AdaptadorRecyclerResultado(contexto, seleccionCoctelesIngredientesList)
+            recycler.adapter = adaptadorRecyclerResultado
 
 
+        }
 
     }
-
 
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

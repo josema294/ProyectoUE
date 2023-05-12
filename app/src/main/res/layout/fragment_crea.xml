@@ -12,7 +12,7 @@
         android:layout_height="50sp"
         android:layout_marginStart="12sp"
         android:layout_marginTop="16sp"
-        android:hint="Nombre de tu cóctail"
+        android:hint="@string/hint_nombre_ingrediente"
         android:textAllCaps="false"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -35,7 +35,7 @@
         android:layout_width="347sp"
         android:layout_height="119sp"
         android:background="@drawable/bordes_cuadrados"
-        android:hint="Descripción..."
+        android:hint="@string/hint_description"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textSize="16sp"
@@ -48,7 +48,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10sp"
-        android:text="INGREDIENTES:"
+        android:text="@string/hint_ingredients"
         android:padding="20sp"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -75,7 +75,7 @@
                 android:layout_width="200sp"
                 android:layout_height="50sp"
                 android:layout_marginLeft="15sp"
-                android:text="Ingrediente 1:"
+                android:text="@string/hint_ingrediente1"
                 android:textStyle="bold"
                 android:textSize="20sp" />
 
@@ -83,7 +83,7 @@
                 android:id="@+id/nombre_ingrediente1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Nombre del Ingrediente"
+                android:hint="@string/hint_nombre_ingrediente"
                 android:textAlignment="center"
                 android:textSize="20sp" />
 
@@ -91,7 +91,7 @@
                 android:id="@+id/medida_ingrediente1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Medida"
+                android:hint="@string/hint_medida"
                 android:textAlignment="center"
                 android:textSize="20sp" />
 
@@ -100,7 +100,7 @@
                 android:layout_width="200sp"
                 android:layout_height="50sp"
                 android:layout_marginLeft="15sp"
-                android:text="Ingrediente 2:"
+                android:text="@string/hint_ingrediente2"
                 android:textStyle="bold"
                 android:textSize="20sp" />
 
@@ -108,7 +108,7 @@
                 android:id="@+id/nombre_ingrediente2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Nombre del Ingrediente"
+                android:hint="@string/hint_nombre_ingrediente"
                 android:textAlignment="center"
                 android:textSize="20sp" />
 
@@ -116,7 +116,7 @@
                 android:id="@+id/medida_ingrediente2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Medida"
+                android:hint="@string/hint_medida"
                 android:textAlignment="center"
                 android:textSize="20sp" />
 
@@ -125,7 +125,7 @@
                 android:layout_width="200sp"
                 android:layout_height="50sp"
                 android:layout_marginLeft="15sp"
-                android:text="Ingrediente 3:"
+                android:text="@string/hint_ingrediente3"
                 android:textStyle="bold"
                 android:textSize="20sp" />
 
@@ -133,7 +133,7 @@
                 android:id="@+id/nombre_ingrediente3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Nombre del Ingrediente"
+                android:hint="@string/hint_nombre_ingrediente"
                 android:textAlignment="center"
                 android:textSize="20sp" />
 
@@ -141,7 +141,7 @@
                 android:id="@+id/medida_ingrediente3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Medida"
+                android:hint="@string/hint_medida"
                 android:textAlignment="center"
                 android:textSize="20sp" />
 
@@ -150,7 +150,7 @@
                 android:layout_width="200sp"
                 android:layout_height="50sp"
                 android:layout_marginLeft="15sp"
-                android:text="Ingrediente 4:"
+                android:text="@string/hint_ingrediente4"
                 android:textStyle="bold"
                 android:textSize="20sp" />
 
@@ -158,7 +158,7 @@
                 android:id="@+id/nombre_ingrediente4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Nombre del Ingrediente"
+                android:hint="@string/hint_nombre_ingrediente"
                 android:textAlignment="center"
                 android:textSize="20sp" />
 
@@ -166,7 +166,7 @@
                 android:id="@+id/medida_ingrediente4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Medida"
+                android:hint="@string/hint_medida"
                 android:textAlignment="center"
                 android:textSize="20sp" />
 
@@ -175,7 +175,7 @@
                 android:layout_width="200sp"
                 android:layout_height="50sp"
                 android:layout_marginLeft="15sp"
-                android:text="Ingrediente 5:"
+                android:text="@string/hint_ingrediente5"
                 android:textStyle="bold"
                 android:textSize="20sp" />
 
@@ -183,7 +183,7 @@
                 android:id="@+id/nombre_ingrediente5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Nombre del Ingrediente"
+                android:hint="@string/hint_nombre_ingrediente"
                 android:textAlignment="center"
                 android:textSize="20sp" />
 
@@ -191,7 +191,7 @@
                 android:id="@+id/medida_ingrediente5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Medida"
+                android:hint="@string/hint_medida"
                 android:textAlignment="center"
                 android:textSize="20sp" />
 
@@ -200,7 +200,7 @@
                 android:layout_width="200sp"
                 android:layout_height="50sp"
                 android:layout_marginLeft="15sp"
-                android:text="Ingrediente 6:"
+                android:text="@string/hint_ingrediente6"
                 android:textStyle="bold"
                 android:textSize="20sp" />
 
@@ -208,7 +208,7 @@
                 android:id="@+id/nombre_ingrediente6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Nombre del Ingrediente"
+                android:hint="@string/hint_nombre_ingrediente"
                 android:textAlignment="center"
                 android:textSize="20sp" />
 
@@ -216,7 +216,7 @@
                 android:id="@+id/medida_ingrediente6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Medida"
+                android:hint="@string/hint_medida"
                 android:textAlignment="center"
                 android:textSize="20sp" />
 
@@ -225,7 +225,7 @@
                 android:layout_width="200sp"
                 android:layout_height="50sp"
                 android:layout_marginLeft="15sp"
-                android:text="Ingrediente 7:"
+                android:text="@string/hint_ingrediente7"
                 android:textStyle="bold"
                 android:textSize="20sp" />
 
@@ -233,7 +233,7 @@
                 android:id="@+id/nombre_ingrediente7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Nombre del Ingrediente"
+                android:hint="@string/hint_nombre_ingrediente"
                 android:textAlignment="center"
                 android:textSize="20sp" />
 
@@ -241,7 +241,7 @@
                 android:id="@+id/medida_ingrediente7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Medida"
+                android:hint="@string/hint_medida"
                 android:textAlignment="center"
                 android:textSize="20sp" />
 
@@ -249,7 +249,7 @@
                 android:id="@+id/add_tu_foto"
                 android:layout_width="300sp"
                 android:layout_height="wrap_content"
-                android:text="Añade tu foto"
+                android:text="@string/buron_picture"
                 android:layout_gravity="center"
                 android:layout_marginBottom="10sp"
                 />
@@ -257,7 +257,7 @@
                 android:id="@+id/guarda_tu_coctail"
                 android:layout_width="300sp"
                 android:layout_height="wrap_content"
-                android:text="Guarda tu Cóctail"
+                android:text="@string/buton_guarda"
                 android:layout_gravity="center"
                 android:layout_marginBottom="100sp"
                 />
