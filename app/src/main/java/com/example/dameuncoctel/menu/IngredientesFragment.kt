@@ -41,6 +41,8 @@ class IngredientesFragment : Fragment() {
     private lateinit var simultaneidadSwitch: Switch
     private lateinit var mRootReferenceCoctail: DatabaseReference
     private lateinit var query: Query
+    private lateinit var intent : Intent
+    private lateinit var bundle2 : Bundle
     private var arrayResultado = ArrayList<CoctelDC>()
 
 
@@ -127,37 +129,135 @@ class IngredientesFragment : Fragment() {
         query.addValueEventListener(object : ValueEventListener {
 
             override fun onDataChange(snapshot: DataSnapshot) {
-                Log.d("Ingrediente.onDatachange","HA entrado en onDatachange")
+                Log.d("Ingrediente.onDatachange", "HA entrado en onDatachange")
 
-                for (ingrediente in arrayIngredientes) {
+                if (snapshot.exists() && !simultaneidadSwitch.isChecked) {
 
-                    Log.d("ingrediente.bucleingredientes",ingrediente)
-
-                    if (snapshot.exists()) {
+                    for (ingrediente in arrayIngredientes) {
+                        Log.d("ingrediente.bucleingredientes", ingrediente)
 
                         for (itmsnapshot in snapshot.children) {
                             val item = itmsnapshot.getValue(CoctelDC::class.java)
 
-                            if (item?.strIngredient?.contains(ingrediente) ?: false) {
+                            if (item?.strIngredient?.contains(
+                                    ingrediente
+                                ) ?: false
+                                || item?.strIngredient2?.contains(
+                                    ingrediente
+                                ) ?: false
+                                || item?.strIngredient3?.contains(
+                                    ingrediente
+                                ) ?: false
+                                || item?.strIngredient4?.contains(
+                                    ingrediente
+                                ) ?: false
+                                || item?.strIngredient5?.contains(
+                                    ingrediente
+                                ) ?: false
+                                || item?.strIngredient6?.contains(
+                                    ingrediente
+                                ) ?: false
+                                || item?.strIngredient7?.contains(
+                                    ingrediente
+                                ) ?: false
+                                || item?.strIngredient8?.contains(
+                                    ingrediente
+                                ) ?: false
+                                || item?.strIngredient9?.contains(
+                                    ingrediente
+                                ) ?: false
+                                || item?.strIngredient10?.contains(
+                                    ingrediente
+                                ) ?: false
+                            ) {
 
                                 arrayResultado.add(item!!)
-                                Log.d("Ingrediente.agregado",ingrediente)
+                                Log.d("Ingrediente.agregado", ingrediente)
 
                             }
 
                         }
                     }
 
+                    intent = Intent(context, ResultadoActivity::class.java)
+                    bundle2 = Bundle()
+                    bundle2.putSerializable("resultadoIngredientes", arrayResultado)
+                    intent.putExtra("resultadoIngredientes", bundle2)
+                    Log.d("Ingrediente.arrayenviado", arrayResultado.size.toString())
+                    startActivity(intent)
+                    arrayResultado.clear()
                 }
 
-                //
 
-                val intent = Intent(context, ResultadoActivity::class.java)
-                val bundle:Bundle = Bundle()
-                bundle.putSerializable("resultadoIngredientes",arrayResultado)
-                intent.putExtra("resultadoIngredientes",bundle)
-                Log.d("Ingrediente.arrayenviado",arrayResultado.size.toString())
-                startActivity(intent)
+
+
+                if (snapshot.exists() && simultaneidadSwitch.isChecked) {
+
+                    for (itmsnapshot in snapshot.children) {
+                        val item = itmsnapshot.getValue(CoctelDC::class.java)
+                        var tieneTodos = true
+                        for (ingrediente in arrayIngredientes) {
+
+                            Log.d("ingrediente.bucleingredientes", ingrediente)
+
+                            if (item?.strIngredient?.contains(
+                                    ingrediente
+                                ) ?: false
+                                || item?.strIngredient2?.contains(
+                                    ingrediente
+                                ) ?: false
+                                || item?.strIngredient3?.contains(
+                                    ingrediente
+                                ) ?: false
+                                || item?.strIngredient4?.contains(
+                                    ingrediente
+                                ) ?: false
+                                || item?.strIngredient5?.contains(
+                                    ingrediente
+                                ) ?: false
+                                || item?.strIngredient6?.contains(
+                                    ingrediente
+                                ) ?: false
+                                || item?.strIngredient7?.contains(
+                                    ingrediente
+                                ) ?: false
+                                || item?.strIngredient8?.contains(
+                                    ingrediente
+                                ) ?: false
+                                || item?.strIngredient9?.contains(
+                                    ingrediente
+                                ) ?: false
+                                || item?.strIngredient10?.contains(
+                                    ingrediente
+                                ) ?: false
+                            ) {
+
+                            } else {
+                                tieneTodos = false
+                                break
+                            }
+                        }
+
+                        if (tieneTodos) {
+                            arrayResultado.add(item!!)
+
+                        }
+
+
+                    }
+
+                    intent = Intent(context, ResultadoActivity::class.java)
+                    bundle2  = Bundle()
+                    bundle2.putSerializable("resultadoIngredientes", arrayResultado)
+                    intent.putExtra("resultadoIngredientes", bundle2)
+                    Log.d("Ingrediente.arrayenviado", arrayResultado.size.toString())
+                    startActivity(intent)
+                    arrayResultado.clear()
+
+
+                }
+
+
 
             }
 
@@ -168,6 +268,8 @@ class IngredientesFragment : Fragment() {
 
         })
 
+
     }
 
 }
+

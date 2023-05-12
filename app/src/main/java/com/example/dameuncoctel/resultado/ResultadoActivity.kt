@@ -51,7 +51,7 @@ class ResultadoActivity : AppCompatActivity() {
 
         intent = getIntent()
         val bundle: Bundle? = intent.getBundleExtra("bundleCocteles")
-        val bundle2: Bundle? = intent.getBundleExtra("ingredientes")
+        val bundle2: Bundle? = intent.getBundleExtra("resultadoIngredientes")
 
         //Recuperamos el array con el resultado de cocteles
         //TODO arreglar el deprecated
@@ -127,13 +127,13 @@ class ResultadoActivity : AppCompatActivity() {
 
         if (bundle2 != null) {
 
-           val seleccionIngredientes = bundle?.getSerializable("resultadoIngredientes") as ArrayList<CoctelDC>
+           val seleccionCoctelesIngredientesList = bundle2?.getSerializable("resultadoIngredientes") as ArrayList<CoctelDC>
 
             val recycler = findViewById<RecyclerView>(R.id.recyclerViewResultado)
             recycler.layoutManager =
                 LinearLayoutManager(contexto, LinearLayoutManager.VERTICAL, false)
             val adaptadorRecyclerResultado =
-                AdaptadorRecyclerResultado(contexto, arrayCocteles)
+                AdaptadorRecyclerResultado(contexto, seleccionCoctelesIngredientesList)
             recycler.adapter = adaptadorRecyclerResultado
 
 
