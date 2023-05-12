@@ -26,6 +26,9 @@ class ActivityLogin : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        //Elimina toolbar del Activity Login
+        supportActionBar?.hide()
+
 
         //creando instancias de elemtos
 
