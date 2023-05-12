@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">DAMeuncoctel</string>
-    <string name="app_version">Versión 0.3</string>
+
     <string name="app_name_and_version" formatted="true">%1$s - %2$s</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
@@ -9,17 +9,98 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
+    <string name="pestana_home_Popular">Popular</string>
+    <string name="pestana_home_Favorites">Favorites</string>
+    <string name="pestana_home_YourCocktails">Your Cocktails</string>
+
+    <string name="pestana_coctel_Description">Description</string>
+    <string name="pestana_coctel_Ingredients">Ingredients</string>
+
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_menu">MenuActivity</string>
-    <string name="comportamiento_ingredientes_selector">Incluir simultaneamente todos los ingredientes marcados</string>
-    <string name="info_ingredientes">Ingredientes para cocteles</string>
-    <string name="modo_oscuro"> Activa o desactiva el modo oscuro </string>
-    <string name="selector_idiomas">Selecciona el idioma por defecto</string>
+
+
     <string name="ingredientes_introducidos"> Necesitas al menos introducir un nombre, descripcion y dos ingredientes</string>
+
+    <!-- Toolbar Menu-->
+    <!--Menu de opciones pager-->
+    <string name="menu">Menu</string>
+    <string name="menu_buscar">Search</string>
+    <string name="menu_categorias">Categories</string>
+    <string name="menu_ingredientes">Ingredients</string>
+    <string name="menu_crea">Create Your Cocktail</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_privacy_policy">Privacy Policy</string>
+    <string name="menu_guide">User Guide</string>
+    <string name="menu_logout">Log Out</string>
+
+    <!-- Categorias -->
+
+    <string name="Rum">Rum</string>
+    <string name="Gin">Gin</string>
+    <string name="Vodka">Vodka</string>
+    <string name="Without">Non-alcoholic</string>
+
+    <!--Politica privacidad-->
+
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="information_collection">Information Collection</string>
+    <string name="content_information_collection">At DAMe un cóctel, we are committed to protecting the privacy of our users. This privacy policy describes how we collect, use, and share the information we gather from our users through our mobile application.</string>
+    <string name="information_usage">Information Usage</string>
+    <string name="content_information_usage">We use the information we collect to improve the functionality and quality of our mobile application. We may also use the information for statistical and analytical purposes, and to comply with our legal and regulatory obligations.</string>
+    <string name="information_sharing">Information Sharing</string>
+    <string name="content_information_sharing">We do not share personally identifiable information with third parties, except when necessary to provide services or features that you have specifically requested, or when required by law. Only other users will be able to see your username if you decide to publish a cocktail.</string>
+    <string name="information_security">Information Security</string>
+    <string name="content_information_security">We take reasonable measures to protect the information we collect against unauthorized access, disclosure, misuse, and alteration. However, we cannot guarantee the absolute security of information transmitted over the Internet or stored in our systems.</string>
+    <string name="privacy_policy_changes">Privacy Policy Changes</string>
+    <string name="content_privacy_policy_changes">We reserve the right to update or modify this privacy policy at any time and without prior notice. If we make significant changes in the way we use personally identifiable information, we will inform you through a notification in the mobile application.</string>
+    <string name="last_updated">Last Updated: 30/04/2023</string>
+
+    <!--Fragment ingredientes-->
+
+    <string name="boton_buscar">Search</string>
+    <string name="and_or">Privacy Policy</string>
+    <string name="ingrediente_selector_behavior">Include all elements simoultaneasley</string>
+    <string name="info_ingredientes">Information about Ingredients</string>
+    <string name="comportamiento_ingredientes_selector">Include all marked ingredients simultaneously</string>
+
+    <!--Settings-->
+
+    <string name="modo_oscuro">Enable or disable dark mode</string>
+    <string name="checkbox_dark">Dark mode</string>
+    <string name="selector_idiomas">Select the default language</string>
+    <string name="app_version">Version 0.3</string>
+
+    <!--Create your cocktail-->
+
+    <string name="hint_coctel">Your cocktail name</string>
+    <string name="hint_description">Description...</string>
+    <string name="hint_ingredients">INGREDIENTS:</string>
+    <string name="hint_ingrediente1">Ingredient 1:</string>
+    <string name="hint_ingrediente2">Ingredient 2:</string>
+    <string name="hint_ingrediente3">Ingredient 3:</string>
+    <string name="hint_ingrediente4">Ingredient 4:</string>
+    <string name="hint_ingrediente5">Ingredient 5:</string>
+    <string name="hint_ingrediente6">Ingredient 6:</string>
+    <string name="hint_ingrediente7">Ingredient 7:</string>
+    <string name="hint_nombre_ingrediente">Ingredient Name</string>
+    <string name="hint_medida">Measurement</string>
+    <string name="buron_picture">ADD YOUR PHOTO</string>
+    <string name="buton_guarda">SAVE YOUR COCKTAIL</string>
+
+
+
+
+
+
+
+
+
+
 
 
     <string-array name="ingredientes">

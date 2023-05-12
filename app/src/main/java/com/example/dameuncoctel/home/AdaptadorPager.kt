@@ -1,12 +1,18 @@
 package com.example.dameuncoctel.home
 
+import android.app.Application
+import android.content.Context
+import android.provider.Settings.Global.getString
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import com.example.dameuncoctel.R
 
-class AdaptadorPager(fm: FragmentManager?) : FragmentPagerAdapter(fm!!) {
+class AdaptadorPager(fm: FragmentManager?, context: Context) : FragmentPagerAdapter(fm!!) {
     var listaFragments: ArrayList<Fragment>
     var listaNombres: ArrayList<String>
+
 
     init {
         listaFragments = ArrayList()
@@ -14,9 +20,9 @@ class AdaptadorPager(fm: FragmentManager?) : FragmentPagerAdapter(fm!!) {
         listaFragments.add(SecondFragment())
         listaFragments.add(ThirdFragment())
         listaNombres = ArrayList()
-        listaNombres.add("Populares")
-        listaNombres.add("Favoritos")
-        listaNombres.add("Tus Cocktails")
+        listaNombres.add(context.getString(R.string.pestana_home_Popular))
+        listaNombres.add(context.getString(R.string.pestana_home_Favorites))
+        listaNombres.add(context.getString(R.string.pestana_home_YourCocktails))
     }
 
     fun cambiarTexto() {

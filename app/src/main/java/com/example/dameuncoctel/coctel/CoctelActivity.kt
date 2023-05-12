@@ -40,7 +40,7 @@ class CoctelActivity : AppCompatActivity() {
         //instanciamos elementos
 
         toolbar = findViewById(R.id.toolbar_2)
-        adaptador = AdaptadorPagerCoctel(supportFragmentManager, bundle)
+        adaptador = AdaptadorPagerCoctel(supportFragmentManager, bundle,this)
         viewPager = findViewById(R.id.view_pager_coctel)
         tabs = findViewById(R.id.tab_coctel)
 
