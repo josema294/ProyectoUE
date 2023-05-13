@@ -38,7 +38,7 @@ class LogoutFragment : Fragment() {
 
     }
 
-    override fun onCreateView(
+    /*  override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
@@ -51,10 +51,14 @@ class LogoutFragment : Fragment() {
             //activity?.onBackPressed()
             intentGoStart= Intent(context, LoginFragment::class.java)
             startActivity(intentGoStart)
+
+            //desacoplado del fragment (consejos de Borja)
+            //onDetach()
+            (context as MenuActivity).finalizarActividad()
         }
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_logout, container, false)
-    }
+    }*/
 
 
     companion object {

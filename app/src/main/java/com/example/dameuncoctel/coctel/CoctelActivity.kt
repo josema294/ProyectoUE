@@ -21,6 +21,7 @@ class CoctelActivity : AppCompatActivity() {
     private lateinit var toolbar: Toolbar
     private lateinit var adaptador: AdaptadorPagerCoctel
     private lateinit var viewPager: ViewPager
+    private lateinit var bundle: Bundle
     lateinit var tabs: TabLayout
 
 
@@ -33,10 +34,13 @@ class CoctelActivity : AppCompatActivity() {
         binding = ActivityCoctelBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //Recuperamos Bundle:
+        bundle = intent.getBundleExtra("bundle")?: Bundle(0)
+
         //instanciamos elementos
 
         toolbar = findViewById(R.id.toolbar_2)
-        adaptador = AdaptadorPagerCoctel(supportFragmentManager)
+        adaptador = AdaptadorPagerCoctel(supportFragmentManager, bundle,this)
         viewPager = findViewById(R.id.view_pager_coctel)
         tabs = findViewById(R.id.tab_coctel)
 
@@ -47,7 +51,7 @@ class CoctelActivity : AppCompatActivity() {
 
         //Cambiamos el titulo del coctel al que pasamos del recycler y
         // recuperamos datos de el recycler con el coctel seleccionado
-        val bundle: Bundle? = intent.getBundleExtra("bundle")
+
         val coctel: CoctelDC? = bundle?.get("coctel") as CoctelDC?
 
         Log.d("bundle traido a CoctelActivity", bundle.toString())

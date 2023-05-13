@@ -1,21 +1,25 @@
 package com.example.dameuncoctel.coctel
 
+import android.content.Context
+import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import com.example.dameuncoctel.R
+import layout.VistaDescripcionFragment
 
-class AdaptadorPagerCoctel(fm: FragmentManager?) : FragmentPagerAdapter(fm!!) {
+class AdaptadorPagerCoctel(fm: FragmentManager?,  private val myBundle: Bundle, context: Context) : FragmentPagerAdapter(fm!!) {
     var listaFragments: ArrayList<Fragment>
     var listaNombres: ArrayList<String>
 
     init {
         listaFragments = ArrayList()
-        listaFragments.add(VistaIngredientesFragment())
         listaFragments.add(VistaDescripcionFragment())
+        listaFragments.add(VistaIngredientesFragment())
 
         listaNombres = ArrayList()
-        listaNombres.add("Descripcion")
-        listaNombres.add("Ingredientes")
+        listaNombres.add(context.getString(R.string.pestana_coctel_Description))
+        listaNombres.add(context.getString(R.string.pestana_coctel_Ingredients))
 
     }
 
@@ -40,7 +44,10 @@ class AdaptadorPagerCoctel(fm: FragmentManager?) : FragmentPagerAdapter(fm!!) {
 
 
     override fun getItem(position: Int): Fragment {
-        return listaFragments[position]
+        val fragment = listaFragments[position]
+        fragment.arguments = myBundle
+
+        return fragment
     }
 
 

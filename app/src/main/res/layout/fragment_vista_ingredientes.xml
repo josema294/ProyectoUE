@@ -12,7 +12,7 @@
         android:padding="16dp">
 
         <TextView
-            android:id="@+id/textview_first"
+            android:id="@+id/textviewIngredientes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/lorem_ipsum"

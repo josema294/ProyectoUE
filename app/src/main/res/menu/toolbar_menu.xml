@@ -5,7 +5,7 @@
 
     <item
         android:id="@+id/menu_dropdown"
-        android:title="Menú"
+        android:title="@string/menu"
         app:showAsAction="always">
 
 
@@ -15,26 +15,26 @@
             <item
                 android:id="@+id/action_search"
                 android:icon="@drawable/ic_search"
-                android:title="Buscar"
+                android:title="@string/menu_buscar"
                 app:actionViewClass="android.widget.SearchView"
                 app:showAsAction="ifRoom|collapseActionView" />
 
             <item
                 android:id="@+id/action_categorias"
 
-                android:title="Categorias"
+                android:title="@string/menu_categorias"
                 app:showAsAction="collapseActionView" />
 
             <item
                 android:id="@+id/action_ingredientes"
 
-                android:title="Ingredientes"
+                android:title="@string/menu_ingredientes"
                 app:showAsAction="always" />
 
             <item
                 android:id="@+id/action_crea"
 
-                android:title="Crea tu Coctel"
+                android:title="@string/menu_crea"
                 app:showAsAction="always" />
 
             <item
@@ -46,19 +46,19 @@
             <item
                 android:id="@+id/action_politica"
 
-                android:title="Politica de Privacidad"
+                android:title="@string/menu_privacy_policy"
                 app:showAsAction="always" />
 
             <item
                 android:id="@+id/action_guia"
 
-                android:title="Guia de Usuario"
+                android:title="@string/menu_guide"
                 app:showAsAction="always" />
 
             <item
                 android:id="@+id/action_logout"
 
-                android:title="Log Out"
+                android:title="@string/menu_logout"
                 app:showAsAction="always" />
 
         </menu>

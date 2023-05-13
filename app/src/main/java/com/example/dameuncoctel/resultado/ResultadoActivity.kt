@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.AttributeSet
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -29,13 +30,13 @@ class ResultadoActivity : AppCompatActivity() {
 
     private lateinit var arrayCocteles: ArrayList<CoctelDC>
     private lateinit var intent: Intent
-    private var contexto :Context=this
+    private var contexto: Context = this
 
     private lateinit var toolbar: androidx.appcompat.widget.Toolbar
-    lateinit var mRootReferenceCoctail  : DatabaseReference
-    private val nodeList =ArrayList<String>()
-    private lateinit var query : Query
-    private lateinit var seleccionCategoria:String
+    lateinit var mRootReferenceCoctail: DatabaseReference
+    private val nodeList = ArrayList<String>()
+    private lateinit var query: Query
+    private lateinit var seleccionCategoria: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_resultado)
@@ -50,9 +51,11 @@ class ResultadoActivity : AppCompatActivity() {
 
         intent = getIntent()
         val bundle: Bundle? = intent.getBundleExtra("bundleCocteles")
+        val bundle2: Bundle? = intent.getBundleExtra("resultadoIngredientes")
 
         //Recuperamos el array con el resultado de cocteles
         //TODO arreglar el deprecated
+
         seleccionCategoria = bundle?.getSerializable("categoria") as String
 
         fun AñadirItemslist(listaCocteles : ArrayList<CoctelDC>): ArrayList<CoctelDC> {
@@ -107,38 +110,52 @@ class ResultadoActivity : AppCompatActivity() {
                             }else {
                                 // La consulta no ha devuelto resultados
                             }}
+
                         }
+
+
+                        /*limit = limit + 1
+                        if (limit >= 20) {
+                            break
+                        }*/
+                        val recycler = findViewById<RecyclerView>(R.id.recyclerViewResultado)
+                        recycler.layoutManager =
+                            LinearLayoutManager(contexto, LinearLayoutManager.VERTICAL, false)
+                        val adaptadorRecyclerResultado =
+                            AdaptadorRecyclerResultado(contexto, arrayCocteles)
+                        recycler.adapter = adaptadorRecyclerResultado
+
+
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        TODO("Not yet implemented")
                     }
 
 
-                            /*limit = limit + 1
-                            if (limit >= 20) {
-                                break
-                            }*/
-                    val recycler = findViewById<RecyclerView>(R.id.recyclerViewResultado)
-                    recycler.layoutManager = LinearLayoutManager(contexto, LinearLayoutManager.VERTICAL, false)
-                    val adaptadorRecyclerResultado = AdaptadorRecyclerResultado(contexto, arrayCocteles)
-                    recycler.adapter = adaptadorRecyclerResultado
-
-
-                    }
-
-                override fun onCancelled(error: DatabaseError) {
-                    TODO("Not yet implemented")
-                }
-
-
-
-
-        })
-            return listaCocteles
+                })
+                return listaCocteles
+            }
+            //Realizamos una query a la base de datos y lo añadimos a la lista de cocteles
+            AñadirItemslist(arrayCocteles)
         }
-        //Realizamos una query a la base de datos y lo añadimos a la lista de cocteles
-        AñadirItemslist(arrayCocteles)
+
+        if (bundle2 != null) {
+
+           val seleccionCoctelesIngredientesList = bundle2?.getSerializable("resultadoIngredientes") as ArrayList<CoctelDC>
+
+            val recycler = findViewById<RecyclerView>(R.id.recyclerViewResultado)
+            recycler.layoutManager =
+                LinearLayoutManager(contexto, LinearLayoutManager.VERTICAL, false)
+            val adaptadorRecyclerResultado =
+                AdaptadorRecyclerResultado(contexto, seleccionCoctelesIngredientesList)
+            recycler.adapter = adaptadorRecyclerResultado
 
 
+        }
 
     }
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.

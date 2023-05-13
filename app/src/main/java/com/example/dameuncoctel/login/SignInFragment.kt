@@ -67,7 +67,9 @@ class SignInFragment : Fragment() {
             if( email.text.isNotEmpty() && pass.text.isNotEmpty()) {
                 //Consejo de borja lina de abajo
                 FirebaseAuth.getInstance().signOut()
+
                 //Accedemos a la parte de identificación de Firebase para guardar al usuario nuevo
+
                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(
                     email.text.toString(),
                     pass.text.toString()

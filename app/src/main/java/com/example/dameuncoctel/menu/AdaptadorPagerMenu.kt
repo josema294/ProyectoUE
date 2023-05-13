@@ -1,10 +1,12 @@
 package com.example.dameuncoctel.menu
 
+import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import com.example.dameuncoctel.R
 
-class AdaptadorPagerMenu(fm: FragmentManager?) : FragmentPagerAdapter(fm!!) {
+class AdaptadorPagerMenu(fm: FragmentManager?, context: Context) : FragmentPagerAdapter(fm!!) {
     var listaFragments: ArrayList<Fragment>
     var listaNombres: ArrayList<String>
 
@@ -16,23 +18,20 @@ class AdaptadorPagerMenu(fm: FragmentManager?) : FragmentPagerAdapter(fm!!) {
         listaFragments.add(AjustesFragment())
         listaFragments.add(PoliticaFragment())
         listaFragments.add(GuiaFragment())
-        listaFragments.add(LogoutFragment())
+
 
 
 
 
         listaNombres = ArrayList()
-        listaNombres.add("Categorias")
-        listaNombres.add("Filtros")
-        listaNombres.add("Crea tu Coctel")
-        listaNombres.add("Ajustes")
-        listaNombres.add("Politica de privacidad")
-        listaNombres.add("Guia de usuario")
-        listaNombres.add(("Log Out"))
 
-
-
-
+        listaNombres.add(context.getString(R.string.menu_categorias))
+        listaNombres.add(context.getString(R.string.menu_ingredientes))
+        listaNombres.add(context.getString(R.string.menu_crea))
+        listaNombres.add(context.getString(R.string.menu_settings))
+        listaNombres.add(context.getString(R.string.menu_privacy_policy))
+        listaNombres.add(context.getString(R.string.menu_guide))
+        
     }
 
     fun cambiarTexto() {
