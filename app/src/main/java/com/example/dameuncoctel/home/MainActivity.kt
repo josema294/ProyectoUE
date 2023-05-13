@@ -3,6 +3,7 @@ package com.example.dameuncoctel.home
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AlertDialog
@@ -12,12 +13,26 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.viewpager.widget.ViewPager
 import com.example.dameuncoctel.R
+
+import com.example.dameuncoctel.login.SignInFragment
+
 import com.example.dameuncoctel.login.ActivityLogin
+
 import com.example.dameuncoctel.menu.MenuActivity
+import com.example.dameuncoctel.model.CoctelDC
+import com.example.dameuncoctel.model.Usuario
 import com.google.android.material.navigation.NavigationView
 
 import com.google.android.material.tabs.TabLayout
 import com.google.firebase.auth.FirebaseAuth
+
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.Query
+import com.google.firebase.database.ValueEventListener
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -30,9 +45,16 @@ class MainActivity : AppCompatActivity() {
     lateinit var drawer: DrawerLayout
     lateinit var viewPager: ViewPager
     lateinit var adaptadorPager: AdaptadorPager
+
+    lateinit var mRootReferenceCoctail  : DatabaseReference
+
+    private lateinit var query : Query
+
+
     lateinit var context: Context
     lateinit var intentGoStart: Intent
     lateinit var tabs: TabLayout
+
 
 
 
@@ -59,6 +81,49 @@ class MainActivity : AppCompatActivity() {
         //Configurar pager
 
         viewPager.setAdapter(adaptadorPager)
+
+        Log.d("uidddddddddddddddddd", FirebaseAuth.getInstance().currentUser?.uid.toString())
+        mRootReferenceCoctail = FirebaseDatabase.getInstance().getReference("Usuario")
+        query = mRootReferenceCoctail.orderByKey()
+        query = mRootReferenceCoctail.orderByChild("Usuario")
+
+        query.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+
+                    if (snapshot.exists()) {
+                        var existe: Boolean =false
+                        for (itmsnapshot in snapshot.children) {
+                            val item = itmsnapshot.getValue(Usuario::class.java)
+                            Log.d("Usuario",item!!.id.toString())
+                            if (item!!.id.equals( FirebaseAuth.getInstance().currentUser?.uid.toString())
+                            ) {
+                                //Log.d("Usuario","Existeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee")
+                                existe=true
+
+                            } else {
+                                //Log.d("Usuario",item!!.id.toString())
+                                //No es de los populares
+
+                            }
+                        }
+                        Log.d("queryyyy",existe.toString())
+                        if(existe==false){
+
+                            var uid=FirebaseAuth.getInstance().currentUser?.uid.toString()
+                            val usuario = Usuario(uid,FirebaseAuth.getInstance().currentUser?.displayName.toString(),FirebaseAuth.getInstance().currentUser?.email.toString(),null,null)
+                            mRootReferenceCoctail.child(uid).setValue(usuario)
+                            Log.d("Usuario","Ha sido creado con éxito")
+                        }
+                        else{
+                            Log.d("Usuario","Ya existe")
+                        }
+        }}
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
+
 
 
     }
