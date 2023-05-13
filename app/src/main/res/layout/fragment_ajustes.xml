@@ -40,7 +40,7 @@
             android:layout_width="71dp"
             android:layout_height="32dp"
             android:layout_marginTop="60sp"
-            android:textColor="@color/black"
+            style="@style/MyStyle"
             android:text="@string/txtInglés"
             app:layout_constraintEnd_toEndOf="@+id/checkBox_modo_oscuro"
             app:layout_constraintStart_toStartOf="parent"

@@ -183,14 +183,19 @@ class IngredientesFragment : Fragment() {
 
                         }
                     }
-
-                    intent = Intent(context, ResultadoActivity::class.java)
-                    bundle2 = Bundle()
-                    bundle2.putSerializable("resultadoIngredientes", arrayResultado)
-                    intent.putExtra("resultadoIngredientes", bundle2)
-                    Log.d("Ingrediente.arrayenviado", arrayResultado.size.toString())
-                    startActivity(intent)
-                    arrayResultado.clear()
+                    //Snacbar NO COCTAILS en busqueda por separado
+                    if(arrayResultado.size == 0){
+                        val snackbar = Snackbar.make(ingredientesChipGroup, "No cocktails with this ingredients", Snackbar.LENGTH_LONG)
+                        snackbar.show()
+                    } else {
+                        intent = Intent(context, ResultadoActivity::class.java)
+                        bundle2 = Bundle()
+                        bundle2.putSerializable("resultadoIngredientes", arrayResultado)
+                        intent.putExtra("resultadoIngredientes", bundle2)
+                        Log.d("Ingrediente.arrayenviado", arrayResultado.size.toString())
+                        startActivity(intent)
+                        arrayResultado.clear()
+                    }
                 }
 
 
@@ -251,14 +256,19 @@ class IngredientesFragment : Fragment() {
 
                     }
 
-                    intent = Intent(context, ResultadoActivity::class.java)
-                    bundle2  = Bundle()
-                    bundle2.putSerializable("resultadoIngredientes", arrayResultado)
-                    intent.putExtra("resultadoIngredientes", bundle2)
-                    Log.d("Ingrediente.arrayenviado", arrayResultado.size.toString())
-                    startActivity(intent)
-                    arrayResultado.clear()
+                    if(arrayResultado.size == 0){
+                        val snackbar = Snackbar.make(ingredientesChipGroup, "No cocktails with this ingredients", Snackbar.LENGTH_LONG)
+                        snackbar.show()
 
+                    } else {
+                        intent = Intent(context, ResultadoActivity::class.java)
+                        bundle2 = Bundle()
+                        bundle2.putSerializable("resultadoIngredientes", arrayResultado)
+                        intent.putExtra("resultadoIngredientes", bundle2)
+                        Log.d("Ingrediente.arrayenviado", arrayResultado.size.toString())
+                        startActivity(intent)
+                        arrayResultado.clear()
+                    }
 
                 }
 
