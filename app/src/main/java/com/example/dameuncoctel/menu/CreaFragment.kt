@@ -1,24 +1,30 @@
 package com.example.dameuncoctel.menu
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
-import android.app.Dialog
 import android.content.ContentValues.TAG
+import android.net.Uri
 import android.os.Bundle
+import android.provider.OpenableColumns
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.RadioButton
+import android.widget.TextView
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.fragment.app.Fragment
 import com.example.dameuncoctel.R
 import com.example.dameuncoctel.databinding.FragmentCreaBinding
 import com.example.dameuncoctel.model.CoctelDC
-import com.example.dameuncoctel.model.FakeCoctelDC
 import com.example.dameuncoctel.model.FakeMisCocteles
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
+import java.util.UUID
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,34 +40,41 @@ class CreaFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    private lateinit var fakeMisCocteles : FakeMisCocteles
+    private lateinit var fakeMisCocteles: FakeMisCocteles
 
     private var _binding: FragmentCreaBinding? = null
+
     // Esta propiedad solo es válida entre onCreateView y onDestroyView.
     private val binding get() = _binding!!
 
-    private lateinit var nombreTuCoctel : EditText
-    private lateinit var descripcionTuCoctel : EditText
-    private lateinit var ingrediente1TuCoctel : EditText
-    private lateinit var ingrediente2TuCoctel : EditText
-    private lateinit var ingrediente3TuCoctel : EditText
-    private lateinit var ingrediente4TuCoctel : EditText
-    private lateinit var ingrediente5TuCoctel : EditText
-    private lateinit var ingrediente6TuCoctel : EditText
-    private lateinit var ingrediente7TuCoctel : EditText
-    private lateinit var medida1TuCoctel : EditText
-    private lateinit var medida2TuCoctel : EditText
-    private lateinit var medida3TuCoctel : EditText
+    private lateinit var nombreTuCoctel: EditText
+    private lateinit var descripcionTuCoctel: EditText
+    private lateinit var ingrediente1TuCoctel: EditText
+    private lateinit var ingrediente2TuCoctel: EditText
+    private lateinit var ingrediente3TuCoctel: EditText
+    private lateinit var ingrediente4TuCoctel: EditText
+    private lateinit var ingrediente5TuCoctel: EditText
+    private lateinit var ingrediente6TuCoctel: EditText
+    private lateinit var ingrediente7TuCoctel: EditText
+    private lateinit var medida1TuCoctel: EditText
+    private lateinit var medida2TuCoctel: EditText
+    private lateinit var medida3TuCoctel: EditText
     private lateinit var medida4TuCoctel: EditText
-    private lateinit var medida5TuCoctel : EditText
-    private lateinit var medida6TuCoctel : EditText
-    private lateinit var medida7TuCoctel : EditText
-    private lateinit var medida8TuCoctel : EditText
+    private lateinit var medida5TuCoctel: EditText
+    private lateinit var medida6TuCoctel: EditText
+    private lateinit var medida7TuCoctel: EditText
     private lateinit var guardaTuCoctail: Button
-    private lateinit var radioButtonAlcohol : RadioButton
-    private lateinit var radioButtonNonAlcohol : RadioButton
-    lateinit var coctel:CoctelDC
+    private lateinit var radioButtonAlcohol: RadioButton
+    private lateinit var radioButtonNonAlcohol: RadioButton
+    private lateinit var imageUri: Uri
+    private var imageURL: String? = null
+    private lateinit var buttonAddPhoto: Button
+    private lateinit var getContent: ActivityResultLauncher<String>
+    private lateinit var photoInfo: TextView
+    private val contentResolver by lazy { requireActivity().contentResolver }
 
+
+    lateinit var coctel: CoctelDC
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -71,12 +84,22 @@ class CreaFragment : Fragment() {
             param2 = it.getString(ARG_PARAM2)
 
 
+        }
 
-
+        getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+            // Guarda la URI de la imagen seleccionada
+            uri?.let {
+                imageUri = it
+                // Obtener el nombre del archivo
+                val fileName = getFileName(it)
+                // Mostrar el nombre del archivo en el TextView
+                photoInfo.text = fileName
+            }
         }
 
 
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -89,7 +112,7 @@ class CreaFragment : Fragment() {
 
         binding.guardaTuCoctail.setOnClickListener {
 
-            guardaTuCoctel()
+
         }
 
         //Creo Variables de las diferentes propiedades
@@ -113,17 +136,30 @@ class CreaFragment : Fragment() {
         guardaTuCoctail = binding.guardaTuCoctail
         radioButtonAlcohol = binding.radioButtonAlcoholic
         radioButtonNonAlcohol = binding.radioButtonNonAlcoholic
+        buttonAddPhoto = binding.addTuFoto
+        photoInfo = binding.photoInfo
+
+
 
         guardaTuCoctail.setOnClickListener {
-
             if (compruebaRellenado()) {
-
-                guardaTuCoctel()
-
+                guardaFireStore { imageUrl ->
+                    // Este bloque de código se ejecutará cuando se haya obtenido la URL de la imagen
+                    guardaTuCoctel(imageUrl)
+                }
             }
+        }
+
+
+        buttonAddPhoto.setOnClickListener {
+
+            getContent.launch("image/*")
+
+
 
 
         }
+
 
 
 
@@ -131,9 +167,119 @@ class CreaFragment : Fragment() {
 
     }
 
-    private fun guardaTuCoctel (){
+    private fun guardaFireStore(onSuccess: (String) -> Unit) {
 
-        var tuCoctelToGuardar : CoctelDC
+        val filename = UUID.randomUUID().toString()
+        val ref = FirebaseStorage.getInstance().getReference("/images/$filename")
+
+        imageUri?.let {
+            ref.putFile(it)
+                .addOnSuccessListener {
+                    Log.d(TAG, "Imagen subida exitosamente: ${it.metadata?.path}")
+
+                    ref.downloadUrl.addOnSuccessListener {
+                        Log.d(TAG, "Archivo ubicado en: $it")
+                        // Guarda esta url en tu base de datos
+                        imageURL = it.toString()
+                        // Llama al callback con la URL de la imagen
+                        onSuccess(imageURL!!)
+
+                    }
+                }
+                .addOnFailureListener {
+                    // Maneja cualquier error
+                    Log.d(TAG, "Falló la subida de la imagen")
+                    Snackbar.make(requireContext(),binding.root,getString(R.string.problem_uploading),Snackbar.LENGTH_SHORT)
+                }
+        }
+
+
+    }
+
+    @SuppressLint("Range")
+    private fun getFileName(uri: Uri): String? {
+        var result: String? = null
+        if (uri.scheme == "content") {
+            val cursor = contentResolver.query(uri, null, null, null, null)
+            try {
+                if (cursor != null && cursor.moveToFirst()) {
+                    result = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME))
+                }
+            } finally {
+                cursor?.close()
+            }
+        }
+        if (result == null) {
+            result = uri.path
+            val cut = result?.lastIndexOf('/')
+            if (cut != -1) {
+                if (cut != null) {
+                    result = result?.substring(cut + 1)
+                }
+            }
+        }
+        return result
+    }
+
+
+
+
+
+    private fun compruebaRellenado(): Boolean {
+
+        //Comprobamos que al menos nombre descripcion y dos ingredientes estan rellenos
+
+        if (nombreTuCoctel.text.isBlank()
+            || descripcionTuCoctel.text.isBlank()
+            || ingrediente1TuCoctel.text.isBlank()
+            || medida1TuCoctel.text.isBlank()
+            || medida2TuCoctel.text.isBlank()
+            || ingrediente2TuCoctel.text.isBlank()
+            || (!radioButtonAlcohol.isChecked && !radioButtonNonAlcohol.isChecked)
+
+        ) {
+
+            Snackbar.make(
+                requireContext(),
+                binding.root,
+                getString(R.string.aviso_ingredientes),
+                Snackbar.LENGTH_LONG
+            ).show()
+
+            return false
+        } else {
+            return true
+        }
+
+
+    }
+
+
+    companion object {
+        /**
+         * Use this factory method to create a new instance of
+         * this fragment using the provided parameters.
+         *
+         * @param param1 Parameter 1.
+         * @param param2 Parameter 2.
+         * @return A new instance of fragment CreaFragment.
+         */
+        // TODO: Rename and change types and number of parameters
+        @JvmStatic
+        fun newInstance(param1: String, param2: String) =
+            CreaFragment().apply {
+                arguments = Bundle().apply {
+                    putString(ARG_PARAM1, param1)
+                    putString(ARG_PARAM2, param2)
+                }
+            }
+    }
+
+
+    private fun guardaTuCoctel(imageUrl: String) {
+
+        var tuCoctelToGuardar: CoctelDC
+
 
         val strDrink: String = nombreTuCoctel.text.toString()
         val strInstructions: String = descripcionTuCoctel.text.toString()
@@ -147,9 +293,7 @@ class CreaFragment : Fragment() {
             strCategory = "Non alcoholic"
         }
 
-
-
-
+        val strDrinkThumb: String? = imageUrl
         val strIngredient: String = ingrediente1TuCoctel.text.toString()
         val strIngredient2: String = ingrediente2TuCoctel.text.toString()
         val strIngredient3: String = ingrediente3TuCoctel.text.toString()
@@ -168,41 +312,44 @@ class CreaFragment : Fragment() {
 
 
 
+
         tuCoctelToGuardar = CoctelDC(
             /*idDrink =*/ "CoctelCustom",
-           /* strDrink =*/ strDrink,
-           /* strDrinkThumb = */null,
-           /* strGlass = */null,
+            /* strDrink =*/ strDrink,
+            /* strDrinkThumb = */strDrinkThumb,
+            /* strGlass = */null,
             /*strAlcoholic*/strCategory,
             /*strIngredient = */strIngredient,
-          /*  strIngredient2 = */strIngredient2,
-           /* strIngredient3 = */strIngredient3,
-          /*  strIngredient4 = */strIngredient4,
-           /* strIngredient5 = */strIngredient5,
-          /*  strIngredient6 =*/ strIngredient6,
-           /* strIngredient7 = */strIngredient7,
-          /*  strIngredient8 = */null,
-          /*  strIngredient9 = */null,
-          /*  strIngredient10 =*/ null,
+            /*  strIngredient2 = */strIngredient2,
+            /* strIngredient3 = */strIngredient3,
+            /*  strIngredient4 = */strIngredient4,
+            /* strIngredient5 = */strIngredient5,
+            /*  strIngredient6 =*/ strIngredient6,
+            /* strIngredient7 = */strIngredient7,
+            /*  strIngredient8 = */null,
+            /*  strIngredient9 = */null,
+            /*  strIngredient10 =*/ null,
             /*strMeasure1 = */strMeasure1,
             /*strMeasure2 = */strMeasure2,
-          /*  strMeasure3 = */strMeasure3,
+            /*  strMeasure3 = */strMeasure3,
             /*strMeasure4 =*/ strMeasure4,
-          /*  strMeasure5 = */strMeasure5,
-           /* strMeasure6 = */strMeasure6,
-           /* strMeasure7 = */strMeasure7,
+            /*  strMeasure5 = */strMeasure5,
+            /* strMeasure6 = */strMeasure6,
+            /* strMeasure7 = */strMeasure7,
             /*strMeasure8 =*/ null,
-           /* strMeasure9 = */null,
-          /*  strMeasure10 =*/ null,
-           /* strInstructions =*/ strInstructions,
-           /* strTags = */ null
+            /* strMeasure9 = */null,
+            /*  strMeasure10 =*/ null,
+            /* strInstructions =*/ strInstructions,
+            /* strTags = */ null
         )
 
         val builder = AlertDialog.Builder(context)
         builder.setTitle(R.string.alert_title)
-        builder.setMessage("${tuCoctelToGuardar.strDrink} \n" +
-                "${tuCoctelToGuardar.strInstructions}")
-        builder.setPositiveButton("Acept") { dialog, which ->
+        builder.setMessage(
+            "${tuCoctelToGuardar.strDrink} \n" +
+                    "${tuCoctelToGuardar.strInstructions}"
+        )
+        builder.setPositiveButton("Accept") { dialog, which ->
 
             val database = FirebaseDatabase.getInstance().reference
 
@@ -224,59 +371,27 @@ class CreaFragment : Fragment() {
                 }
 
 
-            Snackbar.make(requireContext(),binding.root,getString(R.string.snack_acept),Snackbar.LENGTH_LONG).show()
+            Snackbar.make(
+                requireContext(),
+                binding.root,
+                getString(R.string.snack_acept),
+                Snackbar.LENGTH_LONG
+            ).show()
 
         }
         builder.setNegativeButton("Cancel") { dialog, which ->
-            Snackbar.make(requireContext(),binding.root,getString(R.string.snack_cancel),Snackbar.LENGTH_LONG).show()
+            Snackbar.make(
+                requireContext(),
+                binding.root,
+                getString(R.string.snack_cancel),
+                Snackbar.LENGTH_LONG
+            ).show()
         }
 
         val dialog = builder.create()
         dialog.show()
 
-    }
-
-    fun compruebaRellenado (): Boolean {
-
-        //Comprobamos que al menos nombre descripcion y dos ingredientes estan rellenos
-
-        if (nombreTuCoctel.text.isBlank()
-            || descripcionTuCoctel.text.isBlank()
-            ||ingrediente1TuCoctel.text.isBlank()
-            ||medida1TuCoctel.text.isBlank()
-            ||medida2TuCoctel.text.isBlank()
-            ||ingrediente2TuCoctel.text.isBlank()
-            ||(!radioButtonAlcohol.isChecked && !radioButtonNonAlcohol.isChecked)
-
-        ) {
-
-            Snackbar.make(requireContext(),binding.root,getString(R.string.aviso_ingredientes),Snackbar.LENGTH_LONG).show()
-
-            return false
-        }
-
-        else { return true}
 
 
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment CreaFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            CreaFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
     }
 }

@@ -96,6 +96,8 @@
     <string name="snack_acept">Cocktail saved</string>
     <string name="category_Alcoholic">Alcoholic</string>
     <string name="category_Non_Alcoholic">Non alcoholic</string>
+    <string name="photo_placeholder">Photo loaded: none</string>
+    <string name="problem_uploading"> There was a problem while uploading your photo </string>
 
 
 
