@@ -72,7 +72,8 @@
 
     <string name="modo_oscuro">Enable or disable dark mode</string>
     <string name="checkbox_dark">Dark mode</string>
-    <string name="selector_idiomas">Select the default language</string>
+    <string name="selector_idiomas">Other languages will be available in future versions</string>
+    <string name="txtInglés">English</string>
     <string name="app_version">Version 0.3</string>
 
     <!--Create your cocktail-->
