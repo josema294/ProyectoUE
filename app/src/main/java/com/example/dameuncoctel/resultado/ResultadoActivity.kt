@@ -126,7 +126,7 @@ class ResultadoActivity : AppCompatActivity() {
                         recycler.adapter = adaptadorRecyclerResultado
 
 
-                    }
+                    }}
 
                     override fun onCancelled(error: DatabaseError) {
                         TODO("Not yet implemented")
@@ -138,7 +138,7 @@ class ResultadoActivity : AppCompatActivity() {
             }
             //Realizamos una query a la base de datos y lo añadimos a la lista de cocteles
             AñadirItemslist(arrayCocteles)
-        }
+
 
         if (bundle2 != null) {
 

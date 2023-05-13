@@ -5,8 +5,8 @@ data class Usuario(
     val id: String?,
     val Nombre: String?,
     val Email:String?,
-    val OurCoctail: String?,
-    val FavouritesCoctail: String?
+    val OurCoctail: CoctelDC?,
+    val FavouritesCoctail: CoctelDC?
 
 
 ): Serializable{

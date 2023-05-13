@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.RadioButton
 import com.example.dameuncoctel.R
 import com.example.dameuncoctel.databinding.FragmentCreaBinding
 import com.example.dameuncoctel.model.CoctelDC
@@ -57,6 +58,8 @@ class CreaFragment : Fragment() {
     private lateinit var medida7TuCoctel : EditText
     private lateinit var medida8TuCoctel : EditText
     private lateinit var guardaTuCoctail: Button
+    private lateinit var radioButtonAlcohol : RadioButton
+    private lateinit var radioButtonNonAlcohol : RadioButton
     lateinit var coctel:CoctelDC
 
 
@@ -108,6 +111,8 @@ class CreaFragment : Fragment() {
         medida6TuCoctel = binding.medidaIngrediente6
         medida7TuCoctel = binding.medidaIngrediente7
         guardaTuCoctail = binding.guardaTuCoctail
+        radioButtonAlcohol = binding.radioButtonAlcoholic
+        radioButtonNonAlcohol = binding.radioButtonNonAlcoholic
 
         guardaTuCoctail.setOnClickListener {
 
@@ -132,6 +137,19 @@ class CreaFragment : Fragment() {
 
         val strDrink: String = nombreTuCoctel.text.toString()
         val strInstructions: String = descripcionTuCoctel.text.toString()
+        var strCategory: String? = null
+
+        if (radioButtonAlcohol.isChecked) {
+            strCategory = "Alcoholic"
+        }
+
+        if (radioButtonNonAlcohol.isChecked) {
+            strCategory = "Non alcoholic"
+        }
+
+
+
+
         val strIngredient: String = ingrediente1TuCoctel.text.toString()
         val strIngredient2: String = ingrediente2TuCoctel.text.toString()
         val strIngredient3: String = ingrediente3TuCoctel.text.toString()
@@ -155,6 +173,7 @@ class CreaFragment : Fragment() {
            /* strDrink =*/ strDrink,
            /* strDrinkThumb = */null,
            /* strGlass = */null,
+            /*strAlcoholic*/strCategory,
             /*strIngredient = */strIngredient,
           /*  strIngredient2 = */strIngredient2,
            /* strIngredient3 = */strIngredient3,
@@ -176,7 +195,8 @@ class CreaFragment : Fragment() {
            /* strMeasure9 = */null,
           /*  strMeasure10 =*/ null,
            /* strInstructions =*/ strInstructions,
-           /* strTags = */ null)
+           /* strTags = */ null
+        )
 
         val builder = AlertDialog.Builder(context)
         builder.setTitle(R.string.alert_title)
@@ -225,7 +245,10 @@ class CreaFragment : Fragment() {
             ||ingrediente1TuCoctel.text.isBlank()
             ||medida1TuCoctel.text.isBlank()
             ||medida2TuCoctel.text.isBlank()
-            ||ingrediente2TuCoctel.text.isBlank()) {
+            ||ingrediente2TuCoctel.text.isBlank()
+            ||(!radioButtonAlcohol.isChecked && !radioButtonNonAlcohol.isChecked)
+
+        ) {
 
             Snackbar.make(requireContext(),binding.root,getString(R.string.aviso_ingredientes),Snackbar.LENGTH_LONG).show()
 

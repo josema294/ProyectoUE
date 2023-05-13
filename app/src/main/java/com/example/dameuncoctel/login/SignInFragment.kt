@@ -150,7 +150,8 @@ class SignInFragment : Fragment() {
             //Accedemos a la colección de la base de datos
             mRootReferenceCoctail = FirebaseDatabase.getInstance().getReference("Usuario")
             //val empId = mRootReferenceCoctail.push().key!!
-            val usuario = Usuario(uidUser,usuarioEntrante.Nombre,usuarioEntrante.Email,"TusCocteles","Favoritos")
+            val usuario = Usuario(uidUser,usuarioEntrante.Nombre,usuarioEntrante.Email,
+                CoctelDC(),CoctelDC())
             mRootReferenceCoctail.child(uidUser.toString()).setValue(usuario)
             //mRootReferenceCoctail.addValueEventListener({"Nombre" to nombre.text.toString(),"Email" to email.text.toString()})
     }

@@ -90,10 +90,12 @@
     <string name="hint_medida">Measurement</string>
     <string name="buron_picture">ADD YOUR PHOTO</string>
     <string name="buton_guarda">SAVE YOUR COCKTAIL</string>
-    <string name="aviso_ingredientes">At least you have to add Name, Description and 2 ingredients/measures</string>
+    <string name="aviso_ingredientes">At least you have to add Name, Alcochol category, Description and 2 ingredients/measures</string>
     <string name="alert_title">Are you sure you want to save this cocktail?</string>
     <string name="snack_cancel">Cocktail not saved</string>
     <string name="snack_acept">Cocktail saved</string>
+    <string name="category_Alcoholic">Alcoholic</string>
+    <string name="category_Non_Alcoholic">Non alcoholic</string>
 
 
 
