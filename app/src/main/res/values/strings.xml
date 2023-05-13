@@ -38,7 +38,7 @@
     <string name="menu_logout">Log Out</string>
 
     <!-- Categorias -->
-
+    <string name="tittle_category">Choose a Category</string>
     <string name="Rum">Rum</string>
     <string name="Gin">Gin</string>
     <string name="Vodka">Vodka</string>
