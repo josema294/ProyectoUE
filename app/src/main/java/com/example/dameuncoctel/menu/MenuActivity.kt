@@ -11,6 +11,7 @@ import androidx.appcompat.app.AlertDialog
 
 import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.viewpager.widget.ViewPager

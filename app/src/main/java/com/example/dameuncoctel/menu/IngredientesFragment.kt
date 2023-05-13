@@ -22,6 +22,7 @@ import com.example.dameuncoctel.resultado.AdaptadorRecyclerResultado
 import com.example.dameuncoctel.resultado.ResultadoActivity
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -106,8 +107,12 @@ class IngredientesFragment : Fragment() {
                 }
             }
 
-            AñadirItemslist(arrayIngredientes)
-
+            if(arrayIngredientes.size == 0){
+                val snackbar = Snackbar.make(ingredientesChipGroup, "No Ingredients selected", Snackbar.LENGTH_LONG)
+                snackbar.show()
+            } else {
+                AñadirItemslist(arrayIngredientes)
+            }
         }
 
 
@@ -178,14 +183,19 @@ class IngredientesFragment : Fragment() {
 
                         }
                     }
-
-                    intent = Intent(context, ResultadoActivity::class.java)
-                    bundle2 = Bundle()
-                    bundle2.putSerializable("resultadoIngredientes", arrayResultado)
-                    intent.putExtra("resultadoIngredientes", bundle2)
-                    Log.d("Ingrediente.arrayenviado", arrayResultado.size.toString())
-                    startActivity(intent)
-                    arrayResultado.clear()
+                    //Snacbar NO COCTAILS en busqueda por separado
+                    if(arrayResultado.size == 0){
+                        val snackbar = Snackbar.make(ingredientesChipGroup, "No cocktails with this ingredients", Snackbar.LENGTH_LONG)
+                        snackbar.show()
+                    } else {
+                        intent = Intent(context, ResultadoActivity::class.java)
+                        bundle2 = Bundle()
+                        bundle2.putSerializable("resultadoIngredientes", arrayResultado)
+                        intent.putExtra("resultadoIngredientes", bundle2)
+                        Log.d("Ingrediente.arrayenviado", arrayResultado.size.toString())
+                        startActivity(intent)
+                        arrayResultado.clear()
+                    }
                 }
 
 
@@ -246,14 +256,19 @@ class IngredientesFragment : Fragment() {
 
                     }
 
-                    intent = Intent(context, ResultadoActivity::class.java)
-                    bundle2  = Bundle()
-                    bundle2.putSerializable("resultadoIngredientes", arrayResultado)
-                    intent.putExtra("resultadoIngredientes", bundle2)
-                    Log.d("Ingrediente.arrayenviado", arrayResultado.size.toString())
-                    startActivity(intent)
-                    arrayResultado.clear()
+                    if(arrayResultado.size == 0){
+                        val snackbar = Snackbar.make(ingredientesChipGroup, "No cocktails with this ingredients", Snackbar.LENGTH_LONG)
+                        snackbar.show()
 
+                    } else {
+                        intent = Intent(context, ResultadoActivity::class.java)
+                        bundle2 = Bundle()
+                        bundle2.putSerializable("resultadoIngredientes", arrayResultado)
+                        intent.putExtra("resultadoIngredientes", bundle2)
+                        Log.d("Ingrediente.arrayenviado", arrayResultado.size.toString())
+                        startActivity(intent)
+                        arrayResultado.clear()
+                    }
 
                 }
 

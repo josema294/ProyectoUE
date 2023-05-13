@@ -51,15 +51,15 @@ class AjustesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        spinner = view.findViewById(R.id.spinner_idiomas)
+        //spinner = view.findViewById(R.id.spinner_idiomas)
 
-        adapter = ArrayAdapter.createFromResource(
+       /* adapter = ArrayAdapter.createFromResource(
             requireContext(),
             R.array.idiomas,
             android.R.layout.simple_spinner_item)
 
         (adapter as ArrayAdapter<CharSequence>).setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinner.adapter = adapter as ArrayAdapter<CharSequence>
+        spinner.adapter = adapter as ArrayAdapter<CharSequence>*/
 
 
         modoOscuro = view.findViewById(R.id.checkBox_modo_oscuro)

@@ -64,37 +64,57 @@ class SignInFragment : Fragment() {
         pass = viewFragmentLogin.findViewById(R.id.PageSignUpeditTextTextPassword)
 
         botonSignUp.setOnClickListener{
-            if( email.text.isNotEmpty() && pass.text.isNotEmpty()) {
+            /**/if( email.text.isNotEmpty() && pass.text.isNotEmpty() && nombre.text.isNotEmpty()) {
+                if(email.text.toString().contains('.') && email.text.toString().contains('@')){
+
+
                 //Consejo de borja lina de abajo
                 FirebaseAuth.getInstance().signOut()
 
-                //Accedemos a la parte de identificación de Firebase para guardar al usuario nuevo
+                FirebaseAuth.getInstance().fetchSignInMethodsForEmail(email.text.toString()).addOnCompleteListener { task ->
+                if (task.isSuccessful){
+                    val result = task.result
+                    if (result?.signInMethods?.isEmpty() == true){
+                        // La dirección de correo electrónico no está registrada en Firebase Authentication
+                        // Puedes registrar un nuevo usuario con este correo electrónico
+                      //Accedemos a la parte de identificación de Firebase para guardar al usuario nuevo
+                        FirebaseAuth.getInstance().createUserWithEmailAndPassword(
+                            email.text.toString(),
+                            pass.text.toString()
+                        ).addOnCompleteListener {
+                            if (it.isSuccessful) {
+                                showHome(it.result.user?.email ?: "", ActivityLogin.ProviderType.BASIC)
 
-                FirebaseAuth.getInstance().createUserWithEmailAndPassword(
-                    email.text.toString(),
-                    pass.text.toString()
-                ).addOnCompleteListener {
-                    if (it.isSuccessful) {
-                        showHome(it.result.user?.email ?: "", ActivityLogin.ProviderType.BASIC)
+
                     } else {
-                        shoeAlertErrorEmailFormat()
+                                showAlertErrorEmailFormat()
+                            }
+
                     }
+
+                } else {
+                        // La dirección de correo electrónico ya está registrada en Firebase Authentication
+                        // No puedes registrar un nuevo usuario con este correo electrónico
+                        showAlertEmailAlreadyRegistred()
+
+                }
+                }
                 }
 
-            }else{
-                shoeAlertErrorEmpty()
+
+            }else {
+                showAlertErrorEmailFormat()
+                }
+            } else {
+                showAlertErrorEmpty()
             }
-            //CurrentUser=createUsuario()
-           // createUserDB(FirebaseAuth.getInstance().uid.toString(),CurrentUser)
-            //bundle.putSerializable("SignUp", nombre.text.toString()+","+email.text.toString())
-            //intent.putExtra("bundleCocteles", bundle)
-
-        }
-
+            }
 
         // Inflate the layout for this fragment
         return viewFragmentLogin
-    }
+
+        }
+
 
 
 
@@ -118,7 +138,8 @@ class SignInFragment : Fragment() {
                 }
             }
     }
-    private fun  shoeAlertErrorEmailFormat(){
+    //Funcion Dialog de mail con formato incorrecto
+    private fun  showAlertErrorEmailFormat(){
         val builder = AlertDialog.Builder(context)
         builder.setTitle("Error")
         builder.setMessage("Your email format is wrong")
@@ -126,7 +147,8 @@ class SignInFragment : Fragment() {
         val dialog: AlertDialog =builder.create()
         dialog.show()
     }
-    private fun  shoeAlertErrorEmpty(){
+    //Funcion Dialog de campos sin rellenar
+    private fun  showAlertErrorEmpty(){
         val builder = AlertDialog.Builder(context)
         builder.setTitle("ErrorEmpty")
         builder.setMessage("You must fill all fields")
@@ -134,6 +156,18 @@ class SignInFragment : Fragment() {
         val dialog: AlertDialog =builder.create()
         dialog.show()
     }
+
+    private fun showAlertEmailAlreadyRegistred(){
+        val builder = AlertDialog.Builder(context)
+        builder.setTitle("Error Mail Already Registred")
+        builder.setMessage("This mail has already been registred before")
+        builder.setPositiveButton("Accept",null)
+        val dialog: AlertDialog =builder.create()
+        dialog.show()
+
+    }
+
+
     //Mostramos la nueva pantalla
     private fun showHome(email:String, provider: ActivityLogin.ProviderType){
         intentprimero = Intent (context, MainActivity::class.java)

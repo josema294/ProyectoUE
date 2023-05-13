@@ -35,26 +35,28 @@
             app:layout_constraintTop_toTopOf="@+id/checkBox_modo_oscuro"
             app:layout_constraintVertical_bias="0.0" />
 
-        <Spinner
-            android:id="@+id/spinner_idiomas"
-            android:layout_width="184sp"
-            android:layout_height="48sp"
-            android:layout_marginTop="56dp"
+        <TextView
+            android:id="@+id/textViewIdiomas"
+            android:layout_width="71dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="60sp"
+            style="@style/MyStyle"
+            android:text="@string/txtInglés"
             app:layout_constraintEnd_toEndOf="@+id/checkBox_modo_oscuro"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/checkBox_modo_oscuro"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/checkBox_modo_oscuro" />
 
         <TextView
             android:id="@+id/textView_idiomas"
             android:layout_width="164sp"
             android:layout_height="55sp"
+            android:layout_marginTop="40dp"
             android:text="@string/selector_idiomas"
-            app:layout_constraintBottom_toBottomOf="@+id/spinner_idiomas"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.677"
-            app:layout_constraintStart_toEndOf="@+id/spinner_idiomas"
-            app:layout_constraintTop_toTopOf="@+id/spinner_idiomas"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewIdiomas"
+            app:layout_constraintEnd_toEndOf="@+id/textView_modo_oscuro"
+            app:layout_constraintHorizontal_bias="0.885"
+            app:layout_constraintStart_toEndOf="@+id/textViewIdiomas"
+            app:layout_constraintTop_toBottomOf="@+id/textView_modo_oscuro"
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
@@ -66,8 +68,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/textView_idiomas"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/spinner_idiomas"
-            app:layout_constraintTop_toBottomOf="@+id/spinner_idiomas"
+            app:layout_constraintStart_toStartOf="@+id/textViewIdiomas"
+            app:layout_constraintTop_toBottomOf="@+id/textViewIdiomas"
             app:layout_constraintVertical_bias="0.194"
             tools:text="@string/app_version" />
 
