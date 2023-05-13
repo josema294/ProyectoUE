@@ -32,7 +32,7 @@ class FirstFragment : Fragment() {
     lateinit var recycler: RecyclerView
     lateinit var adaptadorRecycler: AdaptadorRecycler
     lateinit var mRootReferenceCoctail  : DatabaseReference
-    private val nodeList =ArrayList<String>()
+
     private lateinit var query : Query
 
 
@@ -66,14 +66,37 @@ class FirstFragment : Fragment() {
                     if (snapshot.exists()) {
                         var ky: String = ""
                         var itnm: String = ""
-                        var limit: Int = 0
+                        //var limit: Int = 0
                         for (itmsnapshot in snapshot.children) {
                             val item = itmsnapshot.getValue(CoctelDC::class.java)
-
+                            if(item!!.strDrink.equals("Mojito")
+                                || item.strDrink.equals("Old Fashioned")
+                                || item.strDrink.equals("Long Island Tea")
+                                || item.strDrink.equals("Whiskey Sour")
+                                || item.strDrink.equals("Dry Martini")
+                                || item.strDrink.equals("Daiquiri")
+                                || item.strDrink.equals("Margarita")
+                                || item.strDrink.equals("Manhattan")
+                                || item.strDrink.equals("Banana Daiquiri")
+                                || item.strDrink.equals("Bloody Mary")
+                                || item.strDrink.equals("Caipirinha")
+                                || item.strDrink.equals("Cuba Libre")
+                                || item.strDrink.equals("Havana Cocktail")
+                                || item.strDrink.equals("Mai Tai")
+                                || item.strDrink.equals("Sol Y Sombra")
+                                || item.strDrink.equals("Tequila Sour")
+                                || item.strDrink.equals("Imperial Cocktail")
+                                || item.strDrink.equals("Sex on the Beach")
+                                || item.strDrink.equals("Irish Cream")
+                                || item.strDrink.equals("Egg-Nog - Classic Cooked")
+                            ){
                             listaCocteles.add(item!!)
                             ky = itmsnapshot.key.toString()
                             itnm = item.strDrink.toString()
-                            println(ky + " nombre " + itnm)
+                            println("$ky nombre $itnm")}
+                            else{
+                                //No es de los populares
+                            }
 
                             /*limit = limit + 1
                             if (limit >= 20) {

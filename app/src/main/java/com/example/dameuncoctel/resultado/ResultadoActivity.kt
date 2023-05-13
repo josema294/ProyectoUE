@@ -69,10 +69,26 @@ class ResultadoActivity : AppCompatActivity() {
                     if (snapshot.exists()) {
                         var ky: String = ""
                         var itnm: String = ""
-                        var limit: Int = 0
+                        //var limit: Int = 0
                         for (itmsnapshot in snapshot.children) {
                             val item = itmsnapshot.getValue(CoctelDC::class.java)
-
+                            item!!.strIngredient?.lowercase()
+                            item!!.strIngredient2?.lowercase()
+                            item!!.strIngredient3?.lowercase()
+                            item!!.strIngredient4?.lowercase()
+                            item!!.strIngredient5?.lowercase()
+                            item!!.strIngredient6?.lowercase()
+                            item!!.strIngredient7?.lowercase()
+                            item!!.strIngredient8?.lowercase()
+                            item!!.strIngredient9?.lowercase()
+                            item!!.strIngredient10?.lowercase()
+                            if (item!!.strAlcoholic?.equals(seleccionCategoria)== true){
+                                listaCocteles.add(item!!)
+                                ky = itmsnapshot.key.toString()
+                                itnm = item.strDrink.toString()
+                                println(ky + " nombre " + itnm)
+                            }
+                            else{
                             if (item!!.strIngredient?.contains(seleccionCategoria) == true
                                 || item!!.strIngredient2?.contains(seleccionCategoria) == true
                                 || item!!.strIngredient3?.contains(seleccionCategoria) == true
@@ -90,7 +106,7 @@ class ResultadoActivity : AppCompatActivity() {
                                 // Procesar los datos que se encuentran en singleSnapshot
                             }else {
                                 // La consulta no ha devuelto resultados
-                            }
+                            }}
                         }
                     }
 

@@ -87,6 +87,7 @@ class LoginFragment : Fragment() {
             }else{
                 shoeAlertErrorEmpty()
             }
+
         }
 
         /*if (usuario.text.toString()=="test" && pass.text.toString() == "test") {
