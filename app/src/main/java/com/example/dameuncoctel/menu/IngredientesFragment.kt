@@ -22,6 +22,7 @@ import com.example.dameuncoctel.resultado.AdaptadorRecyclerResultado
 import com.example.dameuncoctel.resultado.ResultadoActivity
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -106,8 +107,12 @@ class IngredientesFragment : Fragment() {
                 }
             }
 
-            AñadirItemslist(arrayIngredientes)
-
+            if(arrayIngredientes.size == 0){
+                val snackbar = Snackbar.make(ingredientesChipGroup, "No Ingredients selected", Snackbar.LENGTH_LONG)
+                snackbar.show()
+            } else {
+                AñadirItemslist(arrayIngredientes)
+            }
         }
 
 
