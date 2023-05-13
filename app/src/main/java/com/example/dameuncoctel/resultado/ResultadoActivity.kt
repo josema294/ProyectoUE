@@ -55,47 +55,62 @@ class ResultadoActivity : AppCompatActivity() {
 
         //Recuperamos el array con el resultado de cocteles
         //TODO arreglar el deprecated
-        if (bundle?.getSerializable("categoria") != null) {
-            seleccionCategoria = bundle?.getSerializable("categoria") as String
 
-            fun AñadirItemslist(listaCocteles: ArrayList<CoctelDC>): ArrayList<CoctelDC> {
+        seleccionCategoria = bundle?.getSerializable("categoria") as String
 
-                mRootReferenceCoctail = FirebaseDatabase.getInstance().getReference("coctail")
-                query = mRootReferenceCoctail.orderByKey()
-                Log.d("loooooooog", seleccionCategoria)
-                //query = mRootReferenceCoctail.child("strIngredient").equalTo("\uf8ff"+selecccionCategoria)//.orderByChild("strIngredient").equalTo("\uf8ff"+selecccionCategoria)
-                query = mRootReferenceCoctail.orderByChild("coctail")
-                query.addValueEventListener(object : ValueEventListener {
+        fun AñadirItemslist(listaCocteles : ArrayList<CoctelDC>): ArrayList<CoctelDC> {
 
-                    override fun onDataChange(snapshot: DataSnapshot) {
+            mRootReferenceCoctail = FirebaseDatabase.getInstance().getReference("coctail")
+            query = mRootReferenceCoctail.orderByKey()
+            Log.d("loooooooog",seleccionCategoria)
+            //query = mRootReferenceCoctail.child("strIngredient").equalTo("\uf8ff"+selecccionCategoria)//.orderByChild("strIngredient").equalTo("\uf8ff"+selecccionCategoria)
+            query = mRootReferenceCoctail.orderByChild("coctail")
+            query.addValueEventListener(object : ValueEventListener {
 
-                        if (snapshot.exists()) {
-                            var ky: String = ""
-                            var itnm: String = ""
-                            var limit: Int = 0
-                            for (itmsnapshot in snapshot.children) {
-                                val item = itmsnapshot.getValue(CoctelDC::class.java)
+                override fun onDataChange(snapshot: DataSnapshot) {
 
-                                if (item!!.strIngredient?.contains(seleccionCategoria) == true
-                                    || item!!.strIngredient2?.contains(seleccionCategoria) == true
-                                    || item!!.strIngredient3?.contains(seleccionCategoria) == true
-                                    || item!!.strIngredient4?.contains(seleccionCategoria) == true
-                                    || item!!.strIngredient5?.contains(seleccionCategoria) == true
-                                    || item!!.strIngredient6?.contains(seleccionCategoria) == true
-                                    || item!!.strIngredient7?.contains(seleccionCategoria) == true
-                                    || item!!.strIngredient8?.contains(seleccionCategoria) == true
-                                    || item!!.strIngredient9?.contains(seleccionCategoria) == true
-                                    || item!!.strIngredient10?.contains(seleccionCategoria) == true
-                                ) {
-                                    listaCocteles.add(item!!)
-                                    ky = itmsnapshot.key.toString()
-                                    itnm = item.strDrink.toString()
-                                    println(ky + " nombre " + itnm)
-                                    // Procesar los datos que se encuentran en singleSnapshot
-                                } else {
-                                    // La consulta no ha devuelto resultados
-                                }
+                    if (snapshot.exists()) {
+                        var ky: String = ""
+                        var itnm: String = ""
+                        //var limit: Int = 0
+                        for (itmsnapshot in snapshot.children) {
+                            val item = itmsnapshot.getValue(CoctelDC::class.java)
+                            item!!.strIngredient?.lowercase()
+                            item!!.strIngredient2?.lowercase()
+                            item!!.strIngredient3?.lowercase()
+                            item!!.strIngredient4?.lowercase()
+                            item!!.strIngredient5?.lowercase()
+                            item!!.strIngredient6?.lowercase()
+                            item!!.strIngredient7?.lowercase()
+                            item!!.strIngredient8?.lowercase()
+                            item!!.strIngredient9?.lowercase()
+                            item!!.strIngredient10?.lowercase()
+                            if (item!!.strAlcoholic?.equals(seleccionCategoria)== true){
+                                listaCocteles.add(item!!)
+                                ky = itmsnapshot.key.toString()
+                                itnm = item.strDrink.toString()
+                                println(ky + " nombre " + itnm)
                             }
+                            else{
+                            if (item!!.strIngredient?.contains(seleccionCategoria) == true
+                                || item!!.strIngredient2?.contains(seleccionCategoria) == true
+                                || item!!.strIngredient3?.contains(seleccionCategoria) == true
+                                || item!!.strIngredient4?.contains(seleccionCategoria) == true
+                                || item!!.strIngredient5?.contains(seleccionCategoria) == true
+                                || item!!.strIngredient6?.contains(seleccionCategoria) == true
+                                || item!!.strIngredient7?.contains(seleccionCategoria) == true
+                                || item!!.strIngredient8?.contains(seleccionCategoria) == true
+                                || item!!.strIngredient9?.contains(seleccionCategoria) == true
+                                || item!!.strIngredient10?.contains(seleccionCategoria) == true) {
+                                listaCocteles.add(item!!)
+                                ky = itmsnapshot.key.toString()
+                                itnm = item.strDrink.toString()
+                                println(ky + " nombre " + itnm)
+                                // Procesar los datos que se encuentran en singleSnapshot
+                            }else {
+                                // La consulta no ha devuelto resultados
+                            }}
+
                         }
 
 

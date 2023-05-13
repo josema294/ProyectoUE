@@ -3,6 +3,7 @@ package com.example.dameuncoctel.login
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +12,12 @@ import android.widget.Button
 import android.widget.EditText
 import com.example.dameuncoctel.R
 import com.example.dameuncoctel.home.MainActivity
+import com.example.dameuncoctel.model.CoctelDC
+import com.example.dameuncoctel.model.Usuario
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.FirebaseFirestore
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -32,6 +38,11 @@ class SignInFragment : Fragment() {
     private lateinit var email: EditText
     private lateinit var pass: EditText
     private lateinit var intentprimero: Intent
+    private lateinit var mRootReferenceCoctail: DatabaseReference
+    private lateinit var CurrentUser:Usuario
+    private lateinit var bundle: Bundle
+    private lateinit var intent: Intent
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,6 +67,9 @@ class SignInFragment : Fragment() {
             if( email.text.isNotEmpty() && pass.text.isNotEmpty()) {
                 //Consejo de borja lina de abajo
                 FirebaseAuth.getInstance().signOut()
+
+                //Accedemos a la parte de identificación de Firebase para guardar al usuario nuevo
+
                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(
                     email.text.toString(),
                     pass.text.toString()
@@ -66,14 +80,24 @@ class SignInFragment : Fragment() {
                         shoeAlertErrorEmailFormat()
                     }
                 }
+
             }else{
                 shoeAlertErrorEmpty()
             }
+            //CurrentUser=createUsuario()
+           // createUserDB(FirebaseAuth.getInstance().uid.toString(),CurrentUser)
+            //bundle.putSerializable("SignUp", nombre.text.toString()+","+email.text.toString())
+            //intent.putExtra("bundleCocteles", bundle)
 
         }
+
+
         // Inflate the layout for this fragment
         return viewFragmentLogin
     }
+
+
+
 
     companion object {
         /**
@@ -116,5 +140,18 @@ class SignInFragment : Fragment() {
         startActivity(intentprimero)
 
 
+    }
+    fun createUsuario(): Usuario {
+        CurrentUser= Usuario(null,nombre.text.toString(),email.text.toString(),null,null)
+        return CurrentUser
+    }
+    fun createUserDB(uidUser:String,usuarioEntrante:Usuario){
+            Log.d("UID", uidUser.toString())
+            //Accedemos a la colección de la base de datos
+            mRootReferenceCoctail = FirebaseDatabase.getInstance().getReference("Usuario")
+            //val empId = mRootReferenceCoctail.push().key!!
+            val usuario = Usuario(uidUser,usuarioEntrante.Nombre,usuarioEntrante.Email,"TusCocteles","Favoritos")
+            mRootReferenceCoctail.child(uidUser.toString()).setValue(usuario)
+            //mRootReferenceCoctail.addValueEventListener({"Nombre" to nombre.text.toString(),"Email" to email.text.toString()})
     }
 }
