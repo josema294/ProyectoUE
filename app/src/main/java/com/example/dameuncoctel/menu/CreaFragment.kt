@@ -1,16 +1,23 @@
 package com.example.dameuncoctel.menu
 
+import android.app.AlertDialog
+import android.app.Dialog
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.EditText
 import com.example.dameuncoctel.R
 import com.example.dameuncoctel.databinding.FragmentCreaBinding
+import com.example.dameuncoctel.model.CoctelDC
 import com.example.dameuncoctel.model.FakeCoctelDC
 import com.example.dameuncoctel.model.FakeMisCocteles
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.database.FirebaseDatabase
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -48,6 +55,10 @@ class CreaFragment : Fragment() {
     private lateinit var medida5TuCoctel : EditText
     private lateinit var medida6TuCoctel : EditText
     private lateinit var medida7TuCoctel : EditText
+    private lateinit var medida8TuCoctel : EditText
+    private lateinit var guardaTuCoctail: Button
+    lateinit var coctel:CoctelDC
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -96,66 +107,112 @@ class CreaFragment : Fragment() {
         medida5TuCoctel = binding.medidaIngrediente5
         medida6TuCoctel = binding.medidaIngrediente6
         medida7TuCoctel = binding.medidaIngrediente7
+        guardaTuCoctail = binding.guardaTuCoctail
 
-        return binding.root
+        guardaTuCoctail.setOnClickListener {
 
+            if (compruebaRellenado()) {
 
-    }
+                guardaTuCoctel()
 
-    private fun guardaTuCoctel (){
+            }
 
-        var tuCoctelToGuardar : FakeCoctelDC
-        var ingredientesTuCoctel: ArrayList<String> = ArrayList()
-
-        //Agregamos al array de ingrediente los ingredientres que no se hayan dejado vacios
-
-        binding.nombreIngrediente1.text?.toString()?.let { nombreIngrediente ->
-            if (nombreIngrediente.isNotEmpty()) {
-                ingredientesTuCoctel.add(nombreIngrediente)
-            }}
-        binding.nombreIngrediente2.text?.toString()?.let { nombreIngrediente ->
-            if (nombreIngrediente.isNotEmpty()) {
-                ingredientesTuCoctel.add(nombreIngrediente)
-            }}
-        binding.nombreIngrediente3.text?.toString()?.let { nombreIngrediente ->
-            if (nombreIngrediente.isNotEmpty()) {
-                ingredientesTuCoctel.add(nombreIngrediente)
-            }}
-        binding.nombreIngrediente4.text?.toString()?.let { nombreIngrediente ->
-            if (nombreIngrediente.isNotEmpty()) {
-                ingredientesTuCoctel.add(nombreIngrediente)
-            }}
-        binding.nombreIngrediente5.text?.toString()?.let { nombreIngrediente ->
-            if (nombreIngrediente.isNotEmpty()) {
-                ingredientesTuCoctel.add(nombreIngrediente)
-            }}
-        binding.nombreIngrediente6.text?.toString()?.let { nombreIngrediente ->
-            if (nombreIngrediente.isNotEmpty()) {
-                ingredientesTuCoctel.add(nombreIngrediente)
-            }}
-        binding.nombreIngrediente7.text?.toString()?.let { nombreIngrediente ->
-            if (nombreIngrediente.isNotEmpty()) {
-                ingredientesTuCoctel.add(nombreIngrediente)
-            }}
-
-
-
-        if (compruebaRellenado()) {
-
-            tuCoctelToGuardar = FakeCoctelDC(
-                1001,
-                binding.nombreCoctail.text.toString(),
-                android.R.drawable.ic_menu_gallery,
-                ingredientesTuCoctel,
-                binding.descripcionCoctail.text.toString()
-            )
-
-            fakeMisCocteles.setMiCoctel(tuCoctelToGuardar)
 
         }
 
 
 
+        return binding.root
+
+    }
+
+    private fun guardaTuCoctel (){
+
+        var tuCoctelToGuardar : CoctelDC
+
+        val strDrink: String = nombreTuCoctel.text.toString()
+        val strInstructions: String = descripcionTuCoctel.text.toString()
+        val strIngredient: String = ingrediente1TuCoctel.text.toString()
+        val strIngredient2: String = ingrediente2TuCoctel.text.toString()
+        val strIngredient3: String = ingrediente3TuCoctel.text.toString()
+        val strIngredient4: String = ingrediente4TuCoctel.text.toString()
+        val strIngredient5: String = ingrediente5TuCoctel.text.toString()
+        val strIngredient6: String = ingrediente6TuCoctel.text.toString()
+        val strIngredient7: String = ingrediente7TuCoctel.text.toString()
+        val strMeasure1: String = medida1TuCoctel.text.toString()
+        val strMeasure2: String = medida2TuCoctel.text.toString()
+        val strMeasure3: String = medida3TuCoctel.text.toString()
+        val strMeasure4: String = medida4TuCoctel.text.toString()
+        val strMeasure5: String = medida5TuCoctel.text.toString()
+        val strMeasure6: String = medida6TuCoctel.text.toString()
+        val strMeasure7: String = medida7TuCoctel.text.toString()
+
+
+
+
+        tuCoctelToGuardar = CoctelDC(
+            /*idDrink =*/ "CoctelCustom",
+           /* strDrink =*/ strDrink,
+           /* strDrinkThumb = */null,
+           /* strGlass = */null,
+            /*strIngredient = */strIngredient,
+          /*  strIngredient2 = */strIngredient2,
+           /* strIngredient3 = */strIngredient3,
+          /*  strIngredient4 = */strIngredient4,
+           /* strIngredient5 = */strIngredient5,
+          /*  strIngredient6 =*/ strIngredient6,
+           /* strIngredient7 = */strIngredient7,
+          /*  strIngredient8 = */null,
+          /*  strIngredient9 = */null,
+          /*  strIngredient10 =*/ null,
+            /*strMeasure1 = */strMeasure1,
+            /*strMeasure2 = */strMeasure2,
+          /*  strMeasure3 = */strMeasure3,
+            /*strMeasure4 =*/ strMeasure4,
+          /*  strMeasure5 = */strMeasure5,
+           /* strMeasure6 = */strMeasure6,
+           /* strMeasure7 = */strMeasure7,
+            /*strMeasure8 =*/ null,
+           /* strMeasure9 = */null,
+          /*  strMeasure10 =*/ null,
+           /* strInstructions =*/ strInstructions,
+           /* strTags = */ null)
+
+        val builder = AlertDialog.Builder(context)
+        builder.setTitle(R.string.alert_title)
+        builder.setMessage("${tuCoctelToGuardar.strDrink} \n" +
+                "${tuCoctelToGuardar.strInstructions}")
+        builder.setPositiveButton("Acept") { dialog, which ->
+
+            val database = FirebaseDatabase.getInstance().reference
+
+            // Crea una clave única para el coctel
+            val key = database.child("coctail").push().key
+
+            if (key == null) {
+                Log.w(TAG, "No se pudo obtener una clave para el coctel")
+                return@setPositiveButton
+            }
+
+            // Establece los valores del coctel en la base de datos de Firebase
+            database.child("coctail").child(key).setValue(tuCoctelToGuardar)
+                .addOnSuccessListener {
+                    Log.d(TAG, "Coctel guardado con éxito en Firebase")
+                }
+                .addOnFailureListener { e ->
+                    Log.w(TAG, "Error al guardar el coctel en Firebase", e)
+                }
+
+
+            Snackbar.make(requireContext(),binding.root,getString(R.string.snack_acept),Snackbar.LENGTH_LONG).show()
+
+        }
+        builder.setNegativeButton("Cancel") { dialog, which ->
+            Snackbar.make(requireContext(),binding.root,getString(R.string.snack_cancel),Snackbar.LENGTH_LONG).show()
+        }
+
+        val dialog = builder.create()
+        dialog.show()
 
     }
 
@@ -166,9 +223,11 @@ class CreaFragment : Fragment() {
         if (nombreTuCoctel.text.isBlank()
             || descripcionTuCoctel.text.isBlank()
             ||ingrediente1TuCoctel.text.isBlank()
+            ||medida1TuCoctel.text.isBlank()
+            ||medida2TuCoctel.text.isBlank()
             ||ingrediente2TuCoctel.text.isBlank()) {
 
-            Snackbar.make(requireContext(),binding.root,getString(R.string.ingredientes_introducidos),Snackbar.LENGTH_LONG).show()
+            Snackbar.make(requireContext(),binding.root,getString(R.string.aviso_ingredientes),Snackbar.LENGTH_LONG).show()
 
             return false
         }
