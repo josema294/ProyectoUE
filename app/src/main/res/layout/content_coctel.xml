@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -20,7 +26,8 @@
         android:layout_height="280dp"
         android:layout_marginTop="20dp"
         android:contentDescription="@string/speakable_photo"
-        app:srcCompat="@drawable/caipirinha" />
+        app:srcCompat="@drawable/caipirinha"
+        tools:ignore="RedundantDescriptionCheck" />
 
     <TextView
         android:id="@+id/textViewTitulococtel"
@@ -37,13 +44,33 @@
         android:layout_height="wrap_content"
         android:contentDescription="@string/speakable_photo"
         android:theme="@style/MyStyle"
-        app:tabIndicatorColor="@color/white" />
+        app:tabIndicatorColor="@color/white"
+        tools:ignore="RedundantDescriptionCheck" />
 
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager_coctel"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:contentDescription="view pager"
+        android:layout_height="match_parent" >
+
+
+    </androidx.viewpager.widget.ViewPager>
+
+
 
 
 </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:contentDescription="heart"
+        android:scaleType="centerInside"
+        app:srcCompat="@android:drawable/star_big_off"
+        tools:ignore="ImageContrastCheck" />
+
+</FrameLayout>
