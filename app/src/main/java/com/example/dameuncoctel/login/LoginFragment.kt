@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import com.example.dameuncoctel.home.MainActivity
 import com.example.dameuncoctel.R
 import com.google.android.material.snackbar.Snackbar
@@ -32,7 +33,7 @@ class LoginFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private lateinit var botonSignIn: Button
-
+    private lateinit var textForgotPass: TextView
     private lateinit var usuario: EditText
     private lateinit var pass: EditText
     private lateinit var intentprimero: Intent
@@ -67,7 +68,7 @@ class LoginFragment : Fragment() {
         val viewFragmentLogin = inflater.inflate(R.layout.fragment_login, container, false)
 
         botonSignIn = viewFragmentLogin.findViewById(R.id.button_Log_In)
-
+        textForgotPass = viewFragmentLogin.findViewById(R.id.textViewForgotPass)
         usuario = viewFragmentLogin.findViewById(R.id.editTextTextEmailAddress)
         pass = viewFragmentLogin.findViewById(R.id.editTextTextPassword)
 
@@ -92,6 +93,10 @@ class LoginFragment : Fragment() {
 
         }
 
+
+        textForgotPass.setOnClickListener {
+            shoeAlertForgotPass()
+        }
         /*if (usuario.text.toString()=="test" && pass.text.toString() == "test") {
 
                 intentprimero = Intent (context, MainActivity::class.java)
@@ -146,6 +151,14 @@ class LoginFragment : Fragment() {
         val builder = AlertDialog.Builder(context)
         builder.setTitle("ErrorEmpty")
         builder.setMessage("You must fill all fields")
+        builder.setPositiveButton("Accept",null)
+        val dialog: AlertDialog =builder.create()
+        dialog.show()
+    }
+    private fun  shoeAlertForgotPass(){
+        val builder = AlertDialog.Builder(context)
+        builder.setTitle("Forgot your pass?")
+        builder.setMessage("If you have any problem with your password, contact us by email: DAMeuncoctel@gmail.com")
         builder.setPositiveButton("Accept",null)
         val dialog: AlertDialog =builder.create()
         dialog.show()

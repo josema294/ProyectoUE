@@ -240,4 +240,7 @@
     <!--toolbar names-->
     <string name="title_activity_coctel">CoctelActivity</string>
     <string name="title_activity_splash_screen">SplashScreenActivity</string>
+
+    <!--Login-->
+    <string name="forgotPass">Did you forget your password?</string>
 </resources>
