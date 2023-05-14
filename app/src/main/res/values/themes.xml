@@ -32,4 +32,7 @@
         <item name="android:background">@color/white</item>
         <item name="android:textColor">@color/black</item>
     </style>
+    <style name="MenuStyle">
+        <item name="android:textColor">@color/verde_agua</item>
+    </style>
 </resources>

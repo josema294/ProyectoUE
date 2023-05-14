@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
 
 
     <item
         android:id="@+id/menu_dropdown"
         android:title="@string/menu"
+        android:iconTint="@color/white"
         android:icon="@drawable/baseline_menu_24"
-        app:showAsAction="always">
+        app:showAsAction="always"
+        >
 
 
         <menu>
@@ -22,7 +25,6 @@
 
             <item
                 android:id="@+id/action_categorias"
-
                 android:title="@string/menu_categorias"
                 app:showAsAction="collapseActionView" />
 
@@ -46,7 +48,7 @@
 
             <item
                 android:id="@+id/action_politica"
-
+                android:titleTextColor="@color/white"
                 android:title="@string/menu_privacy_policy"
                 app:showAsAction="always" />
 
