@@ -60,6 +60,8 @@ class CategoriasFragment : Fragment() {
 
         intent = Intent(view.context, ResultadoActivity::class.java)
 
+        //Valores de busqueda:  Ron -> rum , Ginebra -> Gin, Vodka -> Vodka
+
         buttonRon.setOnClickListener {
             var tipoCategoria: String = "rum"
             bundle.putSerializable("categoria", tipoCategoria)
@@ -70,14 +72,14 @@ class CategoriasFragment : Fragment() {
 
         buttonVodka.setOnClickListener {
 
-            var tipoCategoria: String = "vodka"
+            var tipoCategoria: String = "Vodka"
 
             bundle.putSerializable("categoria", tipoCategoria)
             intent.putExtra("bundleCocteles", bundle)
             view.context.startActivity(intent)
         }
         buttonGin.setOnClickListener {
-            var tipoCategoria: String = "gin"
+            var tipoCategoria: String = "Gin"
             bundle.putSerializable("categoria", tipoCategoria)
             intent.putExtra("bundleCocteles", bundle)
             view.context.startActivity(intent)
