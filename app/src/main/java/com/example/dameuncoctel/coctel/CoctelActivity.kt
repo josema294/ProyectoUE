@@ -1,5 +1,7 @@
 package com.example.dameuncoctel.coctel
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -11,7 +13,6 @@ import com.bumptech.glide.Glide
 import com.example.dameuncoctel.R
 import com.example.dameuncoctel.databinding.ActivityCoctelBinding
 import com.example.dameuncoctel.model.CoctelDC
-import com.example.dameuncoctel.model.Ingrediente
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
@@ -44,15 +45,15 @@ class CoctelActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         //Recuperamos Bundle:
-        bundle = intent.getBundleExtra("bundle")?: Bundle(0)
+        bundle = intent.getBundleExtra("bundle") ?: Bundle(0)
 
         //instanciamos elementos
 
         toolbar = findViewById(R.id.toolbar_2)
-        adaptador = AdaptadorPagerCoctel(supportFragmentManager, bundle,this)
+        adaptador = AdaptadorPagerCoctel(supportFragmentManager, bundle, this)
         viewPager = findViewById(R.id.view_pager_coctel)
         tabs = findViewById(R.id.tab_coctel)
-        fab = binding.includeCoctel.fab
+        fab  = binding.includeCoctel.fab
 
 
         //Hacemos las configuraciones de los elementos
@@ -70,8 +71,36 @@ class CoctelActivity : AppCompatActivity() {
 
         binding.includeCoctel.textViewTitulococtel.text = coctel?.strDrink
         if (coctel != null) {
-            Glide.with(applicationContext).load(coctel!!.strDrinkThumb).into(binding.includeCoctel.imageView3)
+            Glide.with(applicationContext).load(coctel!!.strDrinkThumb)
+                .into(binding.includeCoctel.imageView3)
         }
+
+        //Verificamos si el coctel esta o no en favoritos:
+
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
+        val cocktailId = coctel?.idDrink
+
+        if (userId != null) {
+            val databaseReference = FirebaseDatabase.getInstance().getReference("Usuario/$userId/Favoritos/$cocktailId")
+
+            databaseReference.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        // Si el coctel ya está en favoritos, cambiamos el icono a "favorito"
+                        fab.setImageResource(R.drawable.heartfabsvg) // reemplaza ic_favorite con el nombre de tu icono
+                    } else {
+                        // Si el coctel no está en favoritos, cambiamos el icono a "no favorito"
+                        fab.setImageResource(R.drawable.hearthollowfab) // reemplaza ic_no_favorite con el nombre de tu icono
+                    }
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                    // Aquí se manejan los errores
+                }
+            })
+        }
+
+
 
         fab.setOnClickListener {
 
@@ -80,35 +109,83 @@ class CoctelActivity : AppCompatActivity() {
         }
 
 
-
         //binding.includeCoctel.imageView3.setImageResource(coctel?.foto ?: R.drawable.caipirinha)
-
-
 
 
     }
 
 
-    private fun botonnFab () {
+    private fun botonnFab() {
 
         val userId = FirebaseAuth.getInstance().currentUser?.uid
         val cocktailId = coctel?.idDrink
 
 
         if (userId != null) {
-            val databaseReference = FirebaseDatabase.getInstance().getReference("Usuario/$userId/Favoritos/$cocktailId")
+            val databaseReference =
+                FirebaseDatabase.getInstance().getReference("Usuario/$userId/Favoritos/$cocktailId")
+            val contexto = this
 
             databaseReference.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     if (dataSnapshot.exists()) {
                         // Si el coctel ya está en favoritos, lo eliminamos
-                        databaseReference.removeValue()
-                        Snackbar.make(binding.root,"prueba coctel ya existe, se limino de favoritos",1000).show()
+
+                        val builder = AlertDialog.Builder(contexto)
+                        builder.setTitle(getString(R.string.dialog_tittle_delete))
+                        builder.setMessage(getString(R.string.dialog_body_delete))
+                        builder.setPositiveButton("Accept") { dialog, which ->
+                            // Acción cuando se presiona el botón Aceptar
+                            databaseReference.removeValue()
+                            dialog.dismiss()
+                            Snackbar.make(binding.root, R.string.removed, 1000).show()
+                            fab.setImageResource(R.drawable.hearthollowfab)
+
+
+                        }
+
+
+                        builder.setNegativeButton("Cancel") { dialog, which ->
+                            // Acción cuando se presiona el botón Cancelar
+                            dialog.dismiss()
+
+                        }
+                        val dialog = builder.create()
+                        dialog.show()
+
+
                     } else {
+
                         // Si el coctel no está en favoritos, lo añadimos
-                        databaseReference.setValue(cocktailId)
-                        Snackbar.make(binding.root,"prueba se agrega el coctel a favoritos",1000).show()
+
+                        val builder = AlertDialog.Builder(contexto)
+
+
+                        builder.setTitle(getString(R.string.dialog_title))
+                        builder.setMessage(getString(R.string.dialog_body))
+                        builder.setPositiveButton(
+                            "Accept",
+                            DialogInterface.OnClickListener { dialog, which ->
+                                // Acción cuando se presiona el botón Aceptar
+                                dialog.dismiss()
+                                databaseReference.setValue(cocktailId)
+                                Snackbar.make(binding.root, R.string.added, 1000).show()
+                                fab.setImageResource(R.drawable.heartfabsvg)
+
+                            })
+
+
+                        builder.setNegativeButton("Cancel") { dialog, which ->
+                            // Acción cuando se presiona el botón Cancelar
+                            dialog.dismiss()
+
+                        }
+                        val dialog = builder.create()
+                        dialog.show()
+
+
                     }
+
                 }
 
                 override fun onCancelled(databaseError: DatabaseError) {
@@ -121,6 +198,15 @@ class CoctelActivity : AppCompatActivity() {
     }
 
 
+    private fun showDialogRemove() {
+
+
+    }
+
+
 }
+
+
+
 
 

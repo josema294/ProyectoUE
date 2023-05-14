@@ -8,7 +8,7 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-
+    
     <string name="pestana_home_Popular">Popular</string>
     <string name="pestana_home_Favorites">Favorites</string>
     <string name="pestana_home_YourCocktails">Your Cocktails</string>
@@ -102,6 +102,13 @@
 
     <!--Coctel-->
     <string name="speakable_photo">Photo of the selected cocktail </string>
+    <string name="dialog_body">Add this cocktail to favorites?</string>
+    <string name="dialog_title">Add to favorites</string>
+    <string name="added">Cocktail added to favorites</string>
+
+    <string name="dialog_body_delete">Remove this cocktail from favorites</string>
+    <string name="dialog_tittle_delete">Remove from favorites</string>
+    <string name="removed">Cocktail removed from favorites</string>
 
 
 

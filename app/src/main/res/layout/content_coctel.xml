@@ -70,6 +70,7 @@
         android:layout_margin="16dp"
         android:contentDescription="heart"
         android:scaleType="centerInside"
+        android:tint="@null"
         app:srcCompat="@android:drawable/star_big_off"
         tools:ignore="ImageContrastCheck" />
 
