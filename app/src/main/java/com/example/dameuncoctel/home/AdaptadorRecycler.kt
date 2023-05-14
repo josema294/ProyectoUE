@@ -59,10 +59,7 @@ class AdaptadorRecycler(var contexto: Context, var listaCoctelDC: ArrayList<Coct
        // holder.imagen.setImageResource(coctel.strDrinkThumb)
         holder.nombre.setText(coctel.strDrink)
 
-        /*var coctel: FakeCoctelDC = listaDatos.get(position)
-        holder.imagen.setImageResource(coctel.foto)
-        holder.nombre.setText(coctel.nombre)
-        develop*/
+
 
         //Comportamiento para ir a la vista del coctel
         //TODO interfaz de callback comentada

@@ -1,6 +1,6 @@
 package com.example.dameuncoctel.menu
 
-import android.content.ContentValues.TAG
+
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -10,15 +10,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Switch
-import androidx.core.os.bundleOf
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.dameuncoctel.R
 import com.example.dameuncoctel.databinding.FragmentIngredientesBinding
 import com.example.dameuncoctel.model.CoctelDC
-import com.example.dameuncoctel.model.FakeCoctelDC
-import com.example.dameuncoctel.model.FakeDB
-import com.example.dameuncoctel.resultado.AdaptadorRecyclerResultado
 import com.example.dameuncoctel.resultado.ResultadoActivity
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
@@ -47,8 +41,7 @@ class IngredientesFragment : Fragment() {
     private var arrayResultado = ArrayList<CoctelDC>()
 
 
-    //cocteles es la base de datos de cocteles
-    private lateinit var cocteles: FakeDB
+
 
 
     // This property is only valid between onCreateView and
@@ -65,7 +58,7 @@ class IngredientesFragment : Fragment() {
         botonBuscar = binding.buttonBuscarIngredientes
         ingredientesChipGroup = binding.ingredientesChipGroup
         simultaneidadSwitch = binding.switch1
-        cocteles = FakeDB()
+
 
 
         return binding.root

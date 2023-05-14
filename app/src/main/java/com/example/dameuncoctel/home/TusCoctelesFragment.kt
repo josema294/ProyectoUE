@@ -39,7 +39,7 @@ class TusCoctelesFragment : Fragment() {
     ): View? {
 
         _binding = FragmentThirdBinding.inflate(inflater, container, false)
-        //listaCocteles = FakeMisCocteles().getMisCocteles()!!
+
 
         listaCocteles = ArrayList<CoctelDC>()
 

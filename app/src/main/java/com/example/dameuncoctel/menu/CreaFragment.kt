@@ -20,7 +20,6 @@ import androidx.fragment.app.Fragment
 import com.example.dameuncoctel.R
 import com.example.dameuncoctel.databinding.FragmentCreaBinding
 import com.example.dameuncoctel.model.CoctelDC
-import com.example.dameuncoctel.model.FakeMisCocteles
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -41,7 +40,7 @@ class CreaFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    private lateinit var fakeMisCocteles: FakeMisCocteles
+
 
     private var _binding: FragmentCreaBinding? = null
 
