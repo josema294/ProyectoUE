@@ -22,6 +22,7 @@ import com.example.dameuncoctel.databinding.FragmentCreaBinding
 import com.example.dameuncoctel.model.CoctelDC
 import com.example.dameuncoctel.model.FakeMisCocteles
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import java.util.UUID
@@ -361,13 +362,21 @@ class CreaFragment : Fragment() {
                 return@setPositiveButton
             }
 
-            // Establece los valores del coctel en la base de datos de Firebase
+            // Establece los valores del coctel en la base de datos de Firebase en el nodo coctail
             database.child("coctail").child(key).setValue(tuCoctelToGuardar)
                 .addOnSuccessListener {
-                    Log.d(TAG, "Coctel guardado con éxito en Firebase")
+                    Log.d(TAG, "Coctel guardado con éxito en Cocteles-Firebase")
                 }
                 .addOnFailureListener { e ->
-                    Log.w(TAG, "Error al guardar el coctel en Firebase", e)
+                    Log.w(TAG, "Error al guardar el coctel en Cocteles-Firebase", e)
+                }
+            // Establece los valores del coctel en la base de datos de Firebase en el nodo Usuario
+            database.child("Usuario").child( FirebaseAuth.getInstance().currentUser?.uid.toString()).child("OurCoctail").child(key).setValue(tuCoctelToGuardar)
+                .addOnSuccessListener {
+                    Log.d(TAG, "Coctel guardado con éxito en Usuario-OurCocteles-Firebase")
+                }
+                .addOnFailureListener { e ->
+                    Log.w(TAG, "Error al guardar el coctel en Usuario-OurCocteles-Firebase", e)
                 }
 
 
