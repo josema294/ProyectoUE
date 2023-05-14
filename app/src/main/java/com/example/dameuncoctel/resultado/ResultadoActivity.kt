@@ -104,7 +104,7 @@ class ResultadoActivity : AppCompatActivity() {
                                         || item!!.strIngredient10?.contains(seleccionCategoria) == true) {
                                         listaCocteles.add(item!!)
                                         ky = itmsnapshot.key.toString()
-                                        itnm = item.strDrink.toString()
+                                        itnm = item.strDrink.toString().lowercase()
                                         println(ky + " nombre " + itnm)
                                         // Procesar los datos que se encuentran en singleSnapshot
                                     }else {

@@ -78,6 +78,16 @@ class AdaptadorRecycler(var contexto: Context, var listaCoctelDC: ArrayList<Coct
                 Log.d("El valor del bundle",bundle.toString())
                 contexto.startActivity(intent)
             }
+        holder.nombre.setOnClickListener {
+
+            val intent = Intent(contexto, CoctelActivity::class.java)
+            val bundle = Bundle()
+            bundle.putSerializable("coctel", coctel)
+            intent.putExtra("bundle", bundle)
+            Log.d("valor del coctel", coctel.toString())
+            Log.d("El valor del bundle",bundle.toString())
+            contexto.startActivity(intent)
+        }
 
     }
 

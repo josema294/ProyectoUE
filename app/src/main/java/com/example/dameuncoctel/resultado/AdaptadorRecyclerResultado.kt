@@ -65,6 +65,19 @@ class AdaptadorRecyclerResultado(var contexto: Context, var listaDatos: ArrayLis
 
 
         }
+        holder.nombre.setOnClickListener {
+
+
+            val intent = Intent(contexto, CoctelActivity::class.java)
+            val bundle = Bundle()
+            bundle.putSerializable("coctel", coctel)
+            intent.putExtra("bundle", bundle)
+
+            contexto.startActivity(intent)
+
+
+
+        }
     }
 
     override fun getItemCount(): Int {
