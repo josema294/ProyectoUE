@@ -1,9 +1,6 @@
 package com.example.dameuncoctel.home
 
-import android.app.Application
 import android.content.Context
-import android.provider.Settings.Global.getString
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
@@ -18,7 +15,7 @@ class AdaptadorPager(fm: FragmentManager?, context: Context) : FragmentPagerAdap
         listaFragments = ArrayList()
         listaFragments.add(FirstFragment())
         listaFragments.add(SecondFragment())
-        listaFragments.add(ThirdFragment())
+        listaFragments.add(TusCoctelesFragment())
         listaNombres = ArrayList()
         listaNombres.add(context.getString(R.string.pestana_home_Popular))
         listaNombres.add(context.getString(R.string.pestana_home_Favorites))
