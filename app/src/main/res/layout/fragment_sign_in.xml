@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -13,6 +12,7 @@
         android:layout_height="48sp"
         android:ems="10"
         android:hint="Your name"
+        android:layout_marginTop="10dp"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.51"
@@ -25,30 +25,39 @@
         android:id="@+id/PageSignUpeditTextTextEmailAddress"
         android:layout_width="214sp"
         android:layout_height="48sp"
-        android:layout_marginTop="32sp"
         android:ems="10"
+        android:hint="Your email"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="@+id/PageSignUpeditTextTextUserName"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="@+id/PageSignUpeditTextTextUserName"
         app:layout_constraintTop_toBottomOf="@+id/PageSignUpeditTextTextUserName"
-        tools:ignore="SpeakableTextPresentCheck"
-        android:hint="Your email"/>
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
         android:id="@+id/PageSignUpeditTextTextPassword"
         android:layout_width="214sp"
         android:layout_height="48sp"
-        android:layout_marginTop="32sp"
         android:ems="10"
+        android:hint="Your password"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="@+id/PageSignUpeditTextTextEmailAddress"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="@+id/PageSignUpeditTextTextEmailAddress"
         app:layout_constraintTop_toBottomOf="@+id/PageSignUpeditTextTextEmailAddress"
-        tools:ignore="SpeakableTextPresentCheck"
-        android:hint="Your password"/>
+        tools:ignore="SpeakableTextPresentCheck" />
 
+
+    <EditText
+        android:id="@+id/PageSignUpRepeatPass"
+        android:layout_width="214sp"
+        android:layout_height="48sp"
+        android:ems="10"
+        android:hint="Repeat your password"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="@+id/PageSignUpeditTextTextPassword"
+        app:layout_constraintTop_toBottomOf="@+id/PageSignUpeditTextTextPassword"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageView
         android:id="@+id/PageSignUpimageView2"
@@ -80,13 +89,11 @@
         android:id="@+id/PageSignUpButtonsing_up"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8sp"
         android:text="Sign up"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PageSignUpeditTextTextPassword"
-        app:layout_constraintVertical_bias="0.132" />
+        app:layout_constraintTop_toBottomOf="@+id/PageSignUpRepeatPass" />
 
     <Button
         android:id="@+id/buttonGoogle"

@@ -48,6 +48,7 @@ class SignInFragment : Fragment() {
     private lateinit var bundle: Bundle
     private lateinit var intent: Intent
     private lateinit var googleButton: Button
+    private lateinit var repeatPass: EditText
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -69,53 +70,55 @@ class SignInFragment : Fragment() {
         email = viewFragmentLogin.findViewById(R.id.PageSignUpeditTextTextEmailAddress)
         pass = viewFragmentLogin.findViewById(R.id.PageSignUpeditTextTextPassword)
         googleButton = viewFragmentLogin.findViewById(R.id.buttonGoogle)
+        repeatPass = viewFragmentLogin.findViewById(R.id.PageSignUpRepeatPass)
 
         botonSignUp.setOnClickListener{
-            /**/if( email.text.isNotEmpty() && pass.text.isNotEmpty() && nombre.text.isNotEmpty()) {
-                if(email.text.toString().contains('.') && email.text.toString().contains('@')){
+            /**/
 
+            if (email.text.isNotEmpty() && pass.text.isNotEmpty() && nombre.text.isNotEmpty() && repeatPass.text.isNotEmpty()) {
+                if (email.text.toString().contains('.') && email.text.toString().contains('@')) {
+                    if (pass.text.toString().equals(repeatPass.text.toString())) {
+                        //Consejo de borja lina de abajo
+                        FirebaseAuth.getInstance().signOut()
 
-                //Consejo de borja lina de abajo
-                FirebaseAuth.getInstance().signOut()
+                        FirebaseAuth.getInstance().fetchSignInMethodsForEmail(email.text.toString()).addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                val result = task.result
 
-                FirebaseAuth.getInstance().fetchSignInMethodsForEmail(email.text.toString()).addOnCompleteListener { task ->
-                if (task.isSuccessful){
-                    val result = task.result
-                    if (result?.signInMethods?.isEmpty() == true){
-                        // La dirección de correo electrónico no está registrada en Firebase Authentication
-                        // Puedes registrar un nuevo usuario con este correo electrónico
-                      //Accedemos a la parte de identificación de Firebase para guardar al usuario nuevo
-                        FirebaseAuth.getInstance().createUserWithEmailAndPassword(
-                            email.text.toString(),
-                            pass.text.toString()
-                        ).addOnCompleteListener {
-                            if (it.isSuccessful) {
-                                showHome(it.result.user?.email ?: "", ActivityLogin.ProviderType.BASIC)
-
-
-                    } else {
-                                showAlertErrorEmailFormat()
+                                if (result?.signInMethods?.isEmpty() == true) {
+                                    // La dirección de correo electrónico no está registrada en Firebase Authentication
+                                    // Puedes registrar un nuevo usuario con este correo electrónico
+                                    //Accedemos a la parte de identificación de Firebase para guardar al usuario nuevo
+                                    FirebaseAuth.getInstance().createUserWithEmailAndPassword(
+                                        email.text.toString(),
+                                        pass.text.toString()
+                                    ).addOnCompleteListener {
+                                        if (it.isSuccessful) {
+                                            showHome(
+                                                it.result.user?.email ?: "",
+                                                ActivityLogin.ProviderType.BASIC
+                                            )
+                                        } else {
+                                            showAlertErrorEmailFormat()
+                                        }
+                                    }
+                                } else {
+                                    // La dirección de correo electrónico ya está registrada en Firebase Authentication
+                                    // No puedes registrar un nuevo usuario con este correo electrónico
+                                    showAlertEmailAlreadyRegistred()
+                                }
                             }
-
+                        }
+                    } else {
+                        showAlertRepeatPass()
                     }
-
                 } else {
-                        // La dirección de correo electrónico ya está registrada en Firebase Authentication
-                        // No puedes registrar un nuevo usuario con este correo electrónico
-                        showAlertEmailAlreadyRegistred()
-
-                }
-                }
-                }
-
-
-            }else {
-                showAlertErrorEmailFormat()
+                    showAlertErrorEmailFormat()
                 }
             } else {
                 showAlertErrorEmpty()
             }
-            }
+        }
 
         googleButton.setOnClickListener{
             //Configuramos autenticacion
@@ -214,6 +217,15 @@ class SignInFragment : Fragment() {
         val builder = AlertDialog.Builder(context)
         builder.setTitle("Problem with Google")
         builder.setMessage("There was a problem with your Google Account")
+        builder.setPositiveButton("Accept",null)
+        val dialog: AlertDialog =builder.create()
+        dialog.show()
+
+    }
+    private fun showAlertRepeatPass(){
+        val builder = AlertDialog.Builder(context)
+        builder.setTitle("Incorrect Password")
+        builder.setMessage("There was a problem when you write your second label of password.")
         builder.setPositiveButton("Accept",null)
         val dialog: AlertDialog =builder.create()
         dialog.show()
