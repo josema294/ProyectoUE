@@ -15,11 +15,11 @@
         android:hint="Your name"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="40sp"
-        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PageSignUptext"
-        tools:ignore="SpeakableTextPresentCheck" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonGoogle"
+        tools:ignore="SpeakableTextPresentCheck"
+        tools:layout_editor_absoluteY="412dp" />
 
     <EditText
         android:id="@+id/PageSignUpeditTextTextEmailAddress"
@@ -49,31 +49,32 @@
         tools:ignore="SpeakableTextPresentCheck"
         android:hint="Your password"/>
 
+
     <ImageView
         android:id="@+id/PageSignUpimageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/logodameuncoctel"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="261dp"
+        android:layout_height="241dp"
+        android:layout_marginTop="28dp"
+        android:src="@drawable/logo_app"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/PageSignUptext"
         android:layout_width="236sp"
         android:layout_height="60sp"
-
-        android:rotationX="11"
+        android:layout_marginTop="16dp"
         android:autoSizeTextType="uniform"
+        android:rotationX="11"
         android:text="Sign up to join"
         android:textAlignment="center"
+        android:textColor="@color/verde_agua"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/PageSignUpimageView2" />
-
 
     <Button
         android:id="@+id/PageSignUpButtonsing_up"
@@ -86,6 +87,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/PageSignUpeditTextTextPassword"
         app:layout_constraintVertical_bias="0.132" />
+
+    <Button
+        android:id="@+id/buttonGoogle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@mipmap/logo_google"
+        android:text="Google"
+        app:layout_constraintBottom_toTopOf="@+id/PageSignUpeditTextTextUserName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/PageSignUptext"
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

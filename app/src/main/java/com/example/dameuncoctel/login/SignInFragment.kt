@@ -14,7 +14,11 @@ import com.example.dameuncoctel.R
 import com.example.dameuncoctel.home.MainActivity
 import com.example.dameuncoctel.model.CoctelDC
 import com.example.dameuncoctel.model.Usuario
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
@@ -31,6 +35,7 @@ private const val ARG_PARAM2 = "param2"
  */
 class SignInFragment : Fragment() {
     // TODO: Rename and change types of parameters
+    private val GOOGLE_SING_IN = 100 // Constante para identificador Google Sing In
     private var param1: String? = null
     private var param2: String? = null
     private lateinit var botonSignUp: Button
@@ -42,6 +47,7 @@ class SignInFragment : Fragment() {
     private lateinit var CurrentUser:Usuario
     private lateinit var bundle: Bundle
     private lateinit var intent: Intent
+    private lateinit var googleButton: Button
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,6 +68,7 @@ class SignInFragment : Fragment() {
         nombre = viewFragmentLogin.findViewById(R.id.PageSignUpeditTextTextUserName)
         email = viewFragmentLogin.findViewById(R.id.PageSignUpeditTextTextEmailAddress)
         pass = viewFragmentLogin.findViewById(R.id.PageSignUpeditTextTextPassword)
+        googleButton = viewFragmentLogin.findViewById(R.id.buttonGoogle)
 
         botonSignUp.setOnClickListener{
             /**/if( email.text.isNotEmpty() && pass.text.isNotEmpty() && nombre.text.isNotEmpty()) {
@@ -110,10 +117,47 @@ class SignInFragment : Fragment() {
             }
             }
 
+        googleButton.setOnClickListener{
+            //Configuramos autenticacion
+
+            val googleConf = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build()
+
+            val googleClient= GoogleSignIn.getClient(requireActivity(),googleConf)
+            googleClient.signOut()
+            startActivityForResult(googleClient.signInIntent, GOOGLE_SING_IN )
+
+        }
+
         // Inflate the layout for this fragment
         return viewFragmentLogin
 
         }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode,resultCode, data)
+        if (requestCode == GOOGLE_SING_IN){
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            try {
+                val account = task.getResult(ApiException::class.java)
+
+                if(account != null){
+                    val credential = GoogleAuthProvider.getCredential(account.idToken, null)
+                    FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener { task ->
+                        if (task.isSuccessful){
+                            showHome(account.email ?: "", ActivityLogin.ProviderType.GOOGLE)
+                        } else {
+                            showAlertGoogle()
+                        }
+                    }
+                }
+            } catch (e: ApiException){
+                showAlertEmailAlreadyRegistred()
+            }
+
+        }
+    }
 
 
 
@@ -166,6 +210,15 @@ class SignInFragment : Fragment() {
         dialog.show()
 
     }
+    private fun showAlertGoogle(){
+        val builder = AlertDialog.Builder(context)
+        builder.setTitle("Problem with Google")
+        builder.setMessage("There was a problem with your Google Account")
+        builder.setPositiveButton("Accept",null)
+        val dialog: AlertDialog =builder.create()
+        dialog.show()
+
+    }
 
 
     //Mostramos la nueva pantalla
@@ -189,4 +242,5 @@ class SignInFragment : Fragment() {
             mRootReferenceCoctail.child(uidUser.toString()).setValue(usuario)
             //mRootReferenceCoctail.addValueEventListener({"Nombre" to nombre.text.toString(),"Email" to email.text.toString()})
     }
+
 }
