@@ -19,6 +19,7 @@
         android:id="@+id/tab_menu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:contentDescription="@string/tab_layout"
         android:scrollbarAlwaysDrawHorizontalTrack="true"
         android:theme="@style/MyStyle"
         app:tabMode="scrollable"
@@ -26,6 +27,7 @@
 
 
     <androidx.viewpager.widget.ViewPager
+        android:contentDescription="@string/view_pager"
         android:id="@+id/view_pager_menu"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

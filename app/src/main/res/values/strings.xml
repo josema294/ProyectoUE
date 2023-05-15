@@ -110,6 +110,15 @@
     <string name="dialog_tittle_delete">Remove from favorites</string>
     <string name="removed">Cocktail removed from favorites</string>
 
+    <!--Resultado activity-->
+    <string name="no_result">With the filter selected, no cocktail results are found.</string>
+    <string name="go_back"> Go Back </string>
+
+    <!--System-->
+
+    <string name="tab_layout">"Tab Layout</string>
+    <string name="view_pager">View Pager</string>
+
 
 
 

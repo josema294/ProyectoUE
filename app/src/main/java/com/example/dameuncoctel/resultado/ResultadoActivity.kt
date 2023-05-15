@@ -7,11 +7,13 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dameuncoctel.R
 import com.example.dameuncoctel.menu.MenuActivity
 import com.example.dameuncoctel.model.CoctelDC
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -25,10 +27,9 @@ class ResultadoActivity : AppCompatActivity() {
     private lateinit var arrayCocteles: ArrayList<CoctelDC>
     private lateinit var intent: Intent
     private var contexto: Context = this
-
+    private lateinit var searchView: SearchView
     private lateinit var toolbar: androidx.appcompat.widget.Toolbar
     lateinit var mRootReferenceCoctail: DatabaseReference
-    private val nodeList = ArrayList<String>()
     private lateinit var query: Query
     private lateinit var seleccionCategoria: String
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,19 +45,21 @@ class ResultadoActivity : AppCompatActivity() {
 
 
         intent = getIntent()
-        val bundle: Bundle? = intent.getBundleExtra("bundleCocteles")
-        val bundle2: Bundle? = intent.getBundleExtra("resultadoIngredientes")
+        val bundle: Bundle? = intent.getBundleExtra("bundleCocteles") // de la pantalla decategorias
+        val bundle2: Bundle? =
+            intent.getBundleExtra("resultadoIngredientes") //De pantalle de ingredientes
+        val bundle3: Bundle? = intent.getBundleExtra("bundlequery") //De la barra de busqueda
 
         //Recuperamos el array con el resultado de cocteles
         //TODO arreglar el deprecated
         if (bundle?.getSerializable("categoria") != null) {
             seleccionCategoria = bundle?.getSerializable("categoria") as String
 
-            fun AñadirItemslist(listaCocteles : ArrayList<CoctelDC>): ArrayList<CoctelDC> {
+            fun AñadirItemslist(listaCocteles: ArrayList<CoctelDC>): ArrayList<CoctelDC> {
 
                 mRootReferenceCoctail = FirebaseDatabase.getInstance().getReference("coctail")
                 query = mRootReferenceCoctail.orderByKey()
-                Log.d("loooooooog",seleccionCategoria)
+                Log.d("loooooooog", seleccionCategoria)
                 //query = mRootReferenceCoctail.child("strIngredient").equalTo("\uf8ff"+selecccionCategoria)//.orderByChild("strIngredient").equalTo("\uf8ff"+selecccionCategoria)
                 query = mRootReferenceCoctail.orderByChild("coctail")
                 query.addValueEventListener(object : ValueEventListener {
@@ -79,13 +82,12 @@ class ResultadoActivity : AppCompatActivity() {
                                 item!!.strIngredient8?.lowercase()
                                 item!!.strIngredient9?.lowercase()
                                 item!!.strIngredient10?.lowercase()
-                                if (item!!.strAlcoholic?.equals(seleccionCategoria)== true){
+                                if (item!!.strAlcoholic?.equals(seleccionCategoria) == true) {
                                     listaCocteles.add(item!!)
                                     ky = itmsnapshot.key.toString()
                                     itnm = item.strDrink.toString()
                                     println(ky + " nombre " + itnm)
-                                }
-                                else{
+                                } else {
                                     if (item!!.strIngredient?.contains(seleccionCategoria) == true
                                         || item!!.strIngredient2?.contains(seleccionCategoria) == true
                                         || item!!.strIngredient3?.contains(seleccionCategoria) == true
@@ -95,15 +97,17 @@ class ResultadoActivity : AppCompatActivity() {
                                         || item!!.strIngredient7?.contains(seleccionCategoria) == true
                                         || item!!.strIngredient8?.contains(seleccionCategoria) == true
                                         || item!!.strIngredient9?.contains(seleccionCategoria) == true
-                                        || item!!.strIngredient10?.contains(seleccionCategoria) == true) {
+                                        || item!!.strIngredient10?.contains(seleccionCategoria) == true
+                                    ) {
                                         listaCocteles.add(item!!)
                                         ky = itmsnapshot.key.toString()
                                         itnm = item.strDrink.toString().lowercase()
                                         println(ky + " nombre " + itnm)
                                         // Procesar los datos que se encuentran en singleSnapshot
-                                    }else {
+                                    } else {
                                         // La consulta no ha devuelto resultados
-                                    }}
+                                    }
+                                }
 
                             }
 
@@ -120,7 +124,8 @@ class ResultadoActivity : AppCompatActivity() {
                             recycler.adapter = adaptadorRecyclerResultado
 
 
-                        }}
+                        }
+                    }
 
                     override fun onCancelled(error: DatabaseError) {
                         TODO("Not yet implemented")
@@ -138,7 +143,8 @@ class ResultadoActivity : AppCompatActivity() {
 
         if (bundle2 != null) {
 
-           val seleccionCoctelesIngredientesList = bundle2?.getSerializable("resultadoIngredientes") as ArrayList<CoctelDC>
+            val seleccionCoctelesIngredientesList =
+                bundle2?.getSerializable("resultadoIngredientes") as ArrayList<CoctelDC>
 
             val recycler = findViewById<RecyclerView>(R.id.recyclerViewResultado)
             recycler.layoutManager =
@@ -150,12 +156,70 @@ class ResultadoActivity : AppCompatActivity() {
 
         }
 
+        if (bundle3 != null) {
+            var searchQuery = bundle3.getString("query", "default").lowercase().capitalize()
+
+            var cocktailNames: ArrayList<CoctelDC> = ArrayList()
+
+
+            val database = FirebaseDatabase.getInstance().getReference("coctail")
+            val resultadoQuery =
+                database.orderByChild("strDrink").startAt(searchQuery).endAt(searchQuery + "\uf8ff")
+
+            resultadoQuery.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+                    for (coctelSnapshot in dataSnapshot.children) {
+                        val coctel = coctelSnapshot.getValue(CoctelDC::class.java)
+                        coctel?.let {
+                            cocktailNames.add(it)
+                            Log.i("Coctel", it.strDrink!!)
+                        }
+                    }
+
+                    val recycler = findViewById<RecyclerView>(R.id.recyclerViewResultado)
+                    recycler.layoutManager =
+                        LinearLayoutManager(contexto, LinearLayoutManager.VERTICAL, false)
+                    val adaptadorRecyclerResultado =
+                        AdaptadorRecyclerResultado(contexto, cocktailNames)
+                    recycler.adapter = adaptadorRecyclerResultado
+
+
+
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Log.e("Firebase", "Error: ${error.message}")
+                }
+
+            })
+        }
+
+
     }
 
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.toolbar_menu, menu)
+
+        // Buscador de toolbar
+        val searchItem = menu.findItem(R.id.action_search)
+
+        searchView = searchItem?.actionView as SearchView
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                // User pressed the search button
+                performSearch(query)
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return false
+            }
+
+        })
         return true
     }
 
@@ -231,4 +295,18 @@ class ResultadoActivity : AppCompatActivity() {
             else -> return super.onOptionsItemSelected(item)
         }
     }
+
+
+    fun performSearch(query: String) {
+
+        searchView.clearFocus()
+
+        // Aquí implementas el código para lanzar tu Activity de resultados.
+        val intent = Intent(this, ResultadoActivity::class.java)
+        val bundle = Bundle()
+        bundle.putString("query",query)
+        intent.putExtra("bundlequery", bundle)
+        startActivity(intent)
+    }
+
 }

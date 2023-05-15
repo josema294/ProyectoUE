@@ -11,6 +11,7 @@ import androidx.appcompat.app.AlertDialog
 
 import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
 import androidx.navigation.ui.AppBarConfiguration
@@ -18,7 +19,9 @@ import androidx.viewpager.widget.ViewPager
 
 import com.example.dameuncoctel.R
 import com.example.dameuncoctel.login.ActivityLogin
+import com.example.dameuncoctel.resultado.ResultadoActivity
 import com.google.android.material.navigation.NavigationView
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import com.google.firebase.auth.FirebaseAuth
 
@@ -30,26 +33,25 @@ class MenuActivity : AppCompatActivity() {
     private lateinit var tab: TabLayout
     private lateinit var viewPager: ViewPager
     private lateinit var adaptadorPager: AdaptadorPagerMenu
-    lateinit var intentGoStart: Intent
+    private lateinit var searchView: SearchView
+    private lateinit var intentGoStart: Intent
 
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         WindowCompat.setDecorFitsSystemWindows(window, false)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
-
         toolbar = findViewById(R.id.toolbar_2)
+        setSupportActionBar(toolbar)
+        invalidateOptionsMenu()
         viewPager = findViewById(R.id.view_pager_menu);
         adaptadorPager = AdaptadorPagerMenu(supportFragmentManager, this)
         tab = findViewById(R.id.tab_menu)
-
-
-        setSupportActionBar(toolbar)
         tab.setupWithViewPager(viewPager)
 
         //Configurar pager
-
         viewPager.setAdapter(adaptadorPager)
 
         //Recupera la llamada del menu del MainActivity y muestra el fragment correspondiente a la llamada
@@ -66,6 +68,24 @@ class MenuActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.toolbar_menu, menu)
+
+        // Buscador de toolbar
+        val searchItem = menu.findItem(R.id.action_search)
+
+        searchView = searchItem?.actionView as SearchView
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                // User pressed the search button
+                performSearch(query)
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return false
+            }
+
+        })
         return true
     }
 
@@ -108,9 +128,23 @@ class MenuActivity : AppCompatActivity() {
 
     }
 
-    /*    override fun onSupportNavigateUp(): Boolean {
-            val navController = findNavController(R.id.nav_host_fragment_content_menu)
-            return navController.navigateUp(appBarConfiguration)
-                    || super.onSupportNavigateUp()
-        }*/
+
+    fun performSearch(query: String) {
+
+        searchView.clearFocus()
+
+        // Aquí implementas el código para lanzar tu Activity de resultados.
+        val intent = Intent(this, ResultadoActivity::class.java)
+        val bundle = Bundle()
+        bundle.putString("query",query)
+        intent.putExtra("bundlequery", bundle)
+        startActivity(intent)
+    }
+
+
+
+
+
 }
+
+
