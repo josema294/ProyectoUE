@@ -18,7 +18,8 @@ class ActivityLogin : AppCompatActivity() {
 
     //Tipo de autentificación que tenemos
     enum class ProviderType{
-        BASIC
+        BASIC,
+        GOOGLE
     }
 
 
