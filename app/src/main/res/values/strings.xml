@@ -119,6 +119,12 @@
     <string name="tab_layout">"Tab Layout</string>
     <string name="view_pager">View Pager</string>
 
+    <!--guia-->
+    <string name="nexttip">Next Tip</string>
+    <string name="previoustip">Previous Tip</string>
+    <string name="textguia">Thank you for using our app! If you have any questions, suggestions, or if you need help, don\'t hesitate to reach out. You can contact us at DAMeuncoctel\@gmail.com.</string>
+
+
 
 
 
