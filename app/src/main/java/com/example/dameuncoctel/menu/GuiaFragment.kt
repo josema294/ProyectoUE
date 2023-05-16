@@ -5,6 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.FrameLayout
+import android.widget.LinearLayout
+import android.widget.TextView
+import androidx.core.view.get
 import com.example.dameuncoctel.R
 
 // TODO: Rename parameter arguments, choose names that match
@@ -21,6 +26,16 @@ class GuiaFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private lateinit var buttonNext: Button
+    private lateinit var buttonPrevius: Button
+    private lateinit var frames: FrameLayout
+    private  var pagina = 1
+        private lateinit var vista1: LinearLayout
+        private lateinit var vista2: LinearLayout
+        private lateinit var vista3: LinearLayout
+        private lateinit var vista4: LinearLayout
+        private lateinit var vista5: LinearLayout
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +43,10 @@ class GuiaFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+        //reseteamos vistas
+        pagina = 1
+
+
     }
 
     override fun onCreateView(
@@ -35,7 +54,46 @@ class GuiaFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_guia, container, false)
+
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        buttonNext = view.findViewById(R.id.butto_next)
+        buttonPrevius = view.findViewById(R.id.button_previus)
+        frames = view.requireViewById(R.id.frameLayout)
+        vista1 = view.findViewById(R.id.layout1)
+        vista2 = view.findViewById(R.id.layout2)
+        vista3 = view.findViewById(R.id.layout3)
+        vista4 = view.findViewById(R.id.layout4)
+        vista5 = view.findViewById(R.id.layout5)
+
+
+        paginado()
+
+
+        buttonNext.setOnClickListener {
+
+            if(pagina<5) {
+                pagina++
+                paginado()
+            }
+        }
+
+        buttonPrevius.setOnClickListener {
+            if(pagina>1) {
+                pagina--
+                paginado()
+            }
+        }
+
+
+
+
+
     }
 
     companion object {
@@ -56,5 +114,53 @@ class GuiaFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    private fun paginado (){
+
+        when (pagina) {
+
+            1 -> {
+                vista1.visibility= View.VISIBLE
+                vista2.visibility= View.INVISIBLE
+                vista3.visibility= View.INVISIBLE
+                vista4.visibility= View.INVISIBLE
+                vista5.visibility= View.INVISIBLE
+            }
+            2 -> {
+                vista1.visibility= View.INVISIBLE
+                vista2.visibility= View.VISIBLE
+                vista3.visibility= View.INVISIBLE
+                vista4.visibility= View.INVISIBLE
+                vista5.visibility= View.INVISIBLE
+            }
+            3 -> {
+                vista1.visibility= View.INVISIBLE
+                vista2.visibility= View.INVISIBLE
+                vista3.visibility= View.VISIBLE
+                vista4.visibility= View.INVISIBLE
+                vista5.visibility= View.INVISIBLE
+            }
+            4 -> {
+                vista1.visibility= View.INVISIBLE
+                vista2.visibility= View.INVISIBLE
+                vista3.visibility= View.INVISIBLE
+                vista4.visibility= View.VISIBLE
+                vista5.visibility= View.INVISIBLE
+            }
+            5 -> {
+                vista1.visibility= View.INVISIBLE
+                vista2.visibility= View.INVISIBLE
+                vista3.visibility= View.INVISIBLE
+                vista4.visibility= View.INVISIBLE
+                vista5.visibility= View.VISIBLE
+            }
+
+
+
+        }
+
+
+
     }
 }
