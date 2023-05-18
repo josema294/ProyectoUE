@@ -17,6 +17,8 @@ class SplashScreenActivity : AppCompatActivity() {
 
         val splash = installSplashScreen()
 
+
+
         splash.setKeepOnScreenCondition {  true }
 
         val intent = Intent(this, ActivityLogin::class.java)
