@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+
+    <item
+        android:id="@+id/menu_dropdown"
+        android:title="@string/menu"
+        android:iconTint="@color/white"
+        android:icon="@drawable/baseline_menu_24"
+        app:showAsAction="always"
+        >
+
+
+        <menu>
+
+
+            <item
+                android:id="@+id/action_search"
+                android:icon="@drawable/ic_search"
+                android:title="@string/menu_buscar"
+                app:actionViewClass="androidx.appcompat.widget.SearchView"
+
+                app:showAsAction="ifRoom|collapseActionView" />
+
+            <item
+                android:id="@+id/action_categorias"
+                android:title="@string/menu_categorias"
+                app:showAsAction="collapseActionView" />
+
+            <item
+                android:id="@+id/action_ingredientes"
+
+                android:title="@string/menu_ingredientes"
+                app:showAsAction="always" />
+
+            <item
+                android:id="@+id/action_crea"
+
+                android:title="@string/menu_crea"
+                app:showAsAction="always" />
+
+            <item
+                android:id="@+id/action_settings"
+
+                android:title="Settings"
+                app:showAsAction="always" />
+
+            <item
+                android:id="@+id/action_politica"
+                android:titleTextColor="@color/white"
+                android:title="@string/menu_privacy_policy"
+                app:showAsAction="always" />
+
+            <item
+                android:id="@+id/action_guia"
+
+                android:title="@string/menu_guide"
+                app:showAsAction="always" />
+
+            <item
+                android:id="@+id/action_logout"
+
+                android:title="@string/menu_logout"
+                app:showAsAction="always" />
+
+        </menu>
+
+
+    </item>
+</menu>

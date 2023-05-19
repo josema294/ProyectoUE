@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_2"
+        app:title="@string/app_name"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/teal_700"
+        app:titleTextColor="@color/white" />
+
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        android:layout_marginTop="20dp"
+        android:contentDescription="@string/speakable_photo"
+        app:srcCompat="@drawable/caipirinha"
+        tools:ignore="RedundantDescriptionCheck" />
+
+    <TextView
+        android:id="@+id/textViewTitulococtel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text=""
+        android:gravity="center_horizontal"
+        android:textSize="25sp"/>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_coctel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/speakable_photo"
+        android:theme="@style/MyStyle"
+        app:tabIndicatorColor="@color/white"
+        tools:ignore="RedundantDescriptionCheck" />
+
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view_pager_coctel"
+        android:layout_width="match_parent"
+        android:contentDescription="view pager"
+        android:layout_height="match_parent" >
+
+
+    </androidx.viewpager.widget.ViewPager>
+
+
+
+
+</LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:contentDescription="heart"
+        android:scaleType="centerInside"
+        android:tint="@null"
+        app:srcCompat="@android:drawable/star_big_off"
+        tools:ignore="ImageContrastCheck" />
+
+</FrameLayout>

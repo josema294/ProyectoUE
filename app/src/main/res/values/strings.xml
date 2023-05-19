@@ -1,12 +1,261 @@
 <resources>
     <string name="app_name">DAMeuncoctel</string>
+
+    <string name="app_name_and_version" formatted="true">%1$s - %2$s</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
+    
+    <string name="pestana_home_Popular">Popular</string>
+    <string name="pestana_home_Favorites">Favorites</string>
+    <string name="pestana_home_YourCocktails">Your Cocktails</string>
+
+    <string name="pestana_coctel_Description">Description</string>
+    <string name="pestana_coctel_Ingredients">Ingredients</string>
+
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_menu">MenuActivity</string>
+
+
+
+    <!-- Toolbar Menu-->
+    <!--Menu de opciones pager-->
+    <string name="menu">Menu</string>
+    <string name="menu_buscar">Search</string>
+    <string name="menu_categorias">Categories</string>
+    <string name="menu_ingredientes">Ingredients</string>
+    <string name="menu_crea">Create Your Cocktail</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_privacy_policy">Privacy Policy</string>
+    <string name="menu_guide">User Guide</string>
+    <string name="menu_logout">Log Out</string>
+
+    <!-- Categorias -->
+    <string name="tittle_category">Choose a Category</string>
+    <string name="Rum">Rum</string>
+    <string name="Gin">Gin</string>
+    <string name="Vodka">Vodka</string>
+    <string name="Without">Non-alcoholic</string>
+
+    <!--Politica privacidad-->
+
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="information_collection">Information Collection</string>
+    <string name="content_information_collection">At DAMe un cóctel, we are committed to protecting the privacy of our users. This privacy policy describes how we collect, use, and share the information we gather from our users through our mobile application.</string>
+    <string name="information_usage">Information Usage</string>
+    <string name="content_information_usage">We use the information we collect to improve the functionality and quality of our mobile application. We may also use the information for statistical and analytical purposes, and to comply with our legal and regulatory obligations.</string>
+    <string name="information_sharing">Information Sharing</string>
+    <string name="content_information_sharing">We do not share personally identifiable information with third parties, except when necessary to provide services or features that you have specifically requested, or when required by law. Only other users will be able to see your username if you decide to publish a cocktail.</string>
+    <string name="information_security">Information Security</string>
+    <string name="content_information_security">We take reasonable measures to protect the information we collect against unauthorized access, disclosure, misuse, and alteration. However, we cannot guarantee the absolute security of information transmitted over the Internet or stored in our systems.</string>
+    <string name="privacy_policy_changes">Privacy Policy Changes</string>
+    <string name="content_privacy_policy_changes">We reserve the right to update or modify this privacy policy at any time and without prior notice. If we make significant changes in the way we use personally identifiable information, we will inform you through a notification in the mobile application.</string>
+    <string name="last_updated">Last Updated: 30/04/2023</string>
+
+    <!--Fragment ingredientes-->
+
+    <string name="boton_buscar">Search</string>
+    <string name="and_or">Privacy Policy</string>
+    <string name="ingrediente_selector_behavior">Include all elements simoultaneasley</string>
+    <string name="info_ingredientes">Information about Ingredients</string>
+    <string name="comportamiento_ingredientes_selector">Include all marked ingredients simultaneously</string>
+
+    <!--Settings-->
+
+    <string name="modo_oscuro">Enable or disable dark mode</string>
+    <string name="checkbox_dark">Dark mode</string>
+    <string name="selector_idiomas">Other languages will be available in future versions</string>
+    <string name="txtInglés">English</string>
+    <string name="app_version">Version 0.3</string>
+
+    <!--Create your cocktail-->
+
+    <string name="hint_coctel">Your cocktail name</string>
+    <string name="hint_description">Description...</string>
+    <string name="hint_ingredients">INGREDIENTS:</string>
+    <string name="hint_ingrediente1">Ingredient 1:</string>
+    <string name="hint_ingrediente2">Ingredient 2:</string>
+    <string name="hint_ingrediente3">Ingredient 3:</string>
+    <string name="hint_ingrediente4">Ingredient 4:</string>
+    <string name="hint_ingrediente5">Ingredient 5:</string>
+    <string name="hint_ingrediente6">Ingredient 6:</string>
+    <string name="hint_ingrediente7">Ingredient 7:</string>
+    <string name="hint_nombre_ingrediente">Ingredient Name</string>
+    <string name="hint_medida">Measurement</string>
+    <string name="buron_picture">ADD YOUR PHOTO</string>
+    <string name="buton_guarda">SAVE YOUR COCKTAIL</string>
+    <string name="aviso_ingredientes">At least you have to add Name, Alcochol category, Description and 2 ingredients/measures</string>
+    <string name="alert_title">Are you sure you want to save this cocktail?</string>
+    <string name="snack_cancel">Cocktail not saved</string>
+    <string name="snack_acept">Cocktail saved</string>
+    <string name="category_Alcoholic">Alcoholic</string>
+    <string name="category_Non_Alcoholic">Non alcoholic</string>
+    <string name="photo_placeholder">Photo loaded: none</string>
+    <string name="problem_uploading"> There was a problem while uploading your photo </string>
+
+    <!--Coctel-->
+    <string name="speakable_photo">Photo of the selected cocktail </string>
+    <string name="dialog_body">Add this cocktail to favorites?</string>
+    <string name="dialog_title">Add to favorites</string>
+    <string name="added">Cocktail added to favorites</string>
+
+    <string name="dialog_body_delete">Remove this cocktail from favorites</string>
+    <string name="dialog_tittle_delete">Remove from favorites</string>
+    <string name="removed">Cocktail removed from favorites</string>
+
+    <!--Resultado activity-->
+    <string name="no_result">With the filter selected, no cocktail results are found.</string>
+    <string name="go_back"> Go Back </string>
+
+    <!--System-->
+
+    <string name="tab_layout">"Tab Layout</string>
+    <string name="view_pager">View Pager</string>
+
+    <!--guia-->
+    <string name="nexttip">Next</string>
+    <string name="previoustip">Previous</string>
+    <string name="textguia">Thank you for using our app! If you have any questions, suggestions, or if you need help, don\'t hesitate to reach out. You can contact us at DAMeuncoctel\@gmail.com.</string>
+
+
+
+
+
+
+
+
+
+
+
+    <string-array name="ingredientes">
+        <item>7-Up</item>
+        <item>Absolut Citron</item>
+        <item>Ale</item>
+        <item>Amaretto</item>
+        <item>Angelica root</item>
+        <item>Apple brandy</item>
+        <item>Apple cider</item>
+        <item>Apple juice</item>
+        <item>Applejack</item>
+        <item>Apricot brandy</item>
+        <item>AÃ±ejo rum</item>
+        <item>Berries</item>
+        <item>Bitters</item>
+        <item>Blackberry brandy</item>
+        <item>Blended whiskey</item>
+        <item>Bourbon</item>
+        <item>Brandy</item>
+        <item>Cantaloupe</item>
+        <item>Carbonated water</item>
+        <item>Champagne</item>
+        <item>Cherry brandy</item>
+        <item>Chocolate liqueur</item>
+        <item>Chocolate syrup</item>
+        <item>Chocolate</item>
+        <item>Cider</item>
+        <item>Cocoa powder</item>
+        <item>Coffee brandy</item>
+        <item>Coffee liqueur</item>
+        <item>Coffee</item>
+        <item>Cognac</item>
+        <item>Cranberries</item>
+        <item>Cranberry juice</item>
+        <item>Creme de Cacao</item>
+        <item>Creme de Cassis</item>
+        <item>Dark rum</item>
+        <item>Dry Vermouth</item>
+        <item>Dubonnet Rouge</item>
+        <item>Egg yolk</item>
+        <item>Egg</item>
+        <item>Espresso</item>
+        <item>Everclear</item>
+        <item>Firewater</item>
+        <item>Galliano</item>
+        <item>Gin</item>
+        <item>Ginger</item>
+        <item>Grape juice</item>
+        <item>Grapefruit juice</item>
+        <item>Grapes</item>
+        <item>Grenadine</item>
+        <item>Heavy cream</item>
+        <item>Irish cream</item>
+        <item>Irish whiskey</item>
+        <item>Johnnie Walker</item>
+        <item>Kahlua</item>
+        <item>Kiwi</item>
+        <item>Lager</item>
+        <item>Lemon juice</item>
+        <item>Lemon vodka</item>
+        <item>Lemon</item>
+        <item>Lemonade</item>
+        <item>Light rum</item>
+        <item>Lime juice</item>
+        <item>Lime</item>
+        <item>Mango</item>
+        <item>Midori melon liqueur</item>
+        <item>Milk</item>
+        <item>Orange bitters</item>
+        <item>Orange</item>
+        <item>Ouzo</item>
+        <item>Peach Vodka</item>
+        <item>Peach nectar</item>
+        <item>Peppermint schnapps</item>
+        <item>Pineapple juice</item>
+        <item>Pisco</item>
+        <item>Port</item>
+        <item>Red wine</item>
+        <item>Ricard</item>
+        <item>Rum</item>
+        <item>Sambuca</item>
+        <item>Scotch</item>
+        <item>Sherry</item>
+        <item>Sloe gin</item>
+        <item>Southern Comfort</item>
+        <item>Spiced rum</item>
+        <item>Sprite</item>
+        <item>Strawberries</item>
+        <item>Strawberry schnapps</item>
+        <item>Sugar syrup</item>
+        <item>Sugar</item>
+        <item>Sweet Vermouth</item>
+        <item>Tea</item>
+        <item>Tequila</item>
+        <item>Tomato juice</item>
+        <item>Triple sec</item>
+        <item>Vodka</item>
+        <item>Water</item>
+        <item>Watermelon</item>
+        <item>Whiskey</item>
+        <item>Yoghurt</item>
+        <item>demerara Sugar</item>
+    </string-array>
+
+
+    <string-array name="idiomas">
+        <item>English</item>
+        <item>Español</item>
+        <item>Français</item>
+    </string-array>
+
+
+    <string name="lorem_ipsum">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
+        volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus
+        dui nec risus. Maecenas non sodales nisi, vel dictum dolor. Class aptent taciti sociosqu ad
+        litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse blandit eleifend
+        diam, vel rutrum tellus vulputate quis.</string>
+
+    <!--toolbar names-->
+    <string name="title_activity_coctel">CoctelActivity</string>
+    <string name="title_activity_splash_screen">SplashScreenActivity</string>
+
+    <!--Login-->
+    <string name="forgotPass">Did you forget your password?</string>
 </resources>
