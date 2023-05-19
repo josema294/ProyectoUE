@@ -1,5 +1,6 @@
 package com.example.dameuncoctel.resultado
 
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -11,8 +12,10 @@ import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dameuncoctel.R
+import com.example.dameuncoctel.home.MainActivity
 import com.example.dameuncoctel.menu.MenuActivity
 import com.example.dameuncoctel.model.CoctelDC
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -122,6 +125,7 @@ class ResultadoActivity : AppCompatActivity() {
                             recycler.adapter = adaptadorRecyclerResultado
 
 
+
                         }
                     }
 
@@ -131,6 +135,7 @@ class ResultadoActivity : AppCompatActivity() {
 
 
                 })
+
                 return listaCocteles
             }
             //Realizamos una query a la base de datos y lo añadimos a la lista de cocteles
@@ -175,15 +180,19 @@ class ResultadoActivity : AppCompatActivity() {
                         }
                     }
 
-                    val recycler = findViewById<RecyclerView>(R.id.recyclerViewResultado)
-                    recycler.layoutManager =
-                        LinearLayoutManager(contexto, LinearLayoutManager.VERTICAL, false)
-                    val adaptadorRecyclerResultado =
-                        AdaptadorRecyclerResultado(contexto, cocktailNames)
-                    recycler.adapter = adaptadorRecyclerResultado
+                    if(cocktailNames.isEmpty()){
+                        showAlertEmpty()
+                    } else {
+
+                        val recycler = findViewById<RecyclerView>(R.id.recyclerViewResultado)
+                        recycler.layoutManager =
+                            LinearLayoutManager(contexto, LinearLayoutManager.VERTICAL, false)
+                        val adaptadorRecyclerResultado =
+                            AdaptadorRecyclerResultado(contexto, cocktailNames)
+                        recycler.adapter = adaptadorRecyclerResultado
 
 
-
+                    }
                 }
 
                 override fun onCancelled(error: DatabaseError) {
@@ -306,6 +315,18 @@ class ResultadoActivity : AppCompatActivity() {
         intent.putExtra("bundlequery", bundle)
         startActivity(intent)
     }
-
+    private fun showAlertEmpty() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("No cocktails")
+        builder.setMessage("There are no cocktails with this name")
+        builder.setPositiveButton("Accept") { dialog, _ ->
+            // Código para el botón "Aceptar"
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish() // Opcional: finalizar la actividad actual si no deseas que el usuario regrese a ella presionando el botón "Atrás"
+        }
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
+    }
 
 }
