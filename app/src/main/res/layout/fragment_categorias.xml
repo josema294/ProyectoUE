@@ -8,8 +8,8 @@
 
     <ImageButton
         android:id="@+id/cateogoria_vodka"
-        android:layout_width="180dp"
-        android:layout_height="180dp"
+        android:layout_width="120sp"
+        android:layout_height="120sp"
         android:layout_marginEnd="4dp"
         android:background="@android:color/transparent"
         android:contentDescription="@string/Vodka"
@@ -23,24 +23,24 @@
 
     <ImageButton
         android:id="@+id/cateogoria_ron"
-        android:layout_width="180dp"
-        android:layout_height="180dp"
+        android:layout_width="120sp"
+        android:layout_height="120sp"
         android:background="@android:color/transparent"
         android:contentDescription="@string/Rum"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.03"
+        app:layout_constraintHorizontal_bias="0.171"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.196"
+        app:layout_constraintVertical_bias="0.214"
         app:srcCompat="@drawable/ron2"
         tools:ignore="DuplicateSpeakableTextCheck" />
 
     <ImageButton
         android:id="@+id/cateogoria_gin"
-        android:layout_width="180dp"
-        android:layout_height="180dp"
+        android:layout_width="120sp"
+        android:layout_height="120sp"
         android:background="@android:color/transparent"
         android:contentDescription="@string/Gin"
         android:scaleType="fitXY"
@@ -53,8 +53,8 @@
 
     <ImageButton
         android:id="@+id/cateogoria_sin"
-        android:layout_width="180dp"
-        android:layout_height="180dp"
+        android:layout_width="120sp"
+        android:layout_height="120sp"
         android:background="@android:color/transparent"
         android:contentDescription="@string/Without"
         android:scaleType="centerInside"

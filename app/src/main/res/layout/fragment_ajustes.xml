@@ -76,14 +76,14 @@
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/animationViewSettings"
-            android:layout_width="414dp"
-            android:layout_height="320dp"
+            android:layout_width="300dp"
+            android:layout_height="240dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView_version"
-            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintVertical_bias="0.65"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
             app:lottie_rawRes="@raw/animation_settigs"
