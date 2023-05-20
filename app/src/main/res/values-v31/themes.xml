@@ -3,7 +3,7 @@
 
     <style name="AppTheme.SplashScreen" parent="Theme.MaterialComponents.DayNight.NoActionBar">
 
-        <item name="android:windowSplashScreenAnimatedIcon">@mipmap/ic_logotransparent</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@mipmap/ic_launcher_foreground</item>
         <item name="android:windowSplashScreenIconBackgroundColor">@color/white</item>
 
 

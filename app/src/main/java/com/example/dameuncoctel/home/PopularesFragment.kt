@@ -22,7 +22,7 @@ import com.google.firebase.database.ValueEventListener
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
-class FirstFragment : Fragment() {
+class PopularesFragment : Fragment() {
 
     private var _binding: FragmentFirstBinding? = null
     lateinit var listaCocteles: ArrayList<CoctelDC>

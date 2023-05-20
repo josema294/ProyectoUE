@@ -9,6 +9,8 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
+        android:screenOrientation="portrait"
+
         android:supportsRtl="true"
         android:theme="@style/Theme.DAMeuncoctel"
         tools:targetApi="33">
@@ -16,7 +18,9 @@
         <activity
             android:name=".splash.SplashScreenActivity"
             android:exported="true"
-            android:label="@string/title_activity_splash_screen"
+            android:screenOrientation="portrait"
+
+            android:label="@string/app_name"
             android:theme="@style/AppTheme.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,25 +31,30 @@
 
         <activity
             android:name=".resultado.ResultadoActivity"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.DAMeuncoctel.NoActionBar"
             />
         <activity
             android:name=".coctel.CoctelActivity"
+            android:screenOrientation="portrait"
             android:exported="true"
             android:label="@string/title_activity_coctel"
             android:theme="@style/Theme.DAMeuncoctel.NoActionBar"></activity>
         <activity
             android:name=".menu.MenuActivity"
+            android:screenOrientation="portrait"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.DAMeuncoctel.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".login.ActivityLogin"
+            android:screenOrientation="portrait"
             android:exported="true"></activity>
         <activity
             android:name=".home.MainActivity"
+            android:screenOrientation="portrait"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.DAMeuncoctel.NoActionBar"
