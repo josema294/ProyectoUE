@@ -15,7 +15,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
-class SecondFragment : Fragment() {
+class FavoritosFragment : Fragment() {
 
     private lateinit var _binding: FragmentSecondBinding
     private lateinit var arrayFavoritos: ArrayList<String>
@@ -65,7 +65,7 @@ class SecondFragment : Fragment() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Log.e("SecondFragment", "Error al obtener listado de favoritos: ${error.message}")
+                Log.e("FavoritosFragment", "Error al obtener listado de favoritos: ${error.message}")
             }
         })
     }
