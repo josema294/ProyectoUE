@@ -1,13 +1,13 @@
 package com.example.dameuncoctel.home
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.dameuncoctel.databinding.FragmentFirstBinding
+import com.example.dameuncoctel.databinding.FragmentPopularesBinding
 import com.example.dameuncoctel.model.CoctelDC
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -17,14 +17,12 @@ import com.google.firebase.database.Query
 import com.google.firebase.database.ValueEventListener
 
 
-
-
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
 class PopularesFragment : Fragment() {
 
-    private var _binding: FragmentFirstBinding? = null
+    private var _binding: FragmentPopularesBinding? = null
     lateinit var listaCocteles: ArrayList<CoctelDC>
     lateinit var recycler: RecyclerView
     lateinit var adaptadorRecycler: AdaptadorRecycler
@@ -42,7 +40,7 @@ class PopularesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        _binding = FragmentFirstBinding.inflate(inflater, container, false)
+        _binding = FragmentPopularesBinding.inflate(inflater, container, false)
 
 
 

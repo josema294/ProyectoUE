@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.dameuncoctel.databinding.FragmentSecondBinding
+import com.example.dameuncoctel.databinding.FragmentFavoritosBinding
 import com.example.dameuncoctel.home.AdaptadorRecycler
 import com.example.dameuncoctel.model.CoctelDC
 import com.google.firebase.auth.FirebaseAuth
@@ -17,7 +17,7 @@ import com.google.firebase.database.ValueEventListener
 
 class FavoritosFragment : Fragment() {
 
-    private lateinit var _binding: FragmentSecondBinding
+    private lateinit var _binding: FragmentFavoritosBinding
     private lateinit var arrayFavoritos: ArrayList<String>
     private lateinit var coctelesFavoritos: ArrayList<CoctelDC>
     lateinit var recycler: RecyclerView
@@ -29,7 +29,7 @@ class FavoritosFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentSecondBinding.inflate(inflater, container, false)
+        _binding = FragmentFavoritosBinding.inflate(inflater, container, false)
         return binding.root
     }
 
